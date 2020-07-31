@@ -1,0 +1,10 @@
+.popular {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.popular img {
+  width: 150px;
+}
+/*# sourceMappingURL=style.css.map */
