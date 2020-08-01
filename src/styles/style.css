@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #14181c;
+}
+
 .popular {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6,5 +17,14 @@
 
 .popular img {
   width: 150px;
+  border: 1px solid #445566;
+}
+
+.most-popular {
+  width: 80%;
+}
+
+.most-popular img {
+  max-width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

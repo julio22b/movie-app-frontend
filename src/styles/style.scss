@@ -1,6 +1,30 @@
+$bg-black: #14181c;
+$green: #00c030;
+$gray: #717f8e;
+$gray-border: #445566;
+$gray-text: #d8e0e8;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: $bg-black;
+}
+
 .popular {
     display: flex;
     img {
         width: 150px;
+        border: 1px solid $gray-border;
+    }
+}
+
+.most-popular {
+    width: 80%;
+    img {
+        max-width: 100%;
     }
 }

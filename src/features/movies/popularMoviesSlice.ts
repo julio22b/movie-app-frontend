@@ -1,34 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { AppThunk, RootState } from '../../app/store';
+import { AppThunk } from '../../app/store';
+import { MovieOMDB } from '../types';
 
-export interface MovieOMDB {
-    poster_path: string;
-    id: number;
-    backdrop_path: string;
-    original_language: string;
-    original_title: string;
-    genre_ids: number[];
-    title: string;
-    vote_average: number;
-    overview: string;
-    release_date: string;
-}
-
-export interface InitState {
+export interface InitStatePopular {
     loading: boolean;
     errors: boolean;
-    movies: MovieOMDB[];
+    topSix: MovieOMDB[];
 }
 
-const initialState: InitState = {
+const initialState: InitStatePopular = {
     loading: false,
     errors: false,
-    movies: [],
+    topSix: [],
 };
 
-const movieSlice = createSlice({
-    name: 'movie',
+const popularMoviesSlice = createSlice({
+    name: 'popularMovies',
     initialState,
     reducers: {
         getPopularMovies: (state) => {
@@ -37,7 +25,7 @@ const movieSlice = createSlice({
         getPopularMoviesSuccess: (state, action: PayloadAction<MovieOMDB[]>) => {
             state.loading = false;
             state.errors = false;
-            state.movies = action.payload;
+            state.topSix = action.payload;
         },
         getPopularMoviesFailure: (state) => {
             state.loading = false;
@@ -50,7 +38,7 @@ export const {
     getPopularMovies,
     getPopularMoviesSuccess,
     getPopularMoviesFailure,
-} = movieSlice.actions;
+} = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
     dispatch(getPopularMovies());
@@ -58,11 +46,11 @@ export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
         const movies = await axios.get(
             `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1`,
         );
-        const top6Popular = movies.data.results.slice(0,6)
+        const top6Popular = movies.data.results.slice(0, 6);
         dispatch(getPopularMoviesSuccess(top6Popular));
     } catch {
         dispatch(getPopularMoviesFailure());
     }
 };
 
-export default movieSlice.reducer;
+export default popularMoviesSlice.reducer;
