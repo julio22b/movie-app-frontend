@@ -8,6 +8,13 @@ $gray-text: #d8e0e8;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: $gray-text;
+}
+
+button {
+    background-color: $bg-black;
+    border: 2px solid white;
+    cursor: pointer;
 }
 
 body {

@@ -3,6 +3,13 @@
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+  color: #d8e0e8;
+}
+
+button {
+  background-color: #14181c;
+  border: 2px solid white;
+  cursor: pointer;
 }
 
 body {

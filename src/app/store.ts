@@ -1,11 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import counterReducer from '../features/counter/counterSlice';
 import popularMoviesReducer from '../features/movies/popularMoviesSlice';
+import userAuthReducer from '../features/user/userSlice';
 
 export const store = configureStore({
     reducer: {
         counter: counterReducer,
         popularMovies: popularMoviesReducer,
+        userAuth: userAuthReducer,
     },
 });
 

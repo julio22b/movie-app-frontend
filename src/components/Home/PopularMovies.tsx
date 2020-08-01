@@ -9,7 +9,7 @@ const PopularMovies = () => {
 
     useEffect(() => {
         dispatch(fetchPopularMovies());
-    }, []);
+    }, [dispatch]);
     return (
         <section className="popular">
             {errors && <p>Couldn't get that data</p>}
@@ -18,6 +18,7 @@ const PopularMovies = () => {
             ) : (
                 topSix.map((movie) => (
                     <img
+                        key={movie.title}
                         src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
                         alt={`Poster for ${movie.title}`}
                     />
