@@ -14,7 +14,7 @@ const JustReviewed = () => {
 
     return (
         <section className="latest-reviews">
-            <p>Just reviewed...</p>
+            <p>JUST REVIEWED...</p>
             {latest_reviews.map((review) => (
                 <Poster url={review.movie.poster} title={review.movie.title} key={review._id} />
             ))}

@@ -4,11 +4,14 @@ import { RootState } from '../../app/store';
 import Axios from 'axios';
 import { MovieInstance } from '../../features/types';
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
+import { changeModalState } from '../../features/reviews/reviewsSlice';
+import NewReview from './NewReview';
 
 const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=`;
 
 const FindMovieModal = () => {
     const open = useSelector((state: RootState) => state.reviews.openSearchMovie);
+    const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
     const [searchQuery, setSearchQuery] = useState<String>('');
     const [foundMovie, setFoundMovie] = useState<MovieInstance>({} as MovieInstance);
     const dispatch = useDispatch();
@@ -39,22 +42,27 @@ const FindMovieModal = () => {
             findMovieOMDB();
         }
     }, [searchQuery]);
-
-    if (open) {
-        return (
-            <div className="search-movie-modal">
-                <p>ADD TO YOUR FILMS...</p>
-                <label htmlFor="movie">Name of Film</label>
-                <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />
-                {foundMovie.title && (
-                    <p onClick={() => dispatch(fetchMovieForReview(foundMovie))}>
-                        {foundMovie.title} ({foundMovie.year}) <span>{foundMovie.director}</span>
+    return (
+        <div className={open ? 'search-movie-modal open' : 'search-movie-modal'}>
+            {!movie && (
+                <>
+                    <p>
+                        ADD TO YOUR FILMS...{' '}
+                        <button onClick={() => dispatch(changeModalState())}>X</button>
                     </p>
-                )}
-            </div>
-        );
-    }
-    return null;
+                    <label htmlFor="movie">Name of Film</label>
+                    <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />
+                    {foundMovie.title && (
+                        <p onClick={() => dispatch(fetchMovieForReview(foundMovie))}>
+                            {foundMovie.title} ({foundMovie.year}){' '}
+                            <span>{foundMovie.director}</span>
+                        </p>
+                    )}
+                </>
+            )}
+            {movie && <NewReview />}
+        </div>
+    );
 };
 
 export default FindMovieModal;

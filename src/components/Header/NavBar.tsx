@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { userLogIn, logOut } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
+import userService from '../../services/userService';
 
 export const NavBar = () => {
     const [username, setUsername] = useState('');
@@ -14,8 +15,14 @@ export const NavBar = () => {
         e.preventDefault();
         dispatch(userLogIn({ username, password }));
     };
+
+    const signOut = () => {
+        userService.removeCurrentUser();
+        dispatch(logOut());
+    };
     return (
         <header>
+            <p>Filmly</p>
             <ul>
                 {!user && (
                     <>
@@ -42,10 +49,10 @@ export const NavBar = () => {
                 {user && (
                     <>
                         <li>
-                            <button onClick={() => dispatch(logOut())}>Sign out</button>
+                            <button onClick={signOut}>Sign out</button>
                         </li>
-                        <li>
-                            <button onClick={() => dispatch(changeModalState())}>+LOG</button>
+                        <li className="log">
+                            <button onClick={() => dispatch(changeModalState())}>+ LOG</button>
                         </li>
                     </>
                 )}

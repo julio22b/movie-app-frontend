@@ -47,6 +47,9 @@ const popularMoviesSlice = createSlice({
             state.movie_for_review.movie = action.payload;
             state.movie_for_review.loading = false;
         },
+        removeMovieForReview: (state) => {
+            state.movie_for_review.movie = null;
+        },
     },
 });
 
@@ -56,6 +59,7 @@ export const {
     getPopularMoviesFailure,
     getMovieForReview,
     getMovieForReviewSuccess,
+    removeMovieForReview,
 } = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {

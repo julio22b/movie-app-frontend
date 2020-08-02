@@ -9,7 +9,7 @@ async function logIn(user: userLogInInput) {
     return response.data;
 }
 
-function logOut() {
+function removeCurrentUser() {
     localStorage.removeItem('filmlyCurrentUser');
 }
 
@@ -24,6 +24,6 @@ async function signUp(user: userSignUpInput) {
 
 export default {
     logIn,
-    logOut,
+    removeCurrentUser,
     signUp,
 };
