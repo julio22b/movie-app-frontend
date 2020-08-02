@@ -34,4 +34,11 @@ body {
 .most-popular img {
   max-width: 100%;
 }
+
+.search-movie-modal {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 50%;
+  left: 50%;
+}
 /*# sourceMappingURL=style.css.map */

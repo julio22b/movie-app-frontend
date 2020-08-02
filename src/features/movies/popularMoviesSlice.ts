@@ -1,18 +1,27 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppThunk } from '../../app/store';
-import { MovieOMDB } from '../types';
+import { MovieOMDB, MovieInstance } from '../types';
+import movieService from '../../services/movieService';
 
 interface InitStatePopular {
     loading: boolean;
     errors: boolean;
     topSix: MovieOMDB[];
+    movie_for_review: {
+        movie: MovieInstance | null;
+        loading: boolean;
+    };
 }
 
 const initialState: InitStatePopular = {
     loading: false,
     errors: false,
     topSix: [],
+    movie_for_review: {
+        movie: null,
+        loading: false,
+    },
 };
 
 const popularMoviesSlice = createSlice({
@@ -31,6 +40,13 @@ const popularMoviesSlice = createSlice({
             state.loading = false;
             state.errors = true;
         },
+        getMovieForReview: (state) => {
+            state.movie_for_review.loading = true;
+        },
+        getMovieForReviewSuccess: (state, action: PayloadAction<MovieInstance>) => {
+            state.movie_for_review.movie = action.payload;
+            state.movie_for_review.loading = false;
+        },
     },
 });
 
@@ -38,6 +54,8 @@ export const {
     getPopularMovies,
     getPopularMoviesSuccess,
     getPopularMoviesFailure,
+    getMovieForReview,
+    getMovieForReviewSuccess,
 } = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
@@ -51,6 +69,12 @@ export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
     } catch {
         dispatch(getPopularMoviesFailure());
     }
+};
+
+export const fetchMovieForReview = (obj: MovieInstance): AppThunk => async (dispatch) => {
+    dispatch(getMovieForReview());
+    const movie = await movieService.getMovieInstance(obj);
+    dispatch(getMovieForReviewSuccess(movie));
 };
 
 export default popularMoviesSlice.reducer;

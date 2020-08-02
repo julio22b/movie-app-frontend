@@ -40,11 +40,16 @@ export interface Review {
 export interface MovieInstance {
     title: string;
     year: string;
-    synopsis: string;
+    synopsis?: string;
+    director: string;
     poster: string;
     reviews?: Review[];
+    actors: string[];
     likes?: number;
-    genres?: string[];
+    country: string;
+    genres: string[];
+    language: string;
+    run_time: string;
 }
 
 export interface MovieList {

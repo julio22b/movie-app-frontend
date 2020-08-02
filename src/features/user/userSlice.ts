@@ -5,7 +5,6 @@ import userService from '../../services/userService';
 
 interface initialState {
     user: User | null;
-    loggedIn: boolean;
     error: boolean;
 }
 
@@ -13,7 +12,6 @@ const user = JSON.parse(localStorage.getItem('filmlyCurrentUser')!);
 
 const initialState: initialState = {
     user: user || null,
-    loggedIn: false,
     error: false,
 };
 
@@ -23,7 +21,6 @@ const userSlice = createSlice({
     reducers: {
         logInSuccess: (state, { payload }: PayloadAction<User>) => {
             state.error = false;
-            state.loggedIn = true;
             state.user = payload;
         },
         logInFailure: (state) => {
@@ -31,7 +28,6 @@ const userSlice = createSlice({
         },
         logOut: (state) => {
             state.user = null;
-            state.loggedIn = false;
             state.error = false;
         },
     },
