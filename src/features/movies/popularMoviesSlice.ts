@@ -3,7 +3,7 @@ import axios from 'axios';
 import { AppThunk } from '../../app/store';
 import { MovieOMDB } from '../types';
 
-export interface InitStatePopular {
+interface InitStatePopular {
     loading: boolean;
     errors: boolean;
     topSix: MovieOMDB[];

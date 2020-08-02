@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { fetchPopularMovies } from '../../features/movies/popularMoviesSlice';
+import Poster from './Poster';
 
 const PopularMovies = () => {
     const dispatch = useDispatch();
@@ -17,11 +18,7 @@ const PopularMovies = () => {
                 <p>Loading...</p>
             ) : (
                 topSix.map((movie) => (
-                    <img
-                        key={movie.title}
-                        src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-                        alt={`Poster for ${movie.title}`}
-                    />
+                    <Poster url={movie.poster_path} title={movie.title} key={movie.title} />
                 ))
             )}
         </section>

@@ -29,6 +29,7 @@ export interface userLogInInput {
 }
 
 export interface Review {
+    _id: string;
     movie: MovieInstance;
     content: string;
     user: User;
