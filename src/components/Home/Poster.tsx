@@ -3,11 +3,11 @@ import React from 'react';
 interface PosterProps {
     url: string;
     title: string;
-    omdb: boolean;
+    tmdb: boolean;
 }
 
-const Poster: React.FC<PosterProps> = ({ url, title, omdb }) => {
-    if (omdb) {
+const Poster: React.FC<PosterProps> = ({ url, title, tmdb }) => {
+    if (tmdb) {
         return (
             <img src={`https://image.tmdb.org/t/p/original${url}`} alt={`Poster for ${title}`} />
         );

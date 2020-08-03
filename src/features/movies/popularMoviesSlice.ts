@@ -16,6 +16,7 @@ interface InitStatePopular {
         movie: MovieInstance | null;
         loading: boolean;
         error: boolean;
+        backdrop: string;
     };
 }
 
@@ -31,6 +32,7 @@ const initialState: InitStatePopular = {
         movie: null,
         loading: false,
         error: false,
+        backdrop: '',
     },
 };
 
@@ -73,6 +75,9 @@ const popularMoviesSlice = createSlice({
             state.movie_for_page.loading = false;
             state.movie_for_page.error = true;
         },
+        setBackdropForPage: (state, action: PayloadAction<string>) => {
+            state.movie_for_page.backdrop = action.payload;
+        },
         removeMovieForPage: (state) => {
             state.movie_for_page.error = false;
             state.movie_for_page.loading = false;
@@ -92,6 +97,7 @@ export const {
     getMovieForPageSuccess,
     getMovieForPageFailure,
     removeMovieForPage,
+    setBackdropForPage,
 } = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
@@ -123,6 +129,13 @@ export const fetchMovieForPage = (obj: MovieInstance): AppThunk => async (dispat
     } catch {
         dispatch(getMovieForPageFailure());
     }
+};
+
+export const fetchBackdropForPage = (searchQuery: string): AppThunk => async (dispatch) => {
+    const response = await axios.get(
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`,
+    );
+    dispatch(setBackdropForPage(response.data.results[0].backdrop_path));
 };
 
 export default popularMoviesSlice.reducer;

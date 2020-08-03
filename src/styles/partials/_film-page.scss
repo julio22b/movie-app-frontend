@@ -1,4 +1,54 @@
 .film-page {
-    border: 1px solid red;
-    padding-top: 200px;
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 85%;
+    margin-top: -10em;
+    figure {
+        width: 25%;
+        max-width: 300px;
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+            border: 1px solid $gray-border;
+        }
+    }
+    & > div {
+        width: 60%;
+        display: flex;
+        div:last-child {
+            button {
+                background-color: $gray-border;
+                border: none;
+                border-radius: 4px;
+                padding: 0.5em;
+                font-size: 0.8rem;
+                &:hover {
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+.details {
+    max-width: 400px;
+    .title {
+        padding-bottom: 2em;
+        .director {
+            margin-top: 1em;
+            display: block;
+            font-size: 0.8rem;
+            font-weight: normal;
+            opacity: 0.8;
+            color: $gray-text-secondary;
+        }
+    }
+    p {
+        color: $gray-text-secondary;
+    }
+    .meta {
+        font-size: 0.7rem;
+        margin-top: 3em;
+    }
 }

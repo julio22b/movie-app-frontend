@@ -25,7 +25,7 @@ const PopularMovies = () => {
                             to={`/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`}
                             key={movie.title}
                         >
-                            <Poster url={movie.poster_path} title={movie.title} omdb={true} />
+                            <Poster url={movie.poster_path} title={movie.title} tmdb={true} />
                         </Link>
                     ))}
                 </>

@@ -20,7 +20,7 @@ const JustReviewed = () => {
                     <Poster
                         url={review.movie.poster}
                         title={review.movie.title}
-                        omdb={false}
+                        tmdb={false}
                         key={review.movie.title}
                     />
                 ))}

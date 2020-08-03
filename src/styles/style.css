@@ -5,6 +5,7 @@
           box-sizing: border-box;
   color: #d8e0e8;
   font-family: 'Nunito', sans-serif;
+  line-height: 1.5;
 }
 
 button {
@@ -29,8 +30,70 @@ body {
 }
 
 .film-page {
-  border: 1px solid red;
-  padding-top: 200px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 auto;
+  width: 85%;
+  margin-top: -10em;
+}
+
+.film-page figure {
+  width: 25%;
+  max-width: 300px;
+}
+
+.film-page figure img {
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid #445566;
+}
+
+.film-page > div {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.film-page > div div:last-child button {
+  background-color: #445566;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5em;
+  font-size: 0.8rem;
+}
+
+.film-page > div div:last-child button:hover {
+  color: white;
+}
+
+.details {
+  max-width: 400px;
+}
+
+.details .title {
+  padding-bottom: 2em;
+}
+
+.details .title .director {
+  margin-top: 1em;
+  display: block;
+  font-size: 0.8rem;
+  font-weight: normal;
+  opacity: 0.8;
+  color: #99aabb;
+}
+
+.details p {
+  color: #99aabb;
+}
+
+.details .meta {
+  font-size: 0.7rem;
+  margin-top: 3em;
 }
 
 header {
@@ -125,11 +188,12 @@ header ul li.log button {
   font-size: 2.5rem;
 }
 
-.most-popular figure {
+figure.backdrop {
   z-index: -10;
+  position: relative;
 }
 
-.most-popular figure::after {
+figure.backdrop::after {
   content: '';
   display: block;
   position: absolute;
@@ -142,11 +206,11 @@ header ul li.log button {
   background-image: linear-gradient(90deg, #14181d 0, rgba(20, 24, 29, 0.985565) 0.97%, rgba(20, 24, 29, 0.945131) 2.07833%, rgba(20, 24, 29, 0.883007) 3.29667%, rgba(20, 24, 29, 0.803499) 4.60167%, rgba(20, 24, 29, 0.710915) 5.96667%, rgba(20, 24, 29, 0.609563) 7.365%, rgba(20, 24, 29, 0.50375) 8.77167%, rgba(20, 24, 29, 0.397784) 10.16%, rgba(20, 24, 29, 0.295973) 11.505%, rgba(20, 24, 29, 0.202624) 12.78%, rgba(20, 24, 29, 0.122044) 13.95833%, rgba(20, 24, 29, 0.0585423) 15.01667%, rgba(20, 24, 29, 0.0164249) 15.92833%, rgba(20, 24, 29, 0) 16.66667%, rgba(20, 24, 29, 0) 83.33333%, rgba(20, 24, 29, 0.0164249) 84.07167%, rgba(20, 24, 29, 0.0585423) 84.98333%, rgba(20, 24, 29, 0.122044) 86.04167%, rgba(20, 24, 29, 0.202624) 87.22%, rgba(20, 24, 29, 0.295973) 88.495%, rgba(20, 24, 29, 0.397784) 89.84%, rgba(20, 24, 29, 0.50375) 91.22833%, rgba(20, 24, 29, 0.609563) 92.635%, rgba(20, 24, 29, 0.710915) 94.03333%, rgba(20, 24, 29, 0.803499) 95.39833%, rgba(20, 24, 29, 0.883007) 96.70333%, rgba(20, 24, 29, 0.945131) 97.92167%, rgba(20, 24, 29, 0.985565) 99.03%, #14181d), linear-gradient(0deg, #14181d 0, #14181d 21.48148%, rgba(20, 24, 29, 0.985565) 23.63704%, rgba(20, 24, 29, 0.945131) 26.1%, rgba(20, 24, 29, 0.883007) 28.80741%, rgba(20, 24, 29, 0.803499) 31.70741%, rgba(20, 24, 29, 0.710915) 34.74074%, rgba(20, 24, 29, 0.609563) 37.84815%, rgba(20, 24, 29, 0.50375) 40.97407%, rgba(20, 24, 29, 0.397784) 44.05926%, rgba(20, 24, 29, 0.295973) 47.04815%, rgba(20, 24, 29, 0.202624) 49.88148%, rgba(20, 24, 29, 0.122044) 52.5%, rgba(20, 24, 29, 0.0585423) 54.85185%, rgba(20, 24, 29, 0.0164249) 56.87778%, rgba(20, 24, 29, 0) 58.51852%);
 }
 
-.most-popular figure img {
+figure.backdrop img {
   max-width: 100%;
 }
 
-.most-popular figure figcaption {
+figure.backdrop figcaption {
   position: absolute;
   top: 50%;
   right: -10%;
