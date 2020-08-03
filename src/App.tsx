@@ -17,7 +17,8 @@ function App() {
         if (user) {
             userInfo();
         }
-    });
+    }, [dispatch]);
+
     return (
         <>
             <NavBar />

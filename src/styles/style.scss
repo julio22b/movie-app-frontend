@@ -32,6 +32,8 @@ body {
     margin: 0 auto;
 }
 
+@import './partials/film-page';
+
 // HEADER
 
 header {
@@ -204,6 +206,16 @@ header {
     padding: 2em 0;
     width: 90%;
     margin: 0 auto;
+    article {
+        display: flex;
+        justify-content: space-between;
+        img {
+            width: 8.5%;
+            border-radius: 4px;
+            border: 1px solid $gray-border;
+            cursor: pointer;
+        }
+    }
 }
 
 .search-movie-modal {

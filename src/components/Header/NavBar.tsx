@@ -32,11 +32,14 @@ export const NavBar = () => {
                                     type="text"
                                     required
                                     onChange={(e) => setUsername(e.target.value)}
+                                    maxLength={25}
+                                    minLength={3}
                                 />
                                 <input
                                     type="text"
                                     required
                                     onChange={(e) => setPassword(e.target.value)}
+                                    minLength={6}
                                 />
                                 <button>SIGN IN</button>
                             </form>

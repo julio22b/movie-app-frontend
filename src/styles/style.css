@@ -28,6 +28,11 @@ body {
   margin: 0 auto;
 }
 
+.film-page {
+  border: 1px solid red;
+  padding-top: 200px;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -187,6 +192,22 @@ header ul li.log button {
   padding: 2em 0;
   width: 90%;
   margin: 0 auto;
+}
+
+.latest-reviews article {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.latest-reviews article img {
+  width: 8.5%;
+  border-radius: 4px;
+  border: 1px solid #445566;
+  cursor: pointer;
 }
 
 .search-movie-modal {

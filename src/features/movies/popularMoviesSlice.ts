@@ -12,6 +12,11 @@ interface InitStatePopular {
         movie: MovieInstance | null;
         loading: boolean;
     };
+    movie_for_page: {
+        movie: MovieInstance | null;
+        loading: boolean;
+        error: boolean;
+    };
 }
 
 const initialState: InitStatePopular = {
@@ -21,6 +26,11 @@ const initialState: InitStatePopular = {
     movie_for_review: {
         movie: null,
         loading: false,
+    },
+    movie_for_page: {
+        movie: null,
+        loading: false,
+        error: false,
     },
 };
 
@@ -50,6 +60,19 @@ const popularMoviesSlice = createSlice({
         removeMovieForReview: (state) => {
             state.movie_for_review.movie = null;
         },
+        getMovieForPage: (state) => {
+            state.movie_for_page.loading = true;
+            state.movie_for_page.error = false;
+        },
+        getMovieForPageSuccess: (state, action: PayloadAction<MovieInstance>) => {
+            state.movie_for_page.movie = action.payload;
+            state.movie_for_page.loading = false;
+            state.movie_for_page.error = false;
+        },
+        getMovieForPageFailure: (state) => {
+            state.movie_for_page.loading = false;
+            state.movie_for_page.error = true;
+        },
     },
 });
 
@@ -60,6 +83,9 @@ export const {
     getMovieForReview,
     getMovieForReviewSuccess,
     removeMovieForReview,
+    getMovieForPage,
+    getMovieForPageSuccess,
+    getMovieForPageFailure,
 } = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
@@ -77,8 +103,20 @@ export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
 
 export const fetchMovieForReview = (obj: MovieInstance): AppThunk => async (dispatch) => {
     dispatch(getMovieForReview());
-    const movie = await movieService.getMovieInstance(obj);
+    const username = JSON.parse(localStorage.getItem('filmlyCurrentUser')!).username;
+    const movie = await movieService.getMovieInstance(obj, username);
     dispatch(getMovieForReviewSuccess(movie));
+};
+
+export const fetchMovieForPage = (obj: MovieInstance): AppThunk => async (dispatch) => {
+    dispatch(getMovieForPage());
+    try {
+        const username = JSON.parse(localStorage.getItem('filmlyCurrentUser')!).username;
+        const movie = await movieService.getMovieInstance(obj, username);
+        dispatch(getMovieForPageSuccess(movie));
+    } catch {
+        dispatch(getMovieForPageFailure());
+    }
 };
 
 export default popularMoviesSlice.reducer;

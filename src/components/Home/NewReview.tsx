@@ -4,6 +4,7 @@ import { RootState } from '../../app/store';
 import { removeMovieForReview } from '../../features/movies/popularMoviesSlice';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
 import reviewService from '../../services/reviewService';
+import { fetchLatestReviews, changeModalState } from '../../features/reviews/reviewsSlice';
 
 const NewReview = () => {
     const { loading, movie } = useSelector(
@@ -18,12 +19,18 @@ const NewReview = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (movie && loggedUser) {
-            const response = await reviewService.postReview(
-                { content, liked_movie: like, rating },
-                movie._id!,
-                loggedUser._id!,
-            );
-            console.log(response.data);
+            try {
+                await reviewService.postReview(
+                    { content, liked_movie: like, rating },
+                    movie._id!,
+                    loggedUser._id!,
+                );
+                dispatch(fetchLatestReviews());
+                dispatch(removeMovieForReview());
+                dispatch(changeModalState());
+            } catch (e) {
+                console.log(e);
+            }
         }
     };
 
@@ -51,6 +58,7 @@ const NewReview = () => {
                             rows={10}
                             placeholder="Add a review..."
                             onChange={(e) => setContent(e.target.value)}
+                            required
                         ></textarea>
                         <div className="like">
                             <label htmlFor="like">Like</label>

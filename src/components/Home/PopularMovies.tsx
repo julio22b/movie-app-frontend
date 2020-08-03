@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import { fetchPopularMovies } from '../../features/movies/popularMoviesSlice';
 import Poster from './Poster';
+import { Link } from 'react-router-dom';
 
 const PopularMovies = () => {
     const dispatch = useDispatch();
@@ -20,7 +21,12 @@ const PopularMovies = () => {
                 <>
                     <p>POPULAR FILMS</p>
                     {topSix.map((movie) => (
-                        <Poster url={movie.poster_path} title={movie.title} key={movie.title} />
+                        <Link
+                            to={`/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`}
+                            key={movie.title}
+                        >
+                            <Poster url={movie.poster_path} title={movie.title} />
+                        </Link>
                     ))}
                 </>
             )}

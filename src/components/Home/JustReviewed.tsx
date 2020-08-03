@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { fetchLatestReviews } from '../../features/reviews/reviewsSlice';
-import Poster from './Poster';
 
 const JustReviewed = () => {
     const { latest_reviews } = useSelector((state: RootState) => state.reviews);
@@ -15,9 +14,15 @@ const JustReviewed = () => {
     return (
         <section className="latest-reviews">
             <p>JUST REVIEWED...</p>
-            {latest_reviews.map((review) => (
-                <Poster url={review.movie.poster} title={review.movie.title} key={review._id} />
-            ))}
+            <article>
+                {latest_reviews.map((review) => (
+                    <img
+                        src={review.movie.poster.replace(/&#x2F;/g, '/')}
+                        alt={review.movie.title}
+                        key={review._id}
+                    />
+                ))}
+            </article>
         </section>
     );
 };
