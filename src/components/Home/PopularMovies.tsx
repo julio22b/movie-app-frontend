@@ -17,9 +17,12 @@ const PopularMovies = () => {
             {loading ? (
                 <p>Loading...</p>
             ) : (
-                topSix.map((movie) => (
-                    <Poster url={movie.poster_path} title={movie.title} key={movie.title} />
-                ))
+                <>
+                    <p>POPULAR FILMS</p>
+                    {topSix.map((movie) => (
+                        <Poster url={movie.poster_path} title={movie.title} key={movie.title} />
+                    ))}
+                </>
             )}
         </section>
     );

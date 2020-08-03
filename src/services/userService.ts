@@ -9,6 +9,11 @@ async function logIn(user: userLogInInput) {
     return response.data;
 }
 
+async function getUserInfo(id: string) {
+    const response = await axios.get(`${baseUrl}/${id}`);
+    return response.data;
+}
+
 function removeCurrentUser() {
     localStorage.removeItem('filmlyCurrentUser');
 }
@@ -26,4 +31,5 @@ export default {
     logIn,
     removeCurrentUser,
     signUp,
+    getUserInfo,
 };

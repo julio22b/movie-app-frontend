@@ -162,6 +162,8 @@ header ul li.log button {
           justify-content: space-between;
   width: 90%;
   margin: 0 auto;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
 }
 
 .popular img {
@@ -171,18 +173,20 @@ header ul li.log button {
   border-radius: 4px;
 }
 
+.latest-reviews > p,
+.popular > p {
+  width: 100%;
+  color: #99aabb;
+  padding: 0.4em 0;
+  margin: 1em 0 2em 0;
+  border-bottom: 1px solid #445566;
+  font-size: 0.9rem;
+}
+
 .latest-reviews {
   padding: 2em 0;
   width: 90%;
   margin: 0 auto;
-}
-
-.latest-reviews > p {
-  border-bottom: 1px solid #445566;
-  padding: 0.5em 0;
-  margin-bottom: 0.5em;
-  font-size: 0.9rem;
-  color: #99aabb;
 }
 
 .search-movie-modal {
@@ -393,5 +397,26 @@ header ul li.log button {
 .add-new-review article form .like input[type='radio'],
 .add-new-review article form .rating input[type='radio'] {
   margin-right: 5px;
+}
+
+.add-new-review article form .rating {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.add-new-review article form button {
+  background: #00c030;
+  padding: 0.5em;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  margin: 10px 0 0 auto;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.add-new-review article form button:hover {
+  background: #01a52a;
 }
 /*# sourceMappingURL=style.css.map */

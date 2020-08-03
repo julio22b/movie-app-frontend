@@ -8,10 +8,8 @@ interface initialState {
     error: boolean;
 }
 
-const user = JSON.parse(localStorage.getItem('filmlyCurrentUser')!);
-
 const initialState: initialState = {
-    user: user || null,
+    user: null,
     error: false,
 };
 
@@ -30,18 +28,23 @@ const userSlice = createSlice({
             state.user = null;
             state.error = false;
         },
+        saveUserInfo: (state, { payload }: PayloadAction<User>) => {
+            state.user = payload;
+            state.error = false;
+        },
     },
 });
 
-export const { logInSuccess, logInFailure, logOut } = userSlice.actions;
+export const { logInSuccess, logInFailure, logOut, saveUserInfo } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {
     try {
-        const data = await userService.logIn({
+        const response = await userService.logIn({
             username: user.username,
             password: user.password,
         });
-        dispatch(logInSuccess(data));
+        const userData = await userService.getUserInfo(response.id);
+        dispatch(logInSuccess(userData));
     } catch {
         dispatch(logInFailure());
     }

@@ -181,6 +181,7 @@ header {
     justify-content: space-between;
     width: 90%;
     margin: 0 auto;
+    flex-wrap: wrap;
     img {
         width: 150px;
         border: 1px solid $gray-border;
@@ -189,17 +190,20 @@ header {
     }
 }
 
+.latest-reviews > p,
+.popular > p {
+    width: 100%;
+    color: $gray-text-secondary;
+    padding: 0.4em 0;
+    margin: 1em 0 2em 0;
+    border-bottom: 1px solid $gray-border;
+    font-size: 0.9rem;
+}
+
 .latest-reviews {
     padding: 2em 0;
     width: 90%;
     margin: 0 auto;
-    & > p {
-        border-bottom: 1px solid $gray-border;
-        padding: 0.5em 0;
-        margin-bottom: 0.5em;
-        font-size: 0.9rem;
-        color: $gray-text-secondary;
-    }
 }
 
 .search-movie-modal {
@@ -344,6 +348,22 @@ header {
                 }
                 input[type='radio'] {
                     margin-right: 5px;
+                }
+            }
+            .rating {
+                justify-content: space-between;
+            }
+            button {
+                background: $green;
+                padding: 0.5em;
+                font-weight: bold;
+                border: none;
+                border-radius: 3px;
+                margin: 10px 0 0 auto;
+                font-size: 0.9rem;
+                letter-spacing: 1px;
+                &:hover {
+                    background: $darker-green;
                 }
             }
         }

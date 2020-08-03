@@ -4,8 +4,8 @@ import { RootState } from '../../app/store';
 import Axios from 'axios';
 import { MovieInstance } from '../../features/types';
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
-import { changeModalState } from '../../features/reviews/reviewsSlice';
 import NewReview from './NewReview';
+import CloseModalBtn from '../_helpers/CloseModalBtn';
 
 const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=`;
 
@@ -47,8 +47,7 @@ const FindMovieModal = () => {
             {!movie && (
                 <>
                     <p>
-                        ADD TO YOUR FILMS...{' '}
-                        <button onClick={() => dispatch(changeModalState())}>X</button>
+                        ADD TO YOUR FILMS... <CloseModalBtn />
                     </p>
                     <label htmlFor="movie">Name of Film</label>
                     <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />
