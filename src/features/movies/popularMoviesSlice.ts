@@ -73,6 +73,11 @@ const popularMoviesSlice = createSlice({
             state.movie_for_page.loading = false;
             state.movie_for_page.error = true;
         },
+        removeMovieForPage: (state) => {
+            state.movie_for_page.error = false;
+            state.movie_for_page.loading = false;
+            state.movie_for_page.movie = null;
+        },
     },
 });
 
@@ -86,6 +91,7 @@ export const {
     getMovieForPage,
     getMovieForPageSuccess,
     getMovieForPageFailure,
+    removeMovieForPage,
 } = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {

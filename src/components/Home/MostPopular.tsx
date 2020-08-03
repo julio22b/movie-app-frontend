@@ -16,7 +16,7 @@ const MostPopular = () => {
                 <p>Tell your friends what's good</p>
             </div>
             <figure>
-                <Poster title={mostPopular.title} url={mostPopular.backdrop_path} />
+                <Poster title={mostPopular.title} url={mostPopular.backdrop_path} omdb={true} />
                 <figcaption>
                     {`${mostPopular.title} (${mostPopular.release_date.slice(0, 4)})`}
                 </figcaption>
