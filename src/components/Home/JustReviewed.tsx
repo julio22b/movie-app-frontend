@@ -21,7 +21,7 @@ const JustReviewed = () => {
                         url={review.movie.poster}
                         title={review.movie.title}
                         tmdb={false}
-                        key={review.movie.title}
+                        key={review._id}
                     />
                 ))}
             </article>

@@ -9,6 +9,8 @@ import {
 import { useParams } from 'react-router-dom';
 import movieService from '../../services/movieService';
 import Poster from '../Home/Poster';
+import FilmReview from './FilmReview';
+import FilmActions from './FilmActions';
 
 const FilmPage = () => {
     const dispatch = useDispatch();
@@ -41,7 +43,7 @@ const FilmPage = () => {
                     <Poster url={backdrop} title={movie.title} tmdb={true} />
                 </figure>
                 <article className="film-page">
-                    <figure>
+                    <figure className="poster">
                         <Poster url={movie.poster} title={movie.title} tmdb={false} />
                     </figure>
                     <div>
@@ -58,7 +60,24 @@ const FilmPage = () => {
                             </p>
                         </div>
                         <div>{!user && <button>Sign in to log, rate or review</button>}</div>
+                        {user && <FilmActions />}
                     </div>
+                    <section className="reviews">
+                        {movie.reviews.length
+                            ? movie.reviews.map((review) => (
+                                  <FilmReview
+                                      movie={review.movie}
+                                      content={review.content}
+                                      user={review.user}
+                                      comments={review.comments}
+                                      rating={review.rating}
+                                      likes={review.likes}
+                                      liked_movie={review.liked_movie}
+                                      key={review._id}
+                                  />
+                              ))
+                            : 'This film has no reviews yet.'}
+                    </section>
                 </article>
             </>
         );

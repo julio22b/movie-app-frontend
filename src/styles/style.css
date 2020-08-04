@@ -33,29 +33,35 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   -ms-flex-pack: distribute;
       justify-content: space-around;
   margin: 0 auto;
-  width: 85%;
+  width: 90%;
   margin-top: -10em;
 }
 
-.film-page figure {
-  width: 25%;
+.film-page figure.poster {
+  width: 20%;
   max-width: 300px;
 }
 
-.film-page figure img {
+.film-page figure.poster img {
   max-width: 100%;
+  min-width: 200px;
   border-radius: 4px;
   border: 1px solid #445566;
 }
 
 .film-page > div {
-  width: 60%;
+  width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .film-page > div div:last-child button {
@@ -94,6 +100,58 @@ body {
 .details .meta {
   font-size: 0.7rem;
   margin-top: 3em;
+}
+
+.film-actions {
+  background-color: #445566;
+  border-radius: 4px;
+  width: 280px;
+  padding: 1em 0 0 0;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.film-actions > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 1em;
+}
+
+.film-actions button {
+  border: none;
+  background-color: transparent;
+  padding: 0.5em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  max-width: 70px;
+}
+
+.film-actions button:hover,
+.film-actions button figcaption:hover {
+  color: white;
+}
+
+.film-actions button.review {
+  min-width: 100%;
+  border-top: 1px solid #14181c;
+  margin-top: 2em;
+  padding: 1.5em 1em;
+}
+
+.reviews {
+  width: 60%;
+  margin-left: auto;
 }
 
 header {

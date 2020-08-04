@@ -1,21 +1,24 @@
 .film-page {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     margin: 0 auto;
-    width: 85%;
+    width: 90%;
     margin-top: -10em;
-    figure {
-        width: 25%;
+    figure.poster {
+        width: 20%;
         max-width: 300px;
         img {
             max-width: 100%;
+            min-width: 200px;
             border-radius: 4px;
             border: 1px solid $gray-border;
         }
     }
     & > div {
-        width: 60%;
+        width: 70%;
         display: flex;
+        justify-content: space-between;
         div:last-child {
             button {
                 background-color: $gray-border;
@@ -51,4 +54,41 @@
         font-size: 0.7rem;
         margin-top: 3em;
     }
+}
+
+.film-actions {
+    background-color: $gray-border;
+    border-radius: 4px;
+    width: 280px;
+    padding: 1em 0 0 0;
+    align-self: flex-start;
+    & > div {
+        display: flex;
+        justify-content: space-between;
+        padding: 0 1em;
+    }
+    button {
+        border: none;
+        background-color: transparent;
+        padding: 0.5em 1em;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        max-width: 70px;
+        &:hover,
+        figcaption:hover {
+            color: white;
+        }
+    }
+    button.review {
+        min-width: 100%;
+        border-top: 1px solid $bg-black;
+        margin-top: 2em;
+        padding: 1.5em 1em;
+    }
+}
+
+.reviews {
+    width: 60%;
+    margin-left: auto;
 }

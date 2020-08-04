@@ -14,6 +14,7 @@ export interface MovieOMDB {
 export interface User {
     _id?: string;
     username: string;
+    profile_picture: string;
     bio?: string;
     reviews?: Review[];
     watched_movies?: MovieInstance[];
@@ -37,18 +38,25 @@ export interface Review {
     liked_movie?: boolean;
     likes?: number;
     rating?: number;
+    comments: ReviewComment[];
+}
+
+export interface ReviewComment {
+    user: User;
+    movie: MovieInstance;
+    content: string;
 }
 
 export interface MovieInstance {
     _id?: string;
     title: string;
     year: string;
-    synopsis?: string;
+    synopsis: string;
     director: string;
     poster: string;
-    reviews?: Review[];
+    reviews: Review[];
     actors: string[];
-    likes?: number;
+    likes: number;
     country: string;
     genres: string[];
     language: string;

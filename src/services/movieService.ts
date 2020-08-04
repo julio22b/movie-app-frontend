@@ -28,7 +28,7 @@ const useOMDB = async (searchQuery: string): Promise<MovieInstance | undefined> 
             genres: data.Genre.split(','),
             language: data.Language,
             run_time: data.Runtime,
-        };
+        } as MovieInstance;
     }
 };
 
