@@ -18,6 +18,7 @@ import movieService from '../../services/movieService';
 import userService from '../../services/userService';
 import { User } from '../../features/types';
 import { checkStatus } from '../../services/helpers';
+import { showNotification, Notif, hideNotification } from '../../features/user/userSlice';
 
 const FilmActions = () => {
     const movie = useSelector((state: RootState) => state.popularMovies.movie_for_page.movie)!;
@@ -38,22 +39,46 @@ const FilmActions = () => {
         dispatch(changeModalState());
     };
 
-    const handleLike = () => {
+    const notify = (notification: Notif) => {
+        dispatch(showNotification(notification));
+        setTimeout(() => {
+            dispatch(hideNotification());
+        }, 5000);
+    };
+    const handleLike = async () => {
         const action = isLiked ? 'unlike' : 'like';
-        movieService.changeLikeStatus(user._id, movie._id, action);
+        const { message } = await movieService.changeLikeStatus(user._id, movie._id, action);
         setIsLiked(!isLiked);
+        const notification: Notif = {
+            message,
+            type: isLiked ? 'warning' : 'success',
+            active: true,
+        };
+        notify(notification);
     };
 
-    const handleDiary = () => {
+    const handleDiary = async () => {
         const action = isWatched ? 'remove-from-diary' : 'add-to-diary';
-        userService.changeWatchedStatus(user._id, movie._id, action);
+        const { message } = await userService.changeWatchedStatus(user._id, movie._id, action);
         setisWatched(!isWatched);
+        const notification: Notif = {
+            message,
+            type: isWatched ? 'warning' : 'success',
+            active: true,
+        };
+        notify(notification);
     };
 
-    const handleWatchList = () => {
+    const handleWatchList = async () => {
         const action = isInWatchList ? 'remove-from-watchlist' : 'add-to-watchlist';
-        userService.changeWatchListStatus(user._id, movie._id, action);
+        const { message } = await userService.changeWatchListStatus(user._id, movie._id, action);
         setIsInWatchList(!isInWatchList);
+        const notification: Notif = {
+            message,
+            type: isInWatchList ? 'warning' : 'success',
+            active: true,
+        };
+        notify(notification);
     };
     return (
         <aside className="film-actions">

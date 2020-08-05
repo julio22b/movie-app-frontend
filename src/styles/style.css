@@ -584,4 +584,46 @@ figure.backdrop figcaption {
 .add-new-review article form button:hover {
   background: #01a52a;
 }
+
+.notification {
+  padding: 1em;
+  color: white;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 20;
+  width: 400px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 2px 8px #14181c;
+          box-shadow: 0 2px 8px #14181c;
+  font-weight: bold;
+  -webkit-transform: scaleY(0);
+          transform: scaleY(0);
+  -webkit-transition: -webkit-transform 250ms ease;
+  transition: -webkit-transform 250ms ease;
+  transition: transform 250ms ease;
+  transition: transform 250ms ease, -webkit-transform 250ms ease;
+  -webkit-transform-origin: top;
+          transform-origin: top;
+}
+
+.notification.success {
+  background-color: #00c030;
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  -webkit-transition: -webkit-transform 250ms ease;
+  transition: -webkit-transform 250ms ease;
+  transition: transform 250ms ease;
+  transition: transform 250ms ease, -webkit-transform 250ms ease;
+}
+
+.notification.warning {
+  -webkit-transform: scaleY(1);
+          transform: scaleY(1);
+  background-color: #ff9010;
+  -webkit-transition: -webkit-transform 250ms ease;
+  transition: -webkit-transform 250ms ease;
+  transition: transform 250ms ease;
+  transition: transform 250ms ease, -webkit-transform 250ms ease;
+}
 /*# sourceMappingURL=style.css.map */
