@@ -49,7 +49,7 @@ const FilmPage = () => {
                 <article className="film-page">
                     <figure className="poster">
                         <Poster url={movie.poster} title={movie.title} tmdb={false} />
-                        <PosterCaption watches={0} likes={movie.likes} />
+                        <PosterCaption watches={movie.watches} likes={movie.likes} />
                     </figure>
                     <div>
                         <FilmDetails {...movie} />
@@ -69,6 +69,7 @@ const FilmPage = () => {
                                           liked_movie={review.liked_movie}
                                           key={review._id}
                                           movie={review.movie}
+                                          _id={review._id}
                                       />
                                   ))
                                 : 'This film has no reviews yet.'}

@@ -24,6 +24,7 @@ export interface User {
     favorites?: MovieInstance[];
     lists?: MovieList[];
     liked_movies?: MovieInstance[];
+    liked_reviews: [string];
 }
 
 export interface userLogInInput {
@@ -59,6 +60,7 @@ export interface MovieInstance {
     reviews: Review[];
     actors: string[];
     likes: number;
+    watches: number;
     country: string;
     genres: string[];
     language: string;

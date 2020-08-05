@@ -15,6 +15,14 @@ const postReview = async (
     return response.data;
 };
 
+const likeReview = async (userID: string, reviewID: string) => {
+    const response = await Axios.put(`${baseUrl}/${userID}/like/${reviewID}`, null, {
+        headers: authHeader(),
+    });
+    return response.data;
+};
+
 export default {
     postReview,
+    likeReview,
 };

@@ -6,6 +6,7 @@ import FindMovieModal from './FindMovieModal';
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import FilmPage from '../Film/FilmPage';
 import Notification from './Notification';
+import { NavBar } from '../Header/NavBar';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
             <FindMovieModal />
             <Notification />
             <Router>
+                <NavBar />
                 <Switch>
                     <Route path="/" exact>
                         <section>

@@ -42,7 +42,7 @@ body {
           align-items: flex-start;
   margin: 0 auto;
   width: 90%;
-  margin-top: -10em;
+  margin-top: -11em;
 }
 
 .film-page figure.poster {
@@ -58,6 +58,69 @@ body {
   min-width: 200px;
   border-radius: 4px;
   border: 1px solid #445566;
+}
+
+.film-page figure.poster figcaption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+}
+
+.film-page figure.poster figcaption i {
+  width: 30px;
+  height: 20px;
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.film-page figure.poster figcaption i.watches {
+  background-image: url("../images/watched-darkbg.png");
+}
+
+.film-page figure.poster figcaption i.likes {
+  background-image: url("../images/heart-yellow-darkbg.png");
+}
+
+.film-page figure.poster figcaption > div {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.film-page figure.poster figcaption > div:hover .description {
+  opacity: 1;
+}
+
+.film-page figure.poster figcaption span:first-of-type {
+  font-size: 0.8rem;
+}
+
+.film-page figure.poster figcaption .description {
+  font-size: 0.65rem;
+  position: absolute;
+  border-radius: 4px;
+  background-color: #445566;
+  padding: 0.5em;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  left: 0;
+  top: -30px;
+  opacity: 0;
+  -webkit-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
 }
 
 .film-page > div {

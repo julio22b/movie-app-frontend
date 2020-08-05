@@ -5,7 +5,7 @@
     align-items: flex-start;
     margin: 0 auto;
     width: 90%;
-    margin-top: -10em;
+    margin-top: -11em;
     figure.poster {
         width: 23%;
         max-width: 250px;
@@ -16,6 +16,48 @@
             min-width: 200px;
             border-radius: 4px;
             border: 1px solid $gray-border;
+        }
+        figcaption {
+            display: flex;
+            margin-top: 10px;
+            i {
+                width: 30px;
+                height: 20px;
+                display: inline-block;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            i.watches {
+                background-image: url('../images/watched-darkbg.png');
+            }
+            i.likes {
+                background-image: url('../images/heart-yellow-darkbg.png');
+            }
+            & > div {
+                position: relative;
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                &:hover .description {
+                    opacity: 1;
+                }
+            }
+            span:first-of-type {
+                font-size: 0.8rem;
+            }
+            .description {
+                font-size: 0.65rem;
+                position: absolute;
+                border-radius: 4px;
+                background-color: $gray-border;
+                padding: 0.5em;
+                width: max-content;
+                left: 0;
+                top: -30px;
+                opacity: 0;
+                transition: opacity 250ms ease;
+            }
         }
     }
     & > div {
