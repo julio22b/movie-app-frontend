@@ -23,6 +23,7 @@ export interface User {
     watch_list?: MovieInstance[];
     favorites?: MovieInstance[];
     lists?: MovieList[];
+    liked_movies?: MovieInstance[];
 }
 
 export interface userLogInInput {

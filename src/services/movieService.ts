@@ -32,7 +32,19 @@ const useOMDB = async (searchQuery: string): Promise<MovieInstance | undefined> 
     }
 };
 
+const changeLikeStatus = async (
+    userID: string | undefined,
+    movieID: string | undefined,
+    action: 'like' | 'unlike',
+) => {
+    const response = await Axios.put(`${baseUrl}/${userID}/${action}/${movieID}`, null, {
+        headers: authHeader(),
+    });
+    return response.data;
+};
+
 export default {
     getMovieInstance,
     useOMDB,
+    changeLikeStatus,
 };

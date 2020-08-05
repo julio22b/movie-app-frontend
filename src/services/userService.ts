@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { userLogInInput } from '../features/types';
+import authHeader from './authHeader';
+import Axios from 'axios';
 
 const baseUrl = 'http://localhost:3001/api/users';
 
@@ -27,9 +29,34 @@ async function signUp(user: userSignUpInput) {
     return response.data;
 }
 
+const changeWatchedStatus = async (
+    userID: string | undefined,
+    movieID: string | undefined,
+    action: 'add-to-diary' | 'remove-from-diary',
+) => {
+    const response = await Axios.put(`${baseUrl}/${userID}/${action}/${movieID}`, null, {
+        headers: authHeader(),
+    });
+    return response.data;
+};
+
+const changeWatchListStatus = async (
+    userID: string | undefined,
+    movieID: string | undefined,
+    action: 'add-to-watchlist' | 'remove-from-watchlist',
+) => {
+    const response = await Axios.put(`${baseUrl}/${userID}/${action}/${movieID}`, null, {
+        headers: authHeader(),
+    });
+    return response.data;
+};
+
 export default {
     logIn,
     removeCurrentUser,
     signUp,
     getUserInfo,
+    changeWatchListStatus,
+    changeWatchedStatus,
+    
 };

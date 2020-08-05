@@ -6,8 +6,8 @@
     width: 90%;
     margin-top: -10em;
     figure.poster {
-        width: 20%;
-        max-width: 300px;
+        width: 25%;
+        max-width: 250px;
         img {
             max-width: 100%;
             min-width: 200px;
@@ -38,6 +38,7 @@
     max-width: 400px;
     .title {
         padding-bottom: 2em;
+        font-size: 1.8rem;
         .director {
             margin-top: 1em;
             display: block;
@@ -59,7 +60,7 @@
 .film-actions {
     background-color: $gray-border;
     border-radius: 4px;
-    width: 280px;
+    width: 260px;
     padding: 1em 0 0 0;
     align-self: flex-start;
     & > div {
@@ -70,13 +71,29 @@
     button {
         border: none;
         background-color: transparent;
-        padding: 0.5em 1em;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
         max-width: 70px;
+        img {
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        p {
+            position: relative;
+        }
+        &:hover p.marked {
+            color: transparent;
+        }
+        &:hover p.marked:after {
+            content: 'Remove';
+            color: $gray-text;
+            position: absolute;
+            width: 100%;
+            left: 0;
+        }
         &:hover,
-        figcaption:hover {
+        p:hover {
             color: white;
         }
     }

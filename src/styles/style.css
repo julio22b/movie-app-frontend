@@ -43,8 +43,8 @@ body {
 }
 
 .film-page figure.poster {
-  width: 20%;
-  max-width: 300px;
+  width: 25%;
+  max-width: 250px;
 }
 
 .film-page figure.poster img {
@@ -82,6 +82,7 @@ body {
 
 .details .title {
   padding-bottom: 2em;
+  font-size: 1.8rem;
 }
 
 .details .title .director {
@@ -105,7 +106,7 @@ body {
 .film-actions {
   background-color: #445566;
   border-radius: 4px;
-  width: 280px;
+  width: 260px;
   padding: 1em 0 0 0;
   -ms-flex-item-align: start;
       align-self: flex-start;
@@ -124,7 +125,6 @@ body {
 .film-actions button {
   border: none;
   background-color: transparent;
-  padding: 0.5em 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -137,8 +137,30 @@ body {
   max-width: 70px;
 }
 
+.film-actions button img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.film-actions button p {
+  position: relative;
+}
+
+.film-actions button:hover p.marked {
+  color: transparent;
+}
+
+.film-actions button:hover p.marked:after {
+  content: 'Remove';
+  color: #d8e0e8;
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
 .film-actions button:hover,
-.film-actions button figcaption:hover {
+.film-actions button p:hover {
   color: white;
 }
 

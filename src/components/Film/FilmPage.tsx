@@ -49,7 +49,7 @@ const FilmPage = () => {
                     <div>
                         <div className="details">
                             <h2 className="title">
-                                {movie.title} ({movie.year})
+                                {movie.title.replace(/&#x27;/g, "'")} ({movie.year})
                                 <span className="director">
                                     directed by <strong>{movie.director}</strong>
                                 </span>
