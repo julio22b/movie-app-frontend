@@ -52,7 +52,6 @@ const FilmActions = () => {
         const notification: Notif = {
             message,
             type: isLiked ? 'warning' : 'success',
-            active: true,
         };
         notify(notification);
     };
@@ -64,7 +63,6 @@ const FilmActions = () => {
         const notification: Notif = {
             message,
             type: isWatched ? 'warning' : 'success',
-            active: true,
         };
         notify(notification);
     };
@@ -76,7 +74,6 @@ const FilmActions = () => {
         const notification: Notif = {
             message,
             type: isInWatchList ? 'warning' : 'success',
-            active: true,
         };
         notify(notification);
     };

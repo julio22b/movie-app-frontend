@@ -40,6 +40,7 @@ export interface Review {
     likes?: number;
     rating?: number;
     comments: ReviewComment[];
+    movieTitle?: string;
 }
 
 export interface ReviewComment {

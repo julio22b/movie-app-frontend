@@ -1,17 +1,38 @@
 import React from 'react';
-import { Review } from '../../features/types';
+import { Review, User } from '../../features/types';
+import avatarIMG from '../../images/avatar.webp';
+import { Link } from 'react-router-dom';
+import notLikedIMG from '../../images/heart-gray-darkbg.png';
 
-// eslint-disable-next-line no-redeclare
-const FilmReview: React.FC<Review> = ({ rating, likes, user, content, comments }) => {
+const FilmReview: React.FC<Review> = ({ rating, likes, user, content, comments, movieTitle }) => {
     return (
         <article className="review">
-            <img src={user.profile_picture} alt={user.username} />
-            <h4>
-                <span>Review by</span> {user.username} <i className="stars">{rating}</i>
-                <i className="comments-number">{comments.length}</i>
-            </h4>
-            <p>{content}</p>
-            <button>HEART {likes} likes</button>
+            <Link to={`/${user.username}`}>
+                <img
+                    className="profile-picture"
+                    src={user.profile_picture || avatarIMG}
+                    alt={user.username}
+                />
+            </Link>
+            <div>
+                <Link
+                    to={`/${user.username}/film/${movieTitle
+                        ?.toLocaleLowerCase()
+                        .replace(/ /g, '+')}`}
+                >
+                    <h4 className="user">
+                        <span>Review by</span> {user.username}{' '}
+                        <i className="stars" data-rating={`${rating}`}></i>
+                        <i className="comments-number"></i>
+                        <span>{comments.length}</span>
+                    </h4>
+                </Link>
+                <p className="content">{content}</p>
+                <button className="like-review-btn">
+                    <img src={notLikedIMG} alt="Like button" /> Like review{' '}
+                    <span>{likes} likes</span>
+                </button>
+            </div>
         </article>
     );
 };

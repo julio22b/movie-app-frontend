@@ -2,11 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../../app/store';
 import { User, userLogInInput } from '../types';
 import userService from '../../services/userService';
+import { TIMEOUT } from 'dns';
 
 export type Notif = {
     message: string;
     type: 'success' | 'warning' | 'off';
-    active: boolean;
 };
 
 interface initialState {
@@ -21,7 +21,6 @@ const initialState: initialState = {
     notification: {
         message: '',
         type: 'off',
-        active: false,
     },
 };
 
@@ -46,12 +45,10 @@ const userSlice = createSlice({
         },
         showNotification: (state, { payload }: PayloadAction<Notif>) => {
             state.notification.message = payload.message;
-            state.notification.active = true;
             state.notification.type = payload.type;
         },
         hideNotification: (state) => {
             state.notification.message = '';
-            state.notification.active = false;
             state.notification.type = 'off';
         },
     },

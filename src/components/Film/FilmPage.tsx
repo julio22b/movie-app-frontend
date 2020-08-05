@@ -11,6 +11,10 @@ import movieService from '../../services/movieService';
 import Poster from '../Home/Poster';
 import FilmReview from './FilmReview';
 import FilmActions from './FilmActions';
+import { MovieInstance } from '../../features/types';
+import PosterCaption from './PosterCaption';
+import FilmDetails from './FilmDetails';
+import SignInBtn from '../_helpers/SignInBtn';
 
 const FilmPage = () => {
     const dispatch = useDispatch();
@@ -45,39 +49,31 @@ const FilmPage = () => {
                 <article className="film-page">
                     <figure className="poster">
                         <Poster url={movie.poster} title={movie.title} tmdb={false} />
+                        <PosterCaption watches={0} likes={movie.likes} />
                     </figure>
                     <div>
-                        <div className="details">
-                            <h2 className="title">
-                                {movie.title.replace(/&#x27;/g, "'")} ({movie.year})
-                                <span className="director">
-                                    directed by <strong>{movie.director}</strong>
-                                </span>
-                            </h2>
-                            <p>{movie.synopsis?.replace(/&#x27;/g, "'")}</p>
-                            <p className="meta">
-                                {movie.language.split(', ')[0]} - {movie.run_time}s
-                            </p>
-                        </div>
-                        <div>{!user && <button>Sign in to log, rate or review</button>}</div>
+                        <FilmDetails {...movie} />
+                        {!user && <SignInBtn />}
                         {user && <FilmActions />}
+                        <section className="reviews">
+                            <h4>RECENT REVIEWS</h4>
+                            {movie.reviews.length
+                                ? movie.reviews.map((review) => (
+                                      <FilmReview
+                                          movieTitle={movie.title}
+                                          content={review.content}
+                                          user={review.user}
+                                          comments={review.comments}
+                                          rating={review.rating}
+                                          likes={review.likes}
+                                          liked_movie={review.liked_movie}
+                                          key={review._id}
+                                          movie={review.movie}
+                                      />
+                                  ))
+                                : 'This film has no reviews yet.'}
+                        </section>
                     </div>
-                    <section className="reviews">
-                        {movie.reviews.length
-                            ? movie.reviews.map((review) => (
-                                  <FilmReview
-                                      movie={review.movie}
-                                      content={review.content}
-                                      user={review.user}
-                                      comments={review.comments}
-                                      rating={review.rating}
-                                      likes={review.likes}
-                                      liked_movie={review.liked_movie}
-                                      key={review._id}
-                                  />
-                              ))
-                            : 'This film has no reviews yet.'}
-                    </section>
                 </article>
             </>
         );
