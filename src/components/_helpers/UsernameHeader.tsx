@@ -29,9 +29,9 @@ const UsernameHeader: React.FC<UsernameHeaderProps> = ({
         >
             <h4 className="user">
                 <span>Review by</span> {user.username}{' '}
-                {rating && comments && (
+                {rating && <i className="stars" data-rating={`${rating}`}></i>}
+                {comments && (
                     <>
-                        <i className="stars" data-rating={`${rating}`}></i>
                         <i className="comments-number"></i>
                         <span>{comments.length}</span>
                     </>

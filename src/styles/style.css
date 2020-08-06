@@ -29,7 +29,8 @@ body {
   margin: 0 auto;
 }
 
-.film-page {
+.film-page,
+.review-page {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -45,7 +46,8 @@ body {
   margin-top: -11em;
 }
 
-.film-page figure.poster {
+.film-page figure.poster,
+.review-page figure.poster {
   width: 23%;
   max-width: 250px;
   position: -webkit-sticky;
@@ -53,21 +55,24 @@ body {
   top: 20px;
 }
 
-.film-page figure.poster img {
+.film-page figure.poster img,
+.review-page figure.poster img {
   max-width: 100%;
   min-width: 200px;
   border-radius: 4px;
   border: 1px solid #445566;
 }
 
-.film-page figure.poster figcaption {
+.film-page figure.poster figcaption,
+.review-page figure.poster figcaption {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   margin-top: 10px;
 }
 
-.film-page figure.poster figcaption i {
+.film-page figure.poster figcaption i,
+.review-page figure.poster figcaption i {
   width: 30px;
   height: 20px;
   display: inline-block;
@@ -75,15 +80,18 @@ body {
   background-position: center;
 }
 
-.film-page figure.poster figcaption i.watches {
+.film-page figure.poster figcaption i.watches,
+.review-page figure.poster figcaption i.watches {
   background-image: url("../images/watched-darkbg.png");
 }
 
-.film-page figure.poster figcaption i.likes {
+.film-page figure.poster figcaption i.likes,
+.review-page figure.poster figcaption i.likes {
   background-image: url("../images/heart-yellow-darkbg.png");
 }
 
-.film-page figure.poster figcaption > div {
+.film-page figure.poster figcaption > div,
+.review-page figure.poster figcaption > div {
   position: relative;
   -webkit-box-flex: 1;
       -ms-flex: 1;
@@ -99,15 +107,18 @@ body {
           justify-content: center;
 }
 
-.film-page figure.poster figcaption > div:hover .description {
+.film-page figure.poster figcaption > div:hover .description,
+.review-page figure.poster figcaption > div:hover .description {
   opacity: 1;
 }
 
-.film-page figure.poster figcaption span:first-of-type {
+.film-page figure.poster figcaption span:first-of-type,
+.review-page figure.poster figcaption span:first-of-type {
   font-size: 0.8rem;
 }
 
-.film-page figure.poster figcaption .description {
+.film-page figure.poster figcaption .description,
+.review-page figure.poster figcaption .description {
   font-size: 0.65rem;
   position: absolute;
   border-radius: 4px;
@@ -123,7 +134,10 @@ body {
   transition: opacity 250ms ease;
 }
 
-.film-page > div {
+.film-page > div,
+.film-page > article,
+.review-page > div,
+.review-page > article {
   width: 70%;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -135,7 +149,10 @@ body {
       flex-wrap: wrap;
 }
 
-.film-page > div div:last-child button {
+.film-page > div div:last-child button,
+.film-page > article div:last-child button,
+.review-page > div div:last-child button,
+.review-page > article div:last-child button {
   background-color: #445566;
   border: none;
   border-radius: 4px;
@@ -143,7 +160,10 @@ body {
   font-size: 0.8rem;
 }
 
-.film-page > div div:last-child button:hover {
+.film-page > div div:last-child button:hover,
+.film-page > article div:last-child button:hover,
+.review-page > div div:last-child button:hover,
+.review-page > article div:last-child button:hover {
   color: white;
 }
 
@@ -267,18 +287,6 @@ body {
   display: flex;
 }
 
-.reviews .review .profile-picture {
-  border-radius: 50%;
-  border: 1px solid #99aabb;
-  -webkit-transition: border 250ms ease;
-  transition: border 250ms ease;
-  width: 45px;
-}
-
-.reviews .review .profile-picture:hover {
-  border: 1px solid #d8e0e8;
-}
-
 .reviews .review > div {
   margin-left: 20px;
   -webkit-box-flex: 1;
@@ -286,30 +294,13 @@ body {
           flex: 1;
 }
 
-.reviews .review > div .user {
-  opacity: 0.8;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.reviews .review > div .user span {
-  font-weight: normal;
-  font-size: 0.8rem;
-  color: #99aabb;
-  margin-right: 10px;
-}
-
 .reviews .review > div .content {
   padding: 1em 0;
   opacity: 0.8;
 }
 
-.reviews .review > div .like-review-btn {
-  background-color: transparent;
+.like-review-btn {
+  background-color: transparent !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -321,17 +312,46 @@ body {
   padding: 0.5em 0;
 }
 
-.reviews .review > div .like-review-btn img {
+.like-review-btn img {
   width: 25px;
   height: 25px;
   margin-top: -5px;
   margin-right: 5px;
 }
 
-.reviews .review > div .like-review-btn span {
+.like-review-btn span {
   font-weight: normal;
   margin-left: 10px;
   opacity: 0.6;
+}
+
+.profile-picture {
+  border-radius: 50%;
+  border: 1px solid #99aabb;
+  -webkit-transition: border 250ms ease;
+  transition: border 250ms ease;
+  width: 45px;
+}
+
+.profile-picture:hover {
+  border: 1px solid #d8e0e8;
+}
+
+.user {
+  opacity: 0.8;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user span {
+  font-weight: normal;
+  font-size: 0.8rem;
+  color: #99aabb;
+  margin-right: 10px;
 }
 
 i.comments-number {
@@ -400,6 +420,128 @@ i[data-rating='1'] {
 i[data-rating='0.5'] {
   background-image: url("../images/0.5-stars.png");
   width: 15px;
+}
+
+.review-page {
+  margin-top: 0;
+  padding-top: 10em;
+}
+
+.review-page figure {
+  width: 150px;
+}
+
+.review-page figure img {
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #717f8e;
+}
+
+.review-page > div article {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 40px;
+}
+
+.review-page > div .user-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-bottom: 1px solid #445566;
+}
+
+.review-page > div .user-info .profile-picture {
+  width: 30px;
+}
+
+.review-page > div .user-info a {
+  margin-right: 20px;
+  text-decoration: none;
+}
+
+.review-page > div .movie-title {
+  padding: 0.6em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
+}
+
+.review-page > div .movie-title span {
+  font-size: 0.9rem;
+  font-weight: normal;
+  opacity: 0.8;
+  margin-left: 10px;
+}
+
+.review-page > div .movie-title .stars {
+  height: 30px;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.review-page > div .content {
+  padding: 2em 0;
+  opacity: 0.8;
+}
+
+.review-page > div .date-watched {
+  font-size: 0.8rem;
+  opacity: 0.4;
+  color: #99aabb;
+}
+
+.review-page > div .like-review-btn {
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  border: none;
+}
+
+.review-page i[data-rating='5'] {
+  width: 70px;
+}
+
+.review-page i[data-rating='4.5'] {
+  width: 65px;
+}
+
+.review-page i[data-rating='4'] {
+  width: 60px;
+}
+
+.review-page i[data-rating='3.5'] {
+  width: 55px;
+}
+
+.review-page i[data-rating='3'] {
+  width: 50px;
+}
+
+.review-page i[data-rating='2.5'] {
+  width: 45px;
+}
+
+.review-page i[data-rating='2'] {
+  width: 40px;
+}
+
+.review-page i[data-rating='1.5'] {
+  width: 35px;
+}
+
+.review-page i[data-rating='1'] {
+  width: 25px;
+}
+
+.review-page i[data-rating='0.5'] {
+  width: 20px;
 }
 
 header {

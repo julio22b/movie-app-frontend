@@ -18,7 +18,17 @@ import movieService from '../../services/movieService';
 import userService from '../../services/userService';
 import { User } from '../../features/types';
 import { checkStatus } from '../../services/helpers';
-import { showNotification, Notif, hideNotification } from '../../features/user/userSlice';
+import {
+    showNotification,
+    Notif,
+    hideNotification,
+    removeMovieFromLiked,
+    addMovieToLiked,
+    removeMovieFromWatched,
+    addMovieToWatched,
+    removeMovieFromWatchList,
+    addMovieToWatchList,
+} from '../../features/user/userSlice';
 
 const FilmActions = () => {
     const movie = useSelector((state: RootState) => state.popularMovies.movie_for_page.movie)!;
@@ -49,6 +59,10 @@ const FilmActions = () => {
         const action = isLiked ? 'unlike' : 'like';
         const { message } = await movieService.changeLikeStatus(user._id, movie._id, action);
         setIsLiked(!isLiked);
+        if (action === 'unlike') {
+            dispatch(removeMovieFromLiked(movie._id as string));
+        }
+        dispatch(addMovieToLiked(movie));
         const notification: Notif = {
             message,
             type: isLiked ? 'warning' : 'success',
@@ -60,6 +74,10 @@ const FilmActions = () => {
         const action = isWatched ? 'remove-from-diary' : 'add-to-diary';
         const { message } = await userService.changeWatchedStatus(user._id, movie._id, action);
         setisWatched(!isWatched);
+        if (action === 'remove-from-diary') {
+            dispatch(removeMovieFromWatched(movie._id as string));
+        }
+        dispatch(addMovieToWatched(movie));
         const notification: Notif = {
             message,
             type: isWatched ? 'warning' : 'success',
@@ -71,6 +89,10 @@ const FilmActions = () => {
         const action = isInWatchList ? 'remove-from-watchlist' : 'add-to-watchlist';
         const { message } = await userService.changeWatchListStatus(user._id, movie._id, action);
         setIsInWatchList(!isInWatchList);
+        if (action === 'remove-from-watchlist') {
+            dispatch(removeMovieFromWatchList(movie._id as string));
+        }
+        dispatch(addMovieToWatchList(movie));
         const notification: Notif = {
             message,
             type: isInWatchList ? 'warning' : 'success',

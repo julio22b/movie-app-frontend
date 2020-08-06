@@ -1,4 +1,5 @@
-.film-page {
+.film-page,
+.review-page {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -60,7 +61,8 @@
             }
         }
     }
-    & > div {
+    & > div,
+    & > article {
         width: 70%;
         display: flex;
         justify-content: space-between;
@@ -168,53 +170,56 @@
         padding: 2em 0;
         border-bottom: 1px solid #44556696;
         display: flex;
-        .profile-picture {
-            border-radius: 50%;
-            border: 1px solid $gray-text-secondary;
-            transition: border 250ms ease;
-            width: 45px;
-            &:hover {
-                border: 1px solid $gray-text;
-            }
-        }
         & > div {
             margin-left: 20px;
             flex: 1;
-            .user {
-                opacity: 0.8;
-                display: flex;
-                align-items: center;
-                span {
-                    font-weight: normal;
-                    font-size: 0.8rem;
-                    color: $gray-text-secondary;
-                    margin-right: 10px;
-                }
-            }
             .content {
                 padding: 1em 0;
                 opacity: 0.8;
             }
-            .like-review-btn {
-                background-color: transparent;
-                display: flex;
-                align-items: center;
-                font-weight: bold;
-                opacity: 0.8;
-                padding: 0.5em 0;
-                img {
-                    width: 25px;
-                    height: 25px;
-                    margin-top: -5px;
-                    margin-right: 5px;
-                }
-                span {
-                    font-weight: normal;
-                    margin-left: 10px;
-                    opacity: 0.6;
-                }
-            }
         }
+    }
+}
+
+.like-review-btn {
+    background-color: transparent !important;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    opacity: 0.8;
+    padding: 0.5em 0;
+    img {
+        width: 25px;
+        height: 25px;
+        margin-top: -5px;
+        margin-right: 5px;
+    }
+    span {
+        font-weight: normal;
+        margin-left: 10px;
+        opacity: 0.6;
+    }
+}
+
+.profile-picture {
+    border-radius: 50%;
+    border: 1px solid $gray-text-secondary;
+    transition: border 250ms ease;
+    width: 45px;
+    &:hover {
+        border: 1px solid $gray-text;
+    }
+}
+
+.user {
+    opacity: 0.8;
+    display: flex;
+    align-items: center;
+    span {
+        font-weight: normal;
+        font-size: 0.8rem;
+        color: $gray-text-secondary;
+        margin-right: 10px;
     }
 }
 
