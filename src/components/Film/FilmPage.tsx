@@ -11,7 +11,6 @@ import movieService from '../../services/movieService';
 import Poster from '../Home/Poster';
 import FilmReview from './FilmReview';
 import FilmActions from './FilmActions';
-import { MovieInstance } from '../../features/types';
 import PosterCaption from './PosterCaption';
 import FilmDetails from './FilmDetails';
 import SignInBtn from '../_helpers/SignInBtn';

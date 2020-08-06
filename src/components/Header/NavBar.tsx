@@ -4,7 +4,6 @@ import { userLogIn, logOut } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
 import userService from '../../services/userService';
-import { Link } from 'react-router-dom';
 
 export const NavBar = () => {
     const [username, setUsername] = useState('');

@@ -22,7 +22,13 @@ const likeReview = async (userID: string, reviewID: string) => {
     return response.data;
 };
 
+const getReview = async (reviewID: string) => {
+    const response = await Axios.get(`${baseUrl}/${reviewID}`);
+    return response.data;
+};
+
 export default {
     postReview,
     likeReview,
+    getReview,
 };
