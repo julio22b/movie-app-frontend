@@ -429,6 +429,7 @@ i[data-rating='0.5'] {
 
 .review-page figure {
   width: 150px;
+  margin-right: 40px;
 }
 
 .review-page figure img {
@@ -441,7 +442,6 @@ i[data-rating='0.5'] {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
-  margin-right: 40px;
 }
 
 .review-page > div .user-info {
@@ -502,6 +502,46 @@ i[data-rating='0.5'] {
   -ms-flex-item-align: start;
       align-self: flex-start;
   border: none;
+}
+
+.comment-form {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin-top: 4em;
+}
+
+.comment-form h4 {
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 0.6em 0;
+  border-bottom: 1px solid #445566;
+  opacity: 0.6;
+  letter-spacing: 1px;
+}
+
+.comment-form textarea {
+  width: 60%;
+  margin-top: 1em;
+  background-color: #2c3440;
+  border-radius: 4px;
+  border: none;
+  border-bottom: 1px solid #445566;
+  resize: none;
+  padding: 0.5em;
+}
+
+.comment-form textarea:focus {
+  background-color: white;
+  color: #14181c;
 }
 
 .review-page i[data-rating='5'] {
@@ -819,6 +859,21 @@ figure.backdrop figcaption {
   opacity: 0.6;
 }
 
+.green-btn, .add-new-review article form button {
+  background: #00c030;
+  padding: 0.3em 0.7em;
+  font-weight: bold;
+  border: none;
+  border-radius: 3px;
+  margin: 10px 0 0 auto;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.green-btn:hover, .add-new-review article form button:hover {
+  background: #01a52a;
+}
+
 .add-new-review {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -936,21 +991,6 @@ figure.backdrop figcaption {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-}
-
-.add-new-review article form button {
-  background: #00c030;
-  padding: 0.5em;
-  font-weight: bold;
-  border: none;
-  border-radius: 3px;
-  margin: 10px 0 0 auto;
-  font-size: 0.9rem;
-  letter-spacing: 1px;
-}
-
-.add-new-review article form button:hover {
-  background: #01a52a;
 }
 
 .notification {

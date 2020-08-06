@@ -3,6 +3,7 @@
     padding-top: 10em;
     figure {
         width: 150px;
+        margin-right: 40px;
         img {
             width: 100%;
             border-radius: 4px;
@@ -12,7 +13,6 @@
     & > div {
         article {
             flex: 1;
-            margin-right: 40px;
         }
         .user-info {
             display: flex;
@@ -56,6 +56,37 @@
         }
     }
 }
+
+.comment-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 4em;
+    h4 {
+        font-size: 0.8rem;
+        width: 100%;
+        padding: 0.6em 0;
+        border-bottom: 1px solid #445566;
+        opacity: 0.6;
+        letter-spacing: 1px;
+    }
+    textarea {
+        width: 60%;
+        margin-top: 1em;
+        background-color: #2c3440;
+        border-radius: 4px;
+        border: none;
+        border-bottom: 1px solid #445566;
+        resize: none;
+        padding: 0.5em;
+        &:focus {
+            background-color: rgb(255, 255, 255);
+            color: $bg-black;
+        }
+    }
+}
+
 .review-page {
     i[data-rating='5'] {
         width: 70px;

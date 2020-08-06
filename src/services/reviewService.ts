@@ -27,8 +27,18 @@ const getReview = async (reviewID: string) => {
     return response.data;
 };
 
+const postComment = async (userID: string, reviewID: string, content: string) => {
+    const response = await Axios.post(
+        `${baseUrl}/${userID}/comment/${reviewID}`,
+        { content },
+        { headers: authHeader() },
+    );
+    return response.data;
+};
+
 export default {
     postReview,
     likeReview,
     getReview,
+    postComment,
 };

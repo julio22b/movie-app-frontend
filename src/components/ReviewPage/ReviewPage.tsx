@@ -13,6 +13,7 @@ import LikeReviewBtn from '../_helpers/LikeReviewBtn';
 import FilmActions from '../Film/FilmActions';
 import SignInBtn from '../_helpers/SignInBtn';
 import { fetchMovieForPage } from '../../features/movies/popularMoviesSlice';
+import CommentForm from './CommentForm';
 
 interface LocationState {
     reviewID: string;
@@ -48,12 +49,16 @@ const ReviewPage = () => {
     if (review && review.movie) {
         return (
             <section className="review-page">
-                <figure>
-                    <Link to={`/film/${titleForURL}`}>
-                        <Poster url={review.movie.poster} title={review.movie.title} tmdb={false} />
-                    </Link>
-                </figure>
                 <div>
+                    <figure>
+                        <Link to={`/film/${titleForURL}`}>
+                            <Poster
+                                url={review.movie.poster}
+                                title={review.movie.title}
+                                tmdb={false}
+                            />
+                        </Link>
+                    </figure>
                     <article>
                         <div className="user-info">
                             <ProfilePicture user={review.user} />
@@ -79,8 +84,9 @@ const ReviewPage = () => {
                             />
                         )}
                     </article>
-                    {loggedUser && movieState ? <FilmActions /> : <SignInBtn />}
+                    <CommentForm reviewID={review._id} />
                 </div>
+                {loggedUser && movieState ? <FilmActions /> : <SignInBtn />}
             </section>
         );
     }
