@@ -14,6 +14,7 @@ import FilmActions from '../Film/FilmActions';
 import SignInBtn from '../_helpers/SignInBtn';
 import { fetchMovieForPage } from '../../features/movies/popularMoviesSlice';
 import CommentForm from './CommentForm';
+import Comment from './Comment';
 
 interface LocationState {
     reviewID: string;
@@ -33,8 +34,10 @@ const ReviewPage = () => {
             setReview(review);
             setIsLiked(loggedUser?.liked_reviews.some((r) => r === review?._id));
         };
-        fetchReview();
-    }, [state.reviewID, loggedUser]);
+        if (!review) {
+            fetchReview();
+        }
+    }, [state.reviewID, loggedUser, review]);
 
     useEffect(() => {
         if (review) dispatch(fetchMovieForPage(review.movie));
@@ -84,6 +87,16 @@ const ReviewPage = () => {
                             />
                         )}
                     </article>
+                    <section className="comments">
+                        <h4 className="h4-subtitle">
+                            {review.comments.length}{' '}
+                            {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
+                        </h4>
+                        {review.comments.length > 0 &&
+                            review.comments.map((c) => (
+                                <Comment user={c.user} movie={c.movie} content={c.content} />
+                            ))}
+                    </section>
                     <CommentForm reviewID={review._id} />
                 </div>
                 {loggedUser && movieState ? <FilmActions /> : <SignInBtn />}

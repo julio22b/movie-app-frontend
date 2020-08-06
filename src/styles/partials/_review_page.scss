@@ -63,14 +63,6 @@
     flex-direction: column;
     align-items: flex-end;
     margin-top: 4em;
-    h4 {
-        font-size: 0.8rem;
-        width: 100%;
-        padding: 0.6em 0;
-        border-bottom: 1px solid #445566;
-        opacity: 0.6;
-        letter-spacing: 1px;
-    }
     textarea {
         width: 60%;
         margin-top: 1em;
@@ -83,6 +75,38 @@
         &:focus {
             background-color: rgb(255, 255, 255);
             color: $bg-black;
+        }
+    }
+}
+
+.comments {
+    width: 100%;
+    margin-top: 4em;
+    .comment {
+        display: flex;
+        padding: 1em 0;
+        border-bottom: 1px solid #2c3440;
+        a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .profile-picture {
+            width: 30px;
+        }
+        div {
+            display: flex;
+            & > div {
+                flex-direction: column;
+                margin: 0 70px 0 10px;
+            }
+        }
+        p {
+            flex: 1;
+            opacity: 0.8;
+        }
+        .date {
+            font-size: 0.6rem;
+            opacity: 0.6;
         }
     }
 }

@@ -519,15 +519,6 @@ i[data-rating='0.5'] {
   margin-top: 4em;
 }
 
-.comment-form h4 {
-  font-size: 0.8rem;
-  width: 100%;
-  padding: 0.6em 0;
-  border-bottom: 1px solid #445566;
-  opacity: 0.6;
-  letter-spacing: 1px;
-}
-
 .comment-form textarea {
   width: 60%;
   margin-top: 1em;
@@ -542,6 +533,54 @@ i[data-rating='0.5'] {
 .comment-form textarea:focus {
   background-color: white;
   color: #14181c;
+}
+
+.comments {
+  width: 100%;
+  margin-top: 4em;
+}
+
+.comments .comment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 1em 0;
+  border-bottom: 1px solid #2c3440;
+}
+
+.comments .comment a {
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.comments .comment .profile-picture {
+  width: 30px;
+}
+
+.comments .comment div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.comments .comment div > div {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0 70px 0 10px;
+}
+
+.comments .comment p {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  opacity: 0.8;
+}
+
+.comments .comment .date {
+  font-size: 0.6rem;
+  opacity: 0.6;
 }
 
 .review-page i[data-rating='5'] {
@@ -872,6 +911,15 @@ figure.backdrop figcaption {
 
 .green-btn:hover, .add-new-review article form button:hover {
   background: #01a52a;
+}
+
+.h4-subtitle {
+  font-size: 0.8rem;
+  width: 100%;
+  padding: 0.6em 0;
+  border-bottom: 1px solid #445566;
+  opacity: 0.6;
+  letter-spacing: 1px;
 }
 
 .add-new-review {

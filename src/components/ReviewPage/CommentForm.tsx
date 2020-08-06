@@ -25,7 +25,7 @@ const CommentForm: React.FC<{ reviewID: string | undefined }> = ({ reviewID }) =
     };
     return (
         <form className="comment-form" onSubmit={(e) => handleSubmit(e)}>
-            <h4>COMMENT?</h4>
+            <h4 className="h4-subtitle">COMMENT?</h4>
             <textarea
                 name="content"
                 cols={30}
