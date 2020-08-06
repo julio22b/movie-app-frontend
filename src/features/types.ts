@@ -42,6 +42,7 @@ export interface Review {
     rating?: number;
     comments: ReviewComment[];
     movieTitle?: string;
+    created_at?: string;
 }
 
 export interface ReviewComment {

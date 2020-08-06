@@ -1,8 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../../app/store';
-import { User, userLogInInput } from '../types';
+import { User, userLogInInput, MovieInstance } from '../types';
 import userService from '../../services/userService';
-import { TIMEOUT } from 'dns';
 
 export type Notif = {
     message: string;
@@ -51,6 +50,31 @@ const userSlice = createSlice({
             state.notification.message = '';
             state.notification.type = 'off';
         },
+        addMovieToLiked: (state, { payload }: PayloadAction<MovieInstance>) => {
+            if (state.user) state.user.liked_movies?.push(payload);
+        },
+        removeMovieFromLiked: (state, { payload }: PayloadAction<string>) => {
+            if (state.user)
+                state.user.liked_movies = state.user?.liked_movies?.filter(
+                    (m) => m._id !== payload,
+                );
+        },
+        addMovieToWatched: (state, { payload }: PayloadAction<MovieInstance>) => {
+            if (state.user) state.user.watched_movies?.push(payload);
+        },
+        removeMovieFromWatched: (state, { payload }: PayloadAction<string>) => {
+            if (state.user)
+                state.user.watched_movies = state.user.watched_movies?.filter(
+                    (m) => m._id !== payload,
+                );
+        },
+        addMovieToWatchList: (state, { payload }: PayloadAction<MovieInstance>) => {
+            if (state.user) state.user.watch_list?.push(payload);
+        },
+        removeMovieFromWatchList: (state, { payload }: PayloadAction<string>) => {
+            if (state.user)
+                state.user.watch_list = state.user.watch_list?.filter((m) => m._id !== payload);
+        },
     },
 });
 
@@ -61,6 +85,12 @@ export const {
     saveUserInfo,
     showNotification,
     hideNotification,
+    removeMovieFromLiked,
+    addMovieToLiked,
+    addMovieToWatched,
+    removeMovieFromWatched,
+    addMovieToWatchList,
+    removeMovieFromWatchList,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {
