@@ -176,6 +176,11 @@ body {
   font-size: 1.8rem;
 }
 
+.details .title span:not(.director) {
+  font-size: 1rem;
+  opacity: 0.6;
+}
+
 .details .title .director {
   margin-top: 1em;
   display: block;
@@ -512,6 +517,10 @@ i[data-rating='0.5'] {
   border: none;
 }
 
+.review-page .sign-in-btn button {
+  margin: 0;
+}
+
 .comment-form {
   width: 100%;
   display: -webkit-box;
@@ -771,6 +780,8 @@ figure.backdrop figcaption {
 }
 
 .sign-in-btn button {
+  display: block;
+  margin: 0 auto;
   background-color: #445566;
   border-radius: 4px;
   border: none;
@@ -855,7 +866,7 @@ figure.backdrop figcaption {
   position: absolute;
   bottom: 0;
   left: 1px;
-  width: 99.5%;
+  width: 98%;
   background-color: #ff9010;
   border-radius: 4px;
   border-top-left-radius: 0;
@@ -868,7 +879,6 @@ figure.backdrop figcaption {
   transition: -webkit-transform 250ms ease;
   transition: transform 250ms ease;
   transition: transform 250ms ease, -webkit-transform 250ms ease;
-  width: 100%;
 }
 
 .sign-in-form > p.error {

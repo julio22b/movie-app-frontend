@@ -192,6 +192,8 @@ figure.backdrop {
     flex: 1;
     justify-content: center !important;
     button {
+        display: block;
+        margin: 0 auto;
         background-color: $gray-border;
         border-radius: 4px;
         border: none;
@@ -254,7 +256,7 @@ figure.backdrop {
         position: absolute;
         bottom: 0;
         left: 1px;
-        width: 99.5%;
+        width: 98%;
         background-color: $orange;
         border-radius: 4px;
         border-top-left-radius: 0;
@@ -264,7 +266,6 @@ figure.backdrop {
         text-align: center;
         z-index: -10;
         transition: transform 250ms ease;
-        width: 100%;
     }
     & > p.error {
         transform: translateY(100%);

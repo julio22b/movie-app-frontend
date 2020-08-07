@@ -10,14 +10,14 @@ const PosterCaption: React.FC<PosterCaptionProps> = ({ watches, likes }) => {
         <figcaption>
             <div>
                 <i className="watches"></i>
-                <span>{watches}</span>
+                <span>{watches ? watches : 0}</span>
                 <span className="description">
                     Watched by {watches} {watches === 1 ? 'member' : 'members'}
                 </span>
             </div>
             <div>
                 <i className="likes"></i>
-                <span>{likes}</span>
+                <span>{likes ? likes : 0}</span>
                 <span className="description">
                     Liked by {likes} {likes === 1 ? 'member' : 'members'}
                 </span>

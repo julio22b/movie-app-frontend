@@ -5,7 +5,7 @@ import { MovieInstance } from '../features/types';
 const baseUrl = 'http://localhost:3001/api/movies';
 const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=`;
 
-const getMovieInstance = async (obj: MovieInstance, username: string) => {
+const getMovieInstance = async (obj: MovieInstance, username?: string) => {
     const response = await Axios.post(`${baseUrl}/create?username=${username}`, obj, {
         headers: authHeader(),
     });

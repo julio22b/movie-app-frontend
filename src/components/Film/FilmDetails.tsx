@@ -12,7 +12,7 @@ const FilmDetails: React.FC<MovieInstance> = ({
     return (
         <article className="details">
             <h2 className="title">
-                {title.replace(/&#x27;/g, "'")} ({year})
+                {title.replace(/&#x27;/g, "'")} <span>({year})</span>
                 <span className="director">
                     directed by <strong>{director}</strong>
                 </span>

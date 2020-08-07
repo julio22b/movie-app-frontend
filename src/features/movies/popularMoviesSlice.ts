@@ -123,8 +123,7 @@ export const fetchMovieForReview = (obj: MovieInstance): AppThunk => async (disp
 export const fetchMovieForPage = (obj: MovieInstance): AppThunk => async (dispatch) => {
     dispatch(getMovieForPage());
     try {
-        const username = JSON.parse(localStorage.getItem('filmlyCurrentUser')!).username;
-        const movie = await movieService.getMovieInstance(obj, username);
+        const movie = await movieService.getMovieInstance(obj);
         dispatch(getMovieForPageSuccess(movie));
     } catch {
         dispatch(getMovieForPageFailure());
