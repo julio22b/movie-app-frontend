@@ -46,9 +46,11 @@ export interface Review {
 }
 
 export interface ReviewComment {
+    _id?: string;
     user: User;
     movie: MovieInstance;
     content: string;
+    created_at?: string;
 }
 
 export interface MovieInstance {

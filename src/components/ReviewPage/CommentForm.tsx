@@ -2,25 +2,32 @@ import React, { useState } from 'react';
 import reviewService from '../../services/reviewService';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
-import { User } from '../../features/types';
+import { User, ReviewComment } from '../../features/types';
 import { showNotification } from '../../features/user/userSlice';
+import { notify } from '../../services/helpers';
 
-const CommentForm: React.FC<{ reviewID: string | undefined }> = ({ reviewID }) => {
+interface props {
+    reviewID: string | undefined;
+    setComments: React.Dispatch<React.SetStateAction<ReviewComment[] | null>>;
+}
+
+const CommentForm: React.FC<props> = ({ reviewID, setComments }) => {
     const [content, setContent] = useState('');
     const loggedUser = useSelector((state: RootState) => state.userAuth.user) as User;
     const dispatch = useDispatch();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         try {
-            const message = await reviewService.postComment(
+            const data = await reviewService.postComment(
                 loggedUser._id as string,
                 reviewID as string,
                 content,
             );
             setContent('');
-            dispatch(showNotification({ message, type: 'success' }));
+            setComments((prev) => prev?.concat(data.comment) as ReviewComment[]);
+            notify({ message: data.message, type: 'success' }, dispatch);
         } catch (e) {
-            dispatch(showNotification({ message: e, type: 'warning' }));
+            notify({ message: e, type: 'warning' }, dispatch);
         }
     };
     return (
@@ -31,6 +38,7 @@ const CommentForm: React.FC<{ reviewID: string | undefined }> = ({ reviewID }) =
                 cols={30}
                 rows={3}
                 onChange={(e) => setContent(e.target.value)}
+                value={content}
                 required
             ></textarea>
             <button className="green-btn">POST</button>

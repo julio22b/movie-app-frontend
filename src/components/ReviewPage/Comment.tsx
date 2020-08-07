@@ -2,8 +2,10 @@ import React from 'react';
 import { ReviewComment } from '../../features/types';
 import ProfilePicture from '../_helpers/ProfilePicture';
 import { Link } from 'react-router-dom';
+import moment from 'moment';
 
-const Comment: React.FC<ReviewComment> = ({ user, content }) => {
+const Comment: React.FC<ReviewComment> = ({ user, content, created_at }) => {
+    const date = new Date(created_at as string);
     return (
         <article className="comment">
             <div>
@@ -12,7 +14,7 @@ const Comment: React.FC<ReviewComment> = ({ user, content }) => {
                     <Link to={`/${user.username}`}>
                         <p>{user.username}</p>
                     </Link>
-                    <p className="date">DATE</p>
+                    <p className="date">{moment(date).fromNow()}</p>
                 </div>
             </div>
             <p>{content}</p>

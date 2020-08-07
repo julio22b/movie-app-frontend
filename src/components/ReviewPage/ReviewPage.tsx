@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { Review } from '../../features/types';
+import { Review, ReviewComment } from '../../features/types';
 import { RootState } from '../../app/store';
 import reviewService from '../../services/reviewService';
 import moment from 'moment';
@@ -23,6 +23,7 @@ interface LocationState {
 const ReviewPage = () => {
     const { state } = useLocation<LocationState>();
     const [review, setReview] = useState<Review | null>(null);
+    const [comments, setComments] = useState<ReviewComment[] | null>(review?.comments || null);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const movieState = useSelector((state: RootState) => state.popularMovies.movie_for_page.movie);
     const [isLiked, setIsLiked] = useState<boolean | undefined>(false);
@@ -32,6 +33,7 @@ const ReviewPage = () => {
         const fetchReview = async () => {
             const review = (await reviewService.getReview(state.reviewID)) as Review;
             setReview(review);
+            setComments(review.comments);
             setIsLiked(loggedUser?.liked_reviews.some((r) => r === review?._id));
         };
         if (!review) {
@@ -71,10 +73,19 @@ const ReviewPage = () => {
                                 _id={review._id}
                             />
                         </div>
+
                         <h2 className="movie-title">
-                            {review.movie.title} <span>{review.movie.year}</span>{' '}
+                            <Link
+                                to={`/film/${review.movie.title
+                                    .toLocaleLowerCase()
+                                    .replace(/ /g, '+')}`}
+                            >
+                                {review.movie.title}{' '}
+                            </Link>
+                            <span>{review.movie.year}</span>{' '}
                             <i className="stars" data-rating={`${review.rating}`}></i>
                         </h2>
+
                         <p className="date-watched">
                             Watched {moment(review.created_at).format('MMM DD[,] YYYY')}
                         </p>
@@ -92,12 +103,18 @@ const ReviewPage = () => {
                             {review.comments.length}{' '}
                             {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
                         </h4>
-                        {review.comments.length > 0 &&
-                            review.comments.map((c) => (
-                                <Comment user={c.user} movie={c.movie} content={c.content} />
+                        {comments &&
+                            comments.length > 0 &&
+                            comments.map((c) => (
+                                <Comment
+                                    user={c.user}
+                                    movie={c.movie}
+                                    content={c.content}
+                                    key={c._id}
+                                />
                             ))}
                     </section>
-                    <CommentForm reviewID={review._id} />
+                    <CommentForm reviewID={review._id} setComments={setComments} />
                 </div>
                 {loggedUser && movieState ? <FilmActions /> : <SignInBtn />}
             </section>

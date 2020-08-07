@@ -17,17 +17,15 @@ import { changeModalState } from '../../features/reviews/reviewsSlice';
 import movieService from '../../services/movieService';
 import userService from '../../services/userService';
 import { User } from '../../features/types';
-import { checkStatus } from '../../services/helpers';
+import { checkStatus, notify } from '../../services/helpers';
 import {
-    showNotification,
-    Notif,
-    hideNotification,
     removeMovieFromLiked,
     addMovieToLiked,
     removeMovieFromWatched,
     addMovieToWatched,
     removeMovieFromWatchList,
     addMovieToWatchList,
+    Notif,
 } from '../../features/user/userSlice';
 
 const FilmActions = () => {
@@ -49,12 +47,6 @@ const FilmActions = () => {
         dispatch(changeModalState());
     };
 
-    const notify = (notification: Notif) => {
-        dispatch(showNotification(notification));
-        setTimeout(() => {
-            dispatch(hideNotification());
-        }, 5000);
-    };
     const handleLike = async () => {
         const action = isLiked ? 'unlike' : 'like';
         const { message } = await movieService.changeLikeStatus(user._id, movie._id, action);
@@ -67,7 +59,7 @@ const FilmActions = () => {
             message,
             type: isLiked ? 'warning' : 'success',
         };
-        notify(notification);
+        notify(notification, dispatch);
     };
 
     const handleDiary = async () => {
@@ -82,7 +74,7 @@ const FilmActions = () => {
             message,
             type: isWatched ? 'warning' : 'success',
         };
-        notify(notification);
+        notify(notification, dispatch);
     };
 
     const handleWatchList = async () => {
@@ -97,7 +89,7 @@ const FilmActions = () => {
             message,
             type: isInWatchList ? 'warning' : 'success',
         };
-        notify(notification);
+        notify(notification, dispatch);
     };
     return (
         <aside className="film-actions">
