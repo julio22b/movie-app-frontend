@@ -653,7 +653,9 @@ header {
   z-index: 10;
   width: 80%;
   position: absolute;
-  margin-top: 1em;
+  padding-top: 1em;
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(15%, rgba(255, 255, 255, 0)), to(rgba(20, 24, 28, 0.7)));
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 15%, rgba(20, 24, 28, 0.7) 100%);
 }
 
 header > p {
@@ -796,7 +798,6 @@ figure.backdrop figcaption {
   position: absolute;
   right: 10%;
   top: 0;
-  margin-top: -1em;
   padding: 0.8em 0.6em;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -936,8 +937,12 @@ figure.backdrop figcaption {
           justify-content: space-between;
 }
 
-.latest-reviews article img {
+.latest-reviews article a {
   width: 8.5%;
+}
+
+.latest-reviews article img {
+  width: 100%;
   border-radius: 4px;
   border: 1px solid #445566;
   cursor: pointer;

@@ -1,10 +1,17 @@
 import React, { useEffect } from 'react';
 import { NavBar } from './components/Header/NavBar';
 import './styles/style.css';
-import Home from './components/Home/Home';
 import { useDispatch } from 'react-redux';
 import { saveUserInfo } from './features/user/userSlice';
 import userService from './services/userService';
+import PopularMovies from './components/Home/PopularMovies';
+import MostPopular from './components/Home/MostPopular';
+import JustReviewed from './components/Home/JustReviewed';
+import FindMovieModal from './components/Home/FindMovieModal';
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import FilmPage from './components/Film/FilmPage';
+import Notification from './components/Home/Notification';
+import ReviewPage from './components/ReviewPage/ReviewPage';
 
 function App() {
     const dispatch = useDispatch();
@@ -21,7 +28,26 @@ function App() {
 
     return (
         <>
-            <Home />
+            <FindMovieModal />
+            <Notification />
+            <Router>
+                <NavBar />
+                <Switch>
+                    <Route path="/" exact>
+                        <section>
+                            <MostPopular />
+                            <PopularMovies />
+                            <JustReviewed />
+                        </section>
+                    </Route>
+                    <Route path="/film/:title" exact>
+                        <FilmPage />
+                    </Route>
+                    <Route path="/:username/film/:title" exact>
+                        <ReviewPage />
+                    </Route>
+                </Switch>
+            </Router>
         </>
     );
 }
