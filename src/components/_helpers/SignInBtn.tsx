@@ -1,9 +1,9 @@
 import React from 'react';
 
-const SignInBtn = () => {
+const SignInBtn: React.FC<{ text: string }> = ({ text }) => {
     return (
-        <div>
-            <button>Sign in to log, rate or review</button>
+        <div className="sign-in-btn">
+            <button>{text}</button>
         </div>
     );
 };

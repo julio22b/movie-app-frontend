@@ -181,6 +181,24 @@ figure.backdrop {
         z-index: 10;
         letter-spacing: 1px;
         font-size: 0.8rem;
+        opacity: 0.8;
+    }
+}
+
+.sign-in-btn {
+    margin-top: 2em;
+    margin-left: auto;
+    width: auto !important;
+    flex: 1;
+    justify-content: center !important;
+    button {
+        background-color: $gray-border;
+        border-radius: 4px;
+        border: none;
+        padding: 0.5em;
+        &:hover {
+            color: white;
+        }
     }
 }
 

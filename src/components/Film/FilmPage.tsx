@@ -52,7 +52,7 @@ const FilmPage = () => {
                     </figure>
                     <div>
                         <FilmDetails {...movie} />
-                        {!user && <SignInBtn />}
+                        {!user && <SignInBtn text="Sign in to log, rate or review" />}
                         {user && <FilmActions />}
                         <section className="reviews">
                             <h4>RECENT REVIEWS</h4>

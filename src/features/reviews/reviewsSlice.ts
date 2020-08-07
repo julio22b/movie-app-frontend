@@ -34,7 +34,7 @@ const reviewsSlice = createSlice({
 export const { getLatestReviews, changeModalState } = reviewsSlice.actions;
 
 export const fetchLatestReviews = (): AppThunk => async (dispatch) => {
-    const data = await axios.get(`http://localhost:3001/api/reviews/latest?amount=10`, {
+    const data = await axios.get(`http://localhost:3001/api/reviews/all/latest?amount=10`, {
         headers: authHeader(),
     });
     dispatch(getLatestReviews(data.data));

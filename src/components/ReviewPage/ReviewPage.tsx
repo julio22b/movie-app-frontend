@@ -98,6 +98,7 @@ const ReviewPage = () => {
                             />
                         )}
                     </article>
+
                     <section className="comments">
                         <h4 className="h4-subtitle">
                             {review.comments.length}{' '}
@@ -114,9 +115,15 @@ const ReviewPage = () => {
                                 />
                             ))}
                     </section>
-                    <CommentForm reviewID={review._id} setComments={setComments} />
+
+                    {loggedUser && movieState ? (
+                        <CommentForm reviewID={review._id} setComments={setComments} />
+                    ) : (
+                        <SignInBtn text={'Sign in to comment'} />
+                    )}
                 </div>
-                {loggedUser && movieState ? <FilmActions /> : <SignInBtn />}
+                {loggedUser && movieState && <FilmActions />}
+                {!loggedUser && <SignInBtn text="Sign in to log, rate or review" />}
             </section>
         );
     }

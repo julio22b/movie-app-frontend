@@ -755,6 +755,30 @@ figure.backdrop figcaption {
   z-index: 10;
   letter-spacing: 1px;
   font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+.sign-in-btn {
+  margin-top: 2em;
+  margin-left: auto;
+  width: auto !important;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
+
+.sign-in-btn button {
+  background-color: #445566;
+  border-radius: 4px;
+  border: none;
+  padding: 0.5em;
+}
+
+.sign-in-btn button:hover {
+  color: white;
 }
 
 .popular {
