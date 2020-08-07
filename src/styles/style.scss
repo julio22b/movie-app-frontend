@@ -202,6 +202,80 @@ figure.backdrop {
     }
 }
 
+.sign-in-form {
+    position: absolute;
+    right: 10%;
+    top: 0;
+    margin-top: -1em;
+    padding: 0.8em 0.6em;
+    display: flex;
+    box-shadow: 0 2px 8px $bg-black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+    border-radius: 4px;
+    background-color: $bg-black;
+    .container {
+        display: flex;
+        align-items: flex-end;
+        label {
+            opacity: 0.6;
+            font-size: 0.75rem;
+            margin-bottom: 5px;
+        }
+        input {
+            border-radius: 4px;
+            padding: 0.3em 0.5em;
+            border: none;
+            background-color: $gray-border;
+            &:focus {
+                color: $bg-black;
+                background-color: white;
+            }
+        }
+    }
+    button.close-form {
+        opacity: 0.6;
+        margin-right: 10px;
+        &:hover {
+            opacity: 1;
+        }
+    }
+    div:not(.container) {
+        display: flex;
+        flex-direction: column;
+        margin-right: 10px;
+    }
+    button:last-of-type {
+        @extend .green-btn;
+        color: white;
+    }
+    & > p {
+        position: absolute;
+        bottom: 0;
+        left: 1px;
+        width: 99.5%;
+        background-color: $orange;
+        border-radius: 4px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        color: white;
+        padding: 0.4em;
+        text-align: center;
+        z-index: -10;
+        transition: transform 250ms ease;
+        width: 100%;
+    }
+    & > p.error {
+        transform: translateY(100%);
+    }
+}
+
+.sign-in-form.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
 .popular {
     display: flex;
     justify-content: space-between;

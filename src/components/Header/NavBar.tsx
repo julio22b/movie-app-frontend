@@ -1,20 +1,15 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogIn, logOut } from '../../features/user/userSlice';
+import { userLogIn, logOut, changeSignInFormStatus } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
 import userService from '../../services/userService';
+import SignInForm from './SignInForm';
 
 export const NavBar = () => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const { error, user } = useSelector((state: RootState) => state.userAuth);
+    const { user } = useSelector((state: RootState) => state.userAuth);
+    const { sign_in_form } = useSelector((state: RootState) => state.userAuth.form_status);
     const dispatch = useDispatch();
-
-    const logIn = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        dispatch(userLogIn({ username, password }));
-    };
 
     const signOut = () => {
         userService.removeCurrentUser();
@@ -23,26 +18,14 @@ export const NavBar = () => {
     return (
         <header>
             <p>Filmly</p>
+            {sign_in_form && <SignInForm />}
             <ul>
                 {!user && (
                     <>
                         <li>
-                            <form onSubmit={(e) => logIn(e)}>
-                                <input
-                                    type="text"
-                                    required
-                                    onChange={(e) => setUsername(e.target.value)}
-                                    maxLength={25}
-                                    minLength={3}
-                                />
-                                <input
-                                    type="text"
-                                    required
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    minLength={6}
-                                />
-                                <button>SIGN IN</button>
-                            </form>
+                            <button onClick={() => dispatch(changeSignInFormStatus(!sign_in_form))}>
+                                SIGN IN
+                            </button>
                         </li>
                         <li>
                             <button>CREATE ACCOUNT</button>
@@ -59,7 +42,6 @@ export const NavBar = () => {
                         </li>
                     </>
                 )}
-                {error && <li>Incorrect username and/or password</li>}
             </ul>
         </header>
     );

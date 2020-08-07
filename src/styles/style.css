@@ -781,6 +781,106 @@ figure.backdrop figcaption {
   color: white;
 }
 
+.sign-in-form {
+  position: absolute;
+  right: 10%;
+  top: 0;
+  margin-top: -1em;
+  padding: 0.8em 0.6em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-shadow: 0 2px 8px #14181c;
+          box-shadow: 0 2px 8px #14181c;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
+  border-radius: 4px;
+  background-color: #14181c;
+}
+
+.sign-in-form .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+.sign-in-form .container label {
+  opacity: 0.6;
+  font-size: 0.75rem;
+  margin-bottom: 5px;
+}
+
+.sign-in-form .container input {
+  border-radius: 4px;
+  padding: 0.3em 0.5em;
+  border: none;
+  background-color: #445566;
+}
+
+.sign-in-form .container input:focus {
+  color: #14181c;
+  background-color: white;
+}
+
+.sign-in-form button.close-form {
+  opacity: 0.6;
+  margin-right: 10px;
+}
+
+.sign-in-form button.close-form:hover {
+  opacity: 1;
+}
+
+.sign-in-form div:not(.container) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-right: 10px;
+}
+
+.sign-in-form button:last-of-type {
+  color: white;
+}
+
+.sign-in-form > p {
+  position: absolute;
+  bottom: 0;
+  left: 1px;
+  width: 99.5%;
+  background-color: #ff9010;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  color: white;
+  padding: 0.4em;
+  text-align: center;
+  z-index: -10;
+  -webkit-transition: -webkit-transform 250ms ease;
+  transition: -webkit-transform 250ms ease;
+  transition: transform 250ms ease;
+  transition: transform 250ms ease, -webkit-transform 250ms ease;
+  width: 100%;
+}
+
+.sign-in-form > p.error {
+  -webkit-transform: translateY(100%);
+          transform: translateY(100%);
+}
+
+.sign-in-form.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
 .popular {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -930,7 +1030,7 @@ figure.backdrop figcaption {
   opacity: 0.6;
 }
 
-.green-btn, .add-new-review article form button {
+.green-btn, .sign-in-form button:last-of-type, .add-new-review article form button {
   background: #00c030;
   padding: 0.3em 0.7em;
   font-weight: bold;
@@ -941,7 +1041,7 @@ figure.backdrop figcaption {
   letter-spacing: 1px;
 }
 
-.green-btn:hover, .add-new-review article form button:hover {
+.green-btn:hover, .sign-in-form button:hover:last-of-type, .add-new-review article form button:hover {
   background: #01a52a;
 }
 

@@ -12,6 +12,10 @@ interface initialState {
     user: User | null;
     error: boolean;
     notification: Notif;
+    form_status: {
+        sign_in_form: boolean;
+        sign_up_form: boolean;
+    };
 }
 
 const initialState: initialState = {
@@ -20,6 +24,10 @@ const initialState: initialState = {
     notification: {
         message: '',
         type: 'off',
+    },
+    form_status: {
+        sign_in_form: false,
+        sign_up_form: false,
     },
 };
 
@@ -75,6 +83,12 @@ const userSlice = createSlice({
             if (state.user)
                 state.user.watch_list = state.user.watch_list?.filter((m) => m._id !== payload);
         },
+        changeSignInFormStatus: (state, { payload }: PayloadAction<boolean>) => {
+            state.form_status.sign_in_form = payload;
+        },
+        changeSignUpFormStatus: (state, { payload }: PayloadAction<boolean>) => {
+            state.form_status.sign_up_form = payload;
+        },
     },
 });
 
@@ -91,6 +105,8 @@ export const {
     removeMovieFromWatched,
     addMovieToWatchList,
     removeMovieFromWatchList,
+    changeSignInFormStatus,
+    changeSignUpFormStatus,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {
@@ -101,6 +117,7 @@ export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) =>
         });
         const userData = await userService.getUserInfo(response.id);
         dispatch(logInSuccess(userData));
+        dispatch(changeSignInFormStatus(false));
     } catch {
         dispatch(logInFailure());
     }
