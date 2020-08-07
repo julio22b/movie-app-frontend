@@ -24,7 +24,7 @@ const UsernameHeader: React.FC<UsernameHeaderProps> = ({
                 pathname: `/${user.username}/film/${movieTitle
                     ?.toLocaleLowerCase()
                     .replace(/ /g, '+')}`,
-                state: { reviewID: _id },
+                state: { reviewID: _id, userID: user._id },
             }}
         >
             <h4 className="user">

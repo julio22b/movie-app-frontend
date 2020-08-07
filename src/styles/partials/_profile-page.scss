@@ -1,0 +1,46 @@
+.profile-page {
+    padding-top: 11em;
+    margin: 0 auto;
+    width: 80%;
+    .user-info {
+        display: flex;
+        align-items: center;
+    }
+    .profile-picture {
+        width: 100px;
+    }
+    .username {
+        margin-left: 30px;
+    }
+    .stats {
+        margin-left: auto;
+        opacity: 0.8;
+        color: white;
+        li {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-left: 1px solid $gray;
+            padding: 0 0.5em;
+            font-size: 1.6rem;
+            span {
+                font-size: 0.8rem;
+                opacity: 0.6;
+            }
+        }
+    }
+    .container {
+        display: flex;
+        justify-content: space-between;
+        border: 1px solid green;
+        padding: 4em 0;
+        .left-col {
+            width: 60%;
+            border: 1px solid red;
+        }
+        .right-col {
+            width: 35%;
+            border: 1px solid blue;
+        }
+    }
+}

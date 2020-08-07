@@ -9,7 +9,14 @@ interface ProfilePictureProps {
 
 const ProfilePicture: React.FC<ProfilePictureProps> = ({ user }) => {
     return (
-        <Link to={`/${user.username}`}>
+        <Link
+            to={{
+                pathname: `/${user.username}`,
+                state: {
+                    userID: user._id,
+                },
+            }}
+        >
             <img
                 className="profile-picture"
                 src={user.profile_picture || avatarIMG}

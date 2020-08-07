@@ -11,7 +11,14 @@ const Comment: React.FC<ReviewComment> = ({ user, content, created_at }) => {
             <div>
                 <ProfilePicture user={user} />
                 <div>
-                    <Link to={`/${user.username}`}>
+                    <Link
+                        to={{
+                            pathname: `/${user.username}`,
+                            state: {
+                                userID: user._id,
+                            },
+                        }}
+                    >
                         <p>{user.username}</p>
                     </Link>
                     <p className="date">{moment(date).fromNow()}</p>

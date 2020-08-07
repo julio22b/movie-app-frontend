@@ -12,6 +12,7 @@ import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
 import FilmPage from './components/Film/FilmPage';
 import Notification from './components/Home/Notification';
 import ReviewPage from './components/ReviewPage/ReviewPage';
+import ProfilePage from './components/ProfilePage/ProfilePage';
 
 function App() {
     const dispatch = useDispatch();
@@ -45,6 +46,9 @@ function App() {
                     </Route>
                     <Route path="/:username/film/:title" exact>
                         <ReviewPage />
+                    </Route>
+                    <Route path="/:username">
+                        <ProfilePage />
                     </Route>
                 </Switch>
             </Router>

@@ -640,6 +640,77 @@ i[data-rating='0.5'] {
   width: 20px;
 }
 
+.profile-page {
+  padding-top: 11em;
+  margin: 0 auto;
+  width: 80%;
+}
+
+.profile-page .user-info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.profile-page .profile-picture {
+  width: 100px;
+}
+
+.profile-page .username {
+  margin-left: 30px;
+}
+
+.profile-page .stats {
+  margin-left: auto;
+  opacity: 0.8;
+  color: white;
+}
+
+.profile-page .stats li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-left: 1px solid #717f8e;
+  padding: 0 0.5em;
+  font-size: 1.6rem;
+}
+
+.profile-page .stats li span {
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
+
+.profile-page .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  border: 1px solid green;
+  padding: 4em 0;
+}
+
+.profile-page .container .left-col {
+  width: 60%;
+  border: 1px solid red;
+}
+
+.profile-page .container .right-col {
+  width: 35%;
+  border: 1px solid blue;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;

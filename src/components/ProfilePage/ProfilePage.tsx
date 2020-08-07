@@ -1,0 +1,61 @@
+import React, { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
+import { User } from '../../features/types';
+import userService from '../../services/userService';
+import ProfilePicture from '../_helpers/ProfilePicture';
+import Stats from './Stats';
+import Favorites from './Favorites';
+import Bio from './Bio';
+import WatchlistPeek from './WatchlistPeek';
+import RecentReviews from './RecentReviews';
+
+interface LocationState {
+    userID: string;
+}
+
+const ProfilePage = () => {
+    const { state } = useLocation<LocationState>();
+    const [user, setUser] = useState<User | null>(null);
+
+    useEffect(() => {
+        const getUserInfo = async () => {
+            const data = await userService.getUserInfo(state.userID);
+            setUser(data);
+        };
+        if (!user) getUserInfo();
+    });
+    if (user) {
+        return (
+            <section className="profile-page">
+                <div className="user-info">
+                    <ProfilePicture user={user} />
+                    <h2 className="username">{user.username}</h2>
+                    <Stats user={user} />
+                </div>
+                <div className="container">
+                    <div className="left-col">
+                        <Favorites favorites={user.favorites} />
+                        <RecentReviews reviews={user.reviews} user={user} />
+                        <div className="following">
+                            <h4 className="h4-subtitl">
+                                FOLLOWING <span>{user.following?.length}</span>
+                            </h4>
+                            <div>
+                                {user.following?.map((user) => (
+                                    <ProfilePicture user={user} />
+                                ))}
+                            </div>
+                        </div>
+                    </div>
+                    <div className="right-col">
+                        <Bio bio={user.bio} />
+                        <WatchlistPeek watchlist={user.watch_list} />
+                    </div>
+                </div>
+            </section>
+        );
+    }
+    return null;
+};
+
+export default ProfilePage;
