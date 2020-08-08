@@ -3,7 +3,6 @@ import reviewService from '../../services/reviewService';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { User, ReviewComment } from '../../features/types';
-import { showNotification } from '../../features/user/userSlice';
 import { notify } from '../../services/helpers';
 
 interface props {

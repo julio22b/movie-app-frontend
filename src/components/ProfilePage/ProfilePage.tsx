@@ -8,6 +8,9 @@ import Favorites from './Favorites';
 import Bio from './Bio';
 import WatchlistPeek from './WatchlistPeek';
 import RecentReviews from './RecentReviews';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../app/store';
+import RecentLists from './RecentLists';
 
 interface LocationState {
     userID: string;
@@ -34,10 +37,10 @@ const ProfilePage = () => {
                 </div>
                 <div className="container">
                     <div className="left-col">
-                        <Favorites favorites={user.favorites} />
+                        <Favorites favorites={user.favorites} user={user} />
                         <RecentReviews reviews={user.reviews} user={user} />
                         <div className="following">
-                            <h4 className="h4-subtitl">
+                            <h4 className="h4-subtitle">
                                 FOLLOWING <span>{user.following?.length}</span>
                             </h4>
                             <div>
@@ -48,8 +51,9 @@ const ProfilePage = () => {
                         </div>
                     </div>
                     <div className="right-col">
-                        <Bio bio={user.bio} />
-                        <WatchlistPeek watchlist={user.watch_list} />
+                        {user.bio && <Bio bio={user.bio} />}
+                        <WatchlistPeek watchlist={user.watch_list.slice(0, 5)} user={user} />
+                        <RecentLists recent_lists={user.lists.slice(0, 3)} user={user} />
                     </div>
                 </div>
             </section>

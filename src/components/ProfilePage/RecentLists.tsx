@@ -1,30 +1,29 @@
 import React from 'react';
-import { MovieInstance, User } from '../../features/types';
+import { MovieList, User } from '../../features/types';
 import VoidMsg from './VoidMsg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 
-const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
-    watchlist,
+const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
+    recent_lists,
     user,
 }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     return (
-        <div className="watchlist-peek">
+        <article className="recent-lists">
             <h4 className="h4-subtitle">
-                Watchlist <span>{watchlist.length}</span>
+                RECENT LISTS <span>{recent_lists.length}</span>
             </h4>
-            {!watchlist.length && (
+            {!recent_lists.length && (
                 <VoidMsg
                     userID={user._id}
                     loggedUserID={loggedUser?._id}
                     username={user.username}
-                    text={'films in their watchlist'}
+                    text={'any lists yet'}
                 />
             )}
-            <div>LITTLE 6 POSTERS HERE</div>
-        </div>
+        </article>
     );
 };
 
-export default WatchlistPeek;
+export default RecentLists;

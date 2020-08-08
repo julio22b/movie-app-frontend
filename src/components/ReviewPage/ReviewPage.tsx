@@ -15,6 +15,7 @@ import SignInBtn from '../_helpers/SignInBtn';
 import { fetchMovieForPage } from '../../features/movies/popularMoviesSlice';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
+import MovieTitle from './MovieTitle';
 
 interface LocationState {
     reviewID: string;
@@ -74,17 +75,7 @@ const ReviewPage = () => {
                             />
                         </div>
 
-                        <h2 className="movie-title">
-                            <Link
-                                to={`/film/${review.movie.title
-                                    .toLocaleLowerCase()
-                                    .replace(/ /g, '+')}`}
-                            >
-                                {review.movie.title}{' '}
-                            </Link>
-                            <span>{review.movie.year}</span>{' '}
-                            <i className="stars" data-rating={`${review.rating}`}></i>
-                        </h2>
+                        <MovieTitle review={review} />
 
                         <p className="date-watched">
                             Watched {moment(review.created_at).format('MMM DD[,] YYYY')}

@@ -32,15 +32,73 @@
     .container {
         display: flex;
         justify-content: space-between;
-        border: 1px solid green;
         padding: 4em 0;
         .left-col {
             width: 60%;
-            border: 1px solid red;
         }
         .right-col {
             width: 35%;
-            border: 1px solid blue;
+        }
+    }
+    i.likes {
+        background-image: url('../images/heart-yellow-darkbg.png');
+        background-repeat: no-repeat;
+        width: 20px;
+        height: 20px;
+    }
+    h4 {
+        display: flex;
+        justify-content: space-between;
+        opacity: 1;
+        color: #99aabb;
+        span {
+            color: #99aabb;
+            opacity: 0.8;
+        }
+    }
+}
+
+.void-msg {
+    width: 100%;
+    text-align: center;
+    color: #99aabb;
+    margin: 5em 0;
+}
+
+.recent-reviews {
+    .review {
+        display: flex;
+        align-items: flex-start;
+        margin: 1em 0 0 0;
+        padding-bottom: 2em;
+        border-bottom: 1px solid #445566;
+        img {
+            width: 70px;
+            border-radius: 4px;
+            border: 1px solid $gray;
+            margin-right: 20px;
+        }
+        div {
+            flex: 1;
+            h2 {
+                span {
+                    font-size: 0.8rem;
+                    color: #667788;
+                }
+            }
+            .date {
+                font-size: 0.8rem;
+                color: #667788;
+            }
+            .content {
+                margin: 2em 0;
+                opacity: 0.8;
+            }
+            div:last-child {
+                font-size: 0.8rem;
+                opacity: 0.6;
+                font-weight: bold;
+            }
         }
     }
 }

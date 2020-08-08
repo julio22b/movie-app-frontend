@@ -1,12 +1,14 @@
 import React from 'react';
 import { Review, User } from '../../features/types';
-import FilmReview from '../Film/FilmReview';
+import RecentReview from './RecentReview';
 
 const RecentReviews: React.FC<{ reviews: Review[]; user: User }> = ({ reviews, user }) => {
+    const fiveReviews = reviews.reverse().slice(0, 5);
     return (
         <section className="recent-reviews">
-            {reviews.map((r) => (
-                <FilmReview movie={r.movie} content={r.content} user={user} comments={r.comments} />
+            <h4 className="h4-subtitle">RECENT REVIEWS</h4>
+            {fiveReviews.map((r) => (
+                <RecentReview review={r} />
             ))}
         </section>
     );

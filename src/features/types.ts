@@ -22,7 +22,7 @@ export interface User {
     following?: User[];
     watch_list: MovieInstance[];
     favorites: MovieInstance[];
-    lists?: MovieList[];
+    lists: MovieList[];
     liked_movies?: MovieInstance[];
     liked_reviews: [string];
 }
@@ -38,7 +38,7 @@ export interface Review {
     content: string;
     user: User;
     liked_movie?: boolean;
-    likes?: number;
+    likes: number;
     rating?: number;
     comments: ReviewComment[];
     movieTitle?: string;

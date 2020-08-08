@@ -697,18 +697,91 @@ i[data-rating='0.5'] {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  border: 1px solid green;
   padding: 4em 0;
 }
 
 .profile-page .container .left-col {
   width: 60%;
-  border: 1px solid red;
 }
 
 .profile-page .container .right-col {
   width: 35%;
-  border: 1px solid blue;
+}
+
+.profile-page i.likes {
+  background-image: url("../images/heart-yellow-darkbg.png");
+  background-repeat: no-repeat;
+  width: 20px;
+  height: 20px;
+}
+
+.profile-page h4 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  opacity: 1;
+  color: #99aabb;
+}
+
+.profile-page h4 span {
+  color: #99aabb;
+  opacity: 0.8;
+}
+
+.void-msg {
+  width: 100%;
+  text-align: center;
+  color: #99aabb;
+  margin: 5em 0;
+}
+
+.recent-reviews .review {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  margin: 1em 0 0 0;
+  padding-bottom: 2em;
+  border-bottom: 1px solid #445566;
+}
+
+.recent-reviews .review img {
+  width: 70px;
+  border-radius: 4px;
+  border: 1px solid #717f8e;
+  margin-right: 20px;
+}
+
+.recent-reviews .review div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.recent-reviews .review div h2 span {
+  font-size: 0.8rem;
+  color: #667788;
+}
+
+.recent-reviews .review div .date {
+  font-size: 0.8rem;
+  color: #667788;
+}
+
+.recent-reviews .review div .content {
+  margin: 2em 0;
+  opacity: 0.8;
+}
+
+.recent-reviews .review div div:last-child {
+  font-size: 0.8rem;
+  opacity: 0.6;
+  font-weight: bold;
 }
 
 header {
