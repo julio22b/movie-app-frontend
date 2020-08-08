@@ -89,15 +89,13 @@ const ReviewPage = () => {
                             />
                         )}
                     </article>
-
-                    <section className="comments">
-                        <h4 className="h4-subtitle">
-                            {review.comments.length}{' '}
-                            {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
-                        </h4>
-                        {comments &&
-                            comments.length > 0 &&
-                            comments.map((c) => (
+                    {comments && comments.length > 0 && (
+                        <section className="comments">
+                            <h4 className="h4-subtitle">
+                                {review.comments.length}{' '}
+                                {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
+                            </h4>
+                            {comments.map((c) => (
                                 <Comment
                                     user={c.user}
                                     movie={c.movie}
@@ -105,7 +103,8 @@ const ReviewPage = () => {
                                     key={c._id}
                                 />
                             ))}
-                    </section>
+                        </section>
+                    )}
 
                     {loggedUser && movieState ? (
                         <CommentForm reviewID={review._id} setComments={setComments} />

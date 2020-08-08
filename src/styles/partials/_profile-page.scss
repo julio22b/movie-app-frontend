@@ -74,6 +74,11 @@
             opacity: 0.8;
         }
     }
+    .bio p {
+        opacity: 0.8;
+        margin: 2em 0;
+        padding: 1em 0;
+    }
 }
 
 .void-msg {
@@ -119,4 +124,99 @@
             }
         }
     }
+}
+
+section.settings {
+    padding-top: 11em;
+    margin: 0 auto;
+    width: 80%;
+    h2 {
+        width: 100%;
+        padding-bottom: 0.5em;
+        margin-bottom: 2em;
+        opacity: 0.8;
+        border-bottom: 1px solid #445566;
+    }
+    .container {
+        width: 100%;
+        display: flex;
+        .profile-form {
+            flex: 1;
+            margin-right: 4em;
+            label {
+                display: inline-block;
+                width: 100%;
+                margin-bottom: 0.5em;
+                opacity: 0.8;
+                color: $gray-text-secondary;
+            }
+            input,
+            textarea {
+                background-color: #2c3440;
+                border: none;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.281);
+                border-radius: 3px;
+                width: 100%;
+                resize: none;
+                margin-bottom: 2em;
+                padding: 0.5em;
+                color: #99aabb;
+                &:focus {
+                    background-color: white;
+                    color: $bg-black;
+                }
+            }
+        }
+    }
+}
+.edit-favorites {
+    flex: 1;
+    h4 {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        color: $gray-text-secondary;
+        opacity: 0.8;
+        span {
+            font-size: 0.6rem;
+            opacity: 0.5;
+        }
+    }
+    .posters {
+        margin: 2em 0;
+        display: flex;
+        justify-content: space-between;
+        .add {
+            border: 1px solid #445566;
+            border-radius: 3px;
+            width: 23%;
+            min-width: 80px;
+            min-height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #2c3440;
+            cursor: pointer;
+            &:hover .gray-btn {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+.gray-btn {
+    border-radius: 50%;
+    box-shadow: 0 2px 6px $bg-black;
+    background-color: #445566;
+    border: none;
+    padding: 0.1em;
+    font-size: 1.2em;
+    width: 27px;
+    height: 27px;
+    border-top: 1px solid #99aabb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.4;
+    font-weight: bold;
 }

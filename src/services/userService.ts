@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { userLogInInput } from '../features/types';
+import { userLogInInput, MovieInstance } from '../features/types';
 import authHeader from './authHeader';
 import Axios from 'axios';
 
@@ -51,6 +51,17 @@ const changeWatchListStatus = async (
     return response.data;
 };
 
+interface ProfileData {
+    username: string;
+    bio: string;
+    favorites: MovieInstance[];
+}
+
+const editProfile = async (userID: string | undefined, data: ProfileData) => {
+    const response = await Axios.put(`${baseUrl}/${userID}`, data, { headers: authHeader() });
+    return response.data;
+};
+
 export default {
     logIn,
     removeCurrentUser,
@@ -58,5 +69,5 @@ export default {
     getUserInfo,
     changeWatchListStatus,
     changeWatchedStatus,
-    
+    editProfile,
 };

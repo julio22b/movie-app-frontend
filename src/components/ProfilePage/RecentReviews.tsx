@@ -8,7 +8,7 @@ const RecentReviews: React.FC<{ reviews: Review[]; user: User }> = ({ reviews, u
         <section className="recent-reviews">
             <h4 className="h4-subtitle">RECENT REVIEWS</h4>
             {fiveReviews.map((r) => (
-                <RecentReview review={r} />
+                <RecentReview review={r} key={r._id} />
             ))}
         </section>
     );
