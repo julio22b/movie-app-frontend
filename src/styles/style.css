@@ -661,6 +661,32 @@ i[data-rating='0.5'] {
 
 .profile-page .username {
   margin-left: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.profile-page .username .settings {
+  background-color: #445566;
+  padding: 0.3em 0.7em;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  border-top: 1px solid rgba(255, 255, 255, 0.37);
+}
+
+.profile-page .username .settings a {
+  text-decoration: none;
+}
+
+.profile-page .username .settings a:hover {
+  color: white;
 }
 
 .profile-page .stats {

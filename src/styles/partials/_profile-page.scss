@@ -11,6 +11,24 @@
     }
     .username {
         margin-left: 30px;
+        display: flex;
+        flex-direction: column;
+        .settings {
+            background-color: $gray-border;
+            padding: 0.3em 0.7em;
+            margin-top: 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            border-top: 1px solid rgba(255, 255, 255, 0.37);
+            a {
+                text-decoration: none;
+                &:hover {
+                    color: white;
+                }
+            }
+        }
     }
     .stats {
         margin-left: auto;

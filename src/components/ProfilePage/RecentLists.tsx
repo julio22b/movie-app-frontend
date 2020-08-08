@@ -19,7 +19,7 @@ const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
                     userID={user._id}
                     loggedUserID={loggedUser?._id}
                     username={user.username}
-                    text={'any lists yet'}
+                    text={'any lists'}
                 />
             )}
         </article>

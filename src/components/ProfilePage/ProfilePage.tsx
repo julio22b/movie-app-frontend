@@ -11,6 +11,8 @@ import RecentReviews from './RecentReviews';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import RecentLists from './RecentLists';
+import SettingsBtn from './SettingsBtn';
+import FollowBtn from './FollowBtn';
 
 interface LocationState {
     userID: string;
@@ -19,6 +21,7 @@ interface LocationState {
 const ProfilePage = () => {
     const { state } = useLocation<LocationState>();
     const [user, setUser] = useState<User | null>(null);
+    const loggedUser = useSelector((state: RootState) => state.userAuth.user);
 
     useEffect(() => {
         const getUserInfo = async () => {
@@ -32,7 +35,10 @@ const ProfilePage = () => {
             <section className="profile-page">
                 <div className="user-info">
                     <ProfilePicture user={user} />
-                    <h2 className="username">{user.username}</h2>
+                    <h2 className="username">
+                        {user.username}
+                        {user._id === loggedUser?._id ? <SettingsBtn /> : <FollowBtn user={user} />}
+                    </h2>
                     <Stats user={user} />
                 </div>
                 <div className="container">
