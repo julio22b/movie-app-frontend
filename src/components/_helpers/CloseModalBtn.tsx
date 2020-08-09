@@ -1,12 +1,15 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { changeModalState } from '../../features/reviews/reviewsSlice';
 import { removeMovieForReview } from '../../features/movies/popularMoviesSlice';
 
-const CloseModalBtn = () => {
+interface props {
+    handleModalState: () => void;
+}
+
+const CloseModalBtn: React.FC<props> = ({ handleModalState }) => {
     const dispatch = useDispatch();
     const close = () => {
-        dispatch(changeModalState());
+        dispatch(handleModalState());
         dispatch(removeMovieForReview());
     };
     return <button onClick={close}>X</button>;

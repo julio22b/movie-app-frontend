@@ -46,7 +46,7 @@ const NewReview = () => {
                 </figure>
                 <article>
                     <p>
-                        I WATCHED... <CloseModalBtn />
+                        I WATCHED... <CloseModalBtn handleModalState={changeModalState} />
                     </p>
                     <h3>
                         {movie.title} <span>{movie.year}</span>

@@ -929,6 +929,76 @@ section.settings .container .profile-form textarea:focus {
   opacity: 1;
 }
 
+.search-favorite {
+  background-color: #445566;
+  padding: 1em;
+  border-radius: 3px;
+  width: 400px;
+  z-index: 1000;
+}
+
+.search-favorite h4 {
+  opacity: 0.8;
+  font-weight: normal;
+  margin-bottom: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.search-favorite h4 button {
+  border: none;
+  background-color: transparent;
+  font-size: 1.4rem;
+}
+
+.search-favorite h4 button:hover {
+  color: white;
+}
+
+.search-favorite p {
+  color: white;
+  font-size: 0.9rem;
+}
+
+.search-favorite input {
+  margin-top: 10px;
+  border-radius: 3px;
+  padding: 0.5em;
+  background-color: #99aabb;
+  border: none;
+  width: 100%;
+  color: #445566;
+}
+
+.search-favorite input:focus {
+  background-color: white;
+  color: #14181c;
+}
+
+.search-favorite p:last-of-type {
+  margin-top: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1.1rem;
+  border-radius: 4px;
+  padding: 0.1em;
+}
+
+.search-favorite p:last-of-type span {
+  font-size: 0.8rem;
+  font-weight: normal;
+  opacity: 0.8;
+}
+
+.search-favorite p:last-of-type:hover {
+  background-color: #00c030;
+  color: white;
+}
+
 .gray-btn {
   border-radius: 50%;
   -webkit-box-shadow: 0 2px 6px #14181c;
@@ -937,8 +1007,8 @@ section.settings .container .profile-form textarea:focus {
   border: none;
   padding: 0.1em;
   font-size: 1.2em;
-  width: 27px;
-  height: 27px;
+  width: 25px;
+  height: 25px;
   border-top: 1px solid #99aabb;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -951,6 +1021,20 @@ section.settings .container .profile-form textarea:focus {
           justify-content: center;
   opacity: 0.4;
   font-weight: bold;
+}
+
+.search-favorite,
+.blanket {
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: opacity 250ms ease;
+  transition: opacity 250ms ease;
+}
+
+.search-favorite.open,
+.blanket.open {
+  opacity: 1;
+  pointer-events: all;
 }
 
 header {
@@ -1541,5 +1625,35 @@ figure.backdrop figcaption {
   transition: -webkit-transform 250ms ease;
   transition: transform 250ms ease;
   transition: transform 250ms ease, -webkit-transform 250ms ease;
+}
+
+#portal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  pointer-events: none;
+}
+
+.blanket {
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
 }
 /*# sourceMappingURL=style.css.map */

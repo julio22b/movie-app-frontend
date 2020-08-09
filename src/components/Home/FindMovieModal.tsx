@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
-import Axios from 'axios';
 import { MovieInstance } from '../../features/types';
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
 import NewReview from './NewReview';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
 import movieService from '../../services/movieService';
+import { changeModalState } from '../../features/reviews/reviewsSlice';
 
 const FindMovieModal = () => {
     const open = useSelector((state: RootState) => state.reviews.openSearchMovie);
@@ -17,10 +17,8 @@ const FindMovieModal = () => {
 
     useEffect(() => {
         const findMovieOMDB = async () => {
-            if (searchQuery.length > 2) {
-                const movie = await movieService.useOMDB(searchQuery);
-                if (movie) setFoundMovie(movie);
-            }
+            const movie = await movieService.useOMDB(searchQuery);
+            if (movie) setFoundMovie(movie);
         };
         if (searchQuery.length > 2) {
             findMovieOMDB();
@@ -31,7 +29,7 @@ const FindMovieModal = () => {
             {!movie && (
                 <>
                     <p>
-                        ADD TO YOUR FILMS... <CloseModalBtn />
+                        ADD TO YOUR FILMS... <CloseModalBtn handleModalState={changeModalState} />
                     </p>
                     <label htmlFor="movie">Name of Film</label>
                     <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />

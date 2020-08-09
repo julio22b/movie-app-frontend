@@ -4,6 +4,7 @@ import { RootState } from '../../app/store';
 import userService from '../../services/userService';
 import { MovieInstance } from '../../features/types';
 import { notify } from '../../services/helpers';
+import SearchFavorite from './SearchFavorite';
 
 const Form = () => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
@@ -38,6 +39,7 @@ const Form = () => {
 
     return (
         <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
+            <SearchFavorite setFavorites={setFavorites} />
             <label htmlFor="username">Username</label>
             <input
                 type="text"

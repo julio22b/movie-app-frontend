@@ -15,6 +15,7 @@ interface initialState {
     form_status: {
         sign_in_form: boolean;
         sign_up_form: boolean;
+        pick_favorite: boolean;
     };
 }
 
@@ -28,6 +29,7 @@ const initialState: initialState = {
     form_status: {
         sign_in_form: false,
         sign_up_form: false,
+        pick_favorite: false,
     },
 };
 
@@ -89,6 +91,15 @@ const userSlice = createSlice({
         changeSignUpFormStatus: (state, { payload }: PayloadAction<boolean>) => {
             state.form_status.sign_up_form = payload;
         },
+        changePickFavoriteFormStatus: (state, { payload }: PayloadAction<boolean>) => {
+            state.form_status.pick_favorite = payload;
+        },
+        removeFavoriteFilm: (state, { payload }: PayloadAction<string>) => {
+            if (state.user)
+                state.user.favorites = state.user?.favorites.filter(
+                    (movie) => movie._id !== payload,
+                );
+        },
     },
 });
 
@@ -107,6 +118,7 @@ export const {
     removeMovieFromWatchList,
     changeSignInFormStatus,
     changeSignUpFormStatus,
+    changePickFavoriteFormStatus,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {
