@@ -643,7 +643,7 @@ i[data-rating='0.5'] {
 .profile-page {
   padding-top: 11em;
   margin: 0 auto;
-  width: 80%;
+  width: 85%;
 }
 
 .profile-page .user-info {
@@ -727,11 +727,15 @@ i[data-rating='0.5'] {
 }
 
 .profile-page .container .left-col {
-  width: 60%;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin-right: 80px;
 }
 
 .profile-page .container .right-col {
-  width: 35%;
+  width: 25%;
+  min-width: 250px;
 }
 
 .profile-page i.likes {
@@ -768,6 +772,31 @@ i[data-rating='0.5'] {
   text-align: center;
   color: #99aabb;
   margin: 5em 0;
+}
+
+.favorite-films {
+  margin-bottom: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.favorite-films h4 {
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.favorite-films img,
+.favorite-films .placeholder {
+  width: 24%;
+  border-radius: 4px;
+  border: 1px solid #717f8e;
+  background-color: #111111;
 }
 
 .recent-reviews .review {
@@ -924,6 +953,12 @@ section.settings .container .profile-form textarea:focus {
   border: 1px solid #445566;
 }
 
+.edit-favorites .posters .add:hover .gray-btn.remove {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 .edit-favorites .posters .add .placeholder {
   cursor: pointer;
   background-color: #2c3440;
@@ -936,6 +971,7 @@ section.settings .container .profile-form textarea:focus {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: move;
 }
 
 .edit-favorites .posters .add:hover .gray-btn {
@@ -1039,6 +1075,20 @@ section.settings .container .profile-form textarea:focus {
           justify-content: center;
   opacity: 0.4;
   font-weight: bold;
+}
+
+.gray-btn.remove {
+  top: 0;
+  right: 0;
+  left: 100%;
+  width: 15px;
+  height: 15px;
+  font-size: 0.8rem;
+  display: none;
+}
+
+.gray-btn.remove:hover {
+  background-color: #ff9010;
 }
 
 .search-favorite,

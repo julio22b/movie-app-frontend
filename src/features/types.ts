@@ -1,3 +1,5 @@
+import { favorite } from './user/userSlice';
+
 export interface MovieOMDB {
     poster_path: string;
     id: number;
@@ -21,7 +23,7 @@ export interface User {
     followers?: User[];
     following?: User[];
     watch_list: MovieInstance[];
-    favorites: MovieInstance[];
+    favorites: [favorite, favorite, favorite, favorite];
     lists: MovieList[];
     liked_movies?: MovieInstance[];
     liked_reviews: [string];

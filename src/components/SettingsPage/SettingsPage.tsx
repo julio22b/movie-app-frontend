@@ -1,12 +1,17 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import Form from './Form';
 import AddFavoriteBtn from './AddFavoriteBtn';
+import { setFavorites } from '../../features/user/userSlice';
 
 const SettingsPage = () => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const [index, setIndex] = useState<number>(0);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        if (loggedUser) dispatch(setFavorites(loggedUser.favorites));
+    }, [dispatch, loggedUser]);
 
     return (
         <section className="settings">

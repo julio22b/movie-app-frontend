@@ -8,16 +8,17 @@ import SearchFavorite from './SearchFavorite';
 
 const Form: React.FC<{ index: number }> = ({ index }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
+    const { favorites } = useSelector(
+        (state: RootState) => state.userAuth.form_status.favorites_form,
+    );
     const dispatch = useDispatch();
     const [username, setUsername] = useState<string>('');
     const [bio, setBio] = useState<string>('');
-    const [favorites, setFavorites] = useState<MovieInstance[]>([]);
 
     useEffect(() => {
         if (loggedUser) {
             setUsername(loggedUser?.username);
             setBio(loggedUser?.bio);
-            setFavorites(loggedUser.favorites);
         }
     }, [loggedUser]);
 
@@ -25,10 +26,11 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
         e.preventDefault();
         if (loggedUser) {
             try {
+                const favoriteIDS = favorites.map((f) => f?._id || null);
                 const data = await userService.editProfile(loggedUser?._id, {
                     username,
                     bio,
-                    favorites,
+                    favorites: favoriteIDS,
                 });
                 notify({ message: data.message, type: 'success' }, dispatch);
             } catch (e) {
@@ -39,7 +41,7 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
 
     return (
         <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
-            <SearchFavorite setFavorites={setFavorites} index={index} />
+            <SearchFavorite index={index} />
             <label htmlFor="username">Username</label>
             <input
                 type="text"

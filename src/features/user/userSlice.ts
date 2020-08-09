@@ -8,7 +8,7 @@ export type Notif = {
     type: 'success' | 'warning' | 'off';
 };
 
-type favorite = null | MovieInstance;
+export type favorite = null | MovieInstance;
 
 interface initialState {
     user: User | null;
@@ -109,6 +109,12 @@ const userSlice = createSlice({
         removeFavorite: (state, { payload }: PayloadAction<number>) => {
             state.form_status.favorites_form.favorites.splice(payload, 1, null);
         },
+        setFavorites: (
+            state,
+            { payload }: PayloadAction<[favorite, favorite, favorite, favorite]>,
+        ) => {
+            state.form_status.favorites_form.favorites = payload;
+        },
     },
 });
 
@@ -130,6 +136,7 @@ export const {
     changePickFavoriteFormStatus,
     addFavorite,
     removeFavorite,
+    setFavorites,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {

@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { userLogInInput, MovieInstance } from '../features/types';
+import { userLogInInput } from '../features/types';
 import authHeader from './authHeader';
 import Axios from 'axios';
+import { favorite } from '../features/user/userSlice';
 
 const baseUrl = 'http://localhost:3001/api/users';
 
@@ -54,7 +55,7 @@ const changeWatchListStatus = async (
 interface ProfileData {
     username: string;
     bio: string;
-    favorites: MovieInstance[];
+    favorites: Array<string | null>;
 }
 
 const editProfile = async (userID: string | undefined, data: ProfileData) => {

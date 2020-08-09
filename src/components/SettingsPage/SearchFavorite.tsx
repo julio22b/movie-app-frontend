@@ -8,29 +8,28 @@ import CloseModalBtn from '../_helpers/CloseModalBtn';
 import { changePickFavoriteFormStatus, addFavorite } from '../../features/user/userSlice';
 
 interface props {
-    setFavorites: React.Dispatch<React.SetStateAction<MovieInstance[]>>;
     index: number;
 }
 
-const SearchFavorite: React.FC<props> = ({ setFavorites, index }) => {
-    const [pickedMovie, setPickedMovie] = useState({} as MovieInstance);
+const SearchFavorite: React.FC<props> = ({ index }) => {
     const [query, setQuery] = useState<string>('');
+    const [omdbMovie, setOmdbMovie] = useState<MovieInstance | null>(null);
     const { open } = useSelector((state: RootState) => state.userAuth.form_status.favorites_form);
     const dispatch = useDispatch();
     useEffect(() => {
         const pickMovie = async () => {
             const movie = await movieService.useOMDB(query);
-            if (movie) setPickedMovie(movie);
+            if (movie) setOmdbMovie(movie);
         };
         if (query.length > 2) {
             pickMovie();
         }
     }, [query]);
 
-    const handleClick = () => {
-        dispatch(addFavorite({ movie: pickedMovie, index }));
+    const handleClick = async () => {
+        const movieSavedOnDB = await movieService.getMovieInstance(omdbMovie as MovieInstance);
+        dispatch(addFavorite({ movie: movieSavedOnDB, index }));
         setQuery('');
-        setPickedMovie({} as MovieInstance);
         dispatch(changePickFavoriteFormStatus(false));
     };
 
@@ -44,9 +43,9 @@ const SearchFavorite: React.FC<props> = ({ setFavorites, index }) => {
                 </h4>
                 <p>Name of Film</p>
                 <input type="text" onChange={(e) => setQuery(e.target.value)} />
-                {pickedMovie.title && (
+                {omdbMovie && (
                     <p onClick={handleClick}>
-                        {pickedMovie.title} ({pickedMovie.year}) <span>{pickedMovie.director}</span>
+                        {omdbMovie.title} ({omdbMovie.year}) <span>{omdbMovie.director}</span>
                     </p>
                 )}
             </div>
