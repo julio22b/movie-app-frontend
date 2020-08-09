@@ -5,17 +5,18 @@ import movieService from '../../services/movieService';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
-import { changePickFavoriteFormStatus } from '../../features/user/userSlice';
+import { changePickFavoriteFormStatus, addFavorite } from '../../features/user/userSlice';
 
 interface props {
     setFavorites: React.Dispatch<React.SetStateAction<MovieInstance[]>>;
+    index: number;
 }
 
-const SearchFavorite: React.FC<props> = ({ setFavorites }) => {
+const SearchFavorite: React.FC<props> = ({ setFavorites, index }) => {
     const [pickedMovie, setPickedMovie] = useState({} as MovieInstance);
-    const [query, setQuery] = useState('');
-    const { pick_favorite } = useSelector((state: RootState) => state.userAuth.form_status);
-
+    const [query, setQuery] = useState<string>('');
+    const { open } = useSelector((state: RootState) => state.userAuth.form_status.favorites_form);
+    const dispatch = useDispatch();
     useEffect(() => {
         const pickMovie = async () => {
             const movie = await movieService.useOMDB(query);
@@ -27,20 +28,19 @@ const SearchFavorite: React.FC<props> = ({ setFavorites }) => {
     }, [query]);
 
     const handleClick = () => {
-        setFavorites((prev) => prev.concat(pickedMovie));
+        dispatch(addFavorite({ movie: pickedMovie, index }));
         setQuery('');
         setPickedMovie({} as MovieInstance);
+        dispatch(changePickFavoriteFormStatus(false));
     };
 
     return ReactDOM.createPortal(
         <>
-            <div className={pick_favorite ? 'blanket open' : 'blanket'}></div>
-            <div className={pick_favorite ? 'search-favorite open' : 'search-favorite'}>
+            <div className={open ? 'blanket open' : 'blanket'}></div>
+            <div className={open ? 'search-favorite open' : 'search-favorite'}>
                 <h4>
                     PICK A FAVORITE FILM{' '}
-                    <CloseModalBtn
-                        handleModalState={() => changePickFavoriteFormStatus(!pick_favorite)}
-                    />
+                    <CloseModalBtn handleModalState={() => changePickFavoriteFormStatus(!open)} />
                 </h4>
                 <p>Name of Film</p>
                 <input type="text" onChange={(e) => setQuery(e.target.value)} />

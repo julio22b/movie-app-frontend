@@ -8,6 +8,8 @@ export type Notif = {
     type: 'success' | 'warning' | 'off';
 };
 
+type favorite = null | MovieInstance;
+
 interface initialState {
     user: User | null;
     error: boolean;
@@ -15,7 +17,10 @@ interface initialState {
     form_status: {
         sign_in_form: boolean;
         sign_up_form: boolean;
-        pick_favorite: boolean;
+        favorites_form: {
+            open: boolean;
+            favorites: [favorite, favorite, favorite, favorite];
+        };
     };
 }
 
@@ -29,7 +34,10 @@ const initialState: initialState = {
     form_status: {
         sign_in_form: false,
         sign_up_form: false,
-        pick_favorite: false,
+        favorites_form: {
+            open: false,
+            favorites: [null, null, null, null],
+        },
     },
 };
 
@@ -65,9 +73,7 @@ const userSlice = createSlice({
         },
         removeMovieFromLiked: (state, { payload }: PayloadAction<string>) => {
             if (state.user)
-                state.user.liked_movies = state.user?.liked_movies?.filter(
-                    (m) => m._id !== payload,
-                );
+                state.user.liked_movies = state.user.liked_movies?.filter((m) => m._id !== payload);
         },
         addMovieToWatched: (state, { payload }: PayloadAction<MovieInstance>) => {
             if (state.user) state.user.watched_movies?.push(payload);
@@ -79,11 +85,11 @@ const userSlice = createSlice({
                 );
         },
         addMovieToWatchList: (state, { payload }: PayloadAction<MovieInstance>) => {
-            if (state.user) state.user.watch_list?.push(payload);
+            if (state.user) state.user.watch_list.push(payload);
         },
         removeMovieFromWatchList: (state, { payload }: PayloadAction<string>) => {
             if (state.user)
-                state.user.watch_list = state.user.watch_list?.filter((m) => m._id !== payload);
+                state.user.watch_list = state.user.watch_list.filter((m) => m._id !== payload);
         },
         changeSignInFormStatus: (state, { payload }: PayloadAction<boolean>) => {
             state.form_status.sign_in_form = payload;
@@ -92,13 +98,16 @@ const userSlice = createSlice({
             state.form_status.sign_up_form = payload;
         },
         changePickFavoriteFormStatus: (state, { payload }: PayloadAction<boolean>) => {
-            state.form_status.pick_favorite = payload;
+            state.form_status.favorites_form.open = payload;
         },
-        removeFavoriteFilm: (state, { payload }: PayloadAction<string>) => {
-            if (state.user)
-                state.user.favorites = state.user?.favorites.filter(
-                    (movie) => movie._id !== payload,
-                );
+        addFavorite: (
+            state,
+            { payload }: PayloadAction<{ movie: MovieInstance; index: number }>,
+        ) => {
+            state.form_status.favorites_form.favorites[payload.index] = payload.movie;
+        },
+        removeFavorite: (state, { payload }: PayloadAction<number>) => {
+            state.form_status.favorites_form.favorites.splice(payload, 1, null);
         },
     },
 });
@@ -119,6 +128,8 @@ export const {
     changeSignInFormStatus,
     changeSignUpFormStatus,
     changePickFavoriteFormStatus,
+    addFavorite,
+    removeFavorite,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {

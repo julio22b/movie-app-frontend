@@ -6,7 +6,7 @@ import { MovieInstance } from '../../features/types';
 import { notify } from '../../services/helpers';
 import SearchFavorite from './SearchFavorite';
 
-const Form = () => {
+const Form: React.FC<{ index: number }> = ({ index }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const dispatch = useDispatch();
     const [username, setUsername] = useState<string>('');
@@ -39,7 +39,7 @@ const Form = () => {
 
     return (
         <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
-            <SearchFavorite setFavorites={setFavorites} />
+            <SearchFavorite setFavorites={setFavorites} index={index} />
             <label htmlFor="username">Username</label>
             <input
                 type="text"

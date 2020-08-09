@@ -9,7 +9,7 @@ interface props {
 
 const VoidMsg: React.FC<props> = ({ userID, loggedUserID, username, text }) => {
     if (userID === loggedUserID) {
-        return <p className="void-msg">You don't have {text} yet.</p>;
+        return <p className="void-msg">You don't have {text}.</p>;
     }
     return (
         <p className="void-msg">
