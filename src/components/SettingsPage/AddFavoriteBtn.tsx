@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
-import { changePickFavoriteFormStatus } from '../../features/user/userSlice';
+import { changePickFavoriteFormStatus, removeFavorite } from '../../features/user/userSlice';
 
 interface props {
     index: number;
@@ -18,6 +18,7 @@ const AddFavoriteBtn: React.FC<props> = ({ index, setIndex }) => {
         dispatch(changePickFavoriteFormStatus(!open));
         setIndex(index);
     };
+
     return (
         <div className="add">
             {!favorites[index] ? (
@@ -28,7 +29,9 @@ const AddFavoriteBtn: React.FC<props> = ({ index, setIndex }) => {
                     </div>
                 </>
             ) : (
-                <button className="gray-btn remove">x</button>
+                <button className="gray-btn remove" onClick={() => dispatch(removeFavorite(index))}>
+                    x
+                </button>
             )}
             <img src={favorites[index]?.poster.replace(/&#x2F;/g, '/') || ''} alt="" />
         </div>

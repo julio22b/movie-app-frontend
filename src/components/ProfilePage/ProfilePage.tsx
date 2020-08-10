@@ -13,6 +13,7 @@ import { RootState } from '../../app/store';
 import RecentLists from './RecentLists';
 import SettingsBtn from './SettingsBtn';
 import FollowBtn from './FollowBtn';
+import Navigation from './Navigation';
 
 interface LocationState {
     userID: string;
@@ -41,6 +42,7 @@ const ProfilePage = () => {
                     </h2>
                     <Stats user={user} />
                 </div>
+                <Navigation user={user} />
                 <div className="container">
                     <div className="left-col">
                         <Favorites favorites={user.favorites} user={user} />

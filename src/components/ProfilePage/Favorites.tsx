@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import VoidMsg from './VoidMsg';
 import { favorite } from '../../features/user/userSlice';
+import { Link } from 'react-router-dom';
 
 const Favorites: React.FC<{ favorites: [favorite, favorite, favorite, favorite]; user: User }> = ({
     favorites,
@@ -17,7 +18,12 @@ const Favorites: React.FC<{ favorites: [favorite, favorite, favorite, favorite];
             {favorites.length > 0 &&
                 favorites.map((f) =>
                     f ? (
-                        <Poster url={f.poster} title={f.title} tmdb={false} />
+                        <Link
+                            to={`/film/${f.title.toLocaleLowerCase().replace(/ /g, '-')}`}
+                            key={f._id}
+                        >
+                            <Poster url={f.poster} title={f.title} tmdb={false} />
+                        </Link>
                     ) : (
                         <div className="placeholder"></div>
                     ),
