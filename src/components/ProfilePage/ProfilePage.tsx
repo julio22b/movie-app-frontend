@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { User } from '../../features/types';
-import userService from '../../services/userService';
 import ProfilePicture from '../_helpers/ProfilePicture';
 import Stats from './Stats';
 import Favorites from './Favorites';

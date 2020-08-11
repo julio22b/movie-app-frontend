@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import userService from '../../services/userService';
-import { MovieInstance } from '../../features/types';
 import { notify } from '../../services/helpers';
 import SearchFavorite from './SearchFavorite';
 

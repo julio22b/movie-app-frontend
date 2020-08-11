@@ -19,13 +19,13 @@ export interface User {
     profile_picture: string;
     bio: string;
     reviews: Review[];
-    watched_movies?: MovieInstance[];
+    watched_movies: MovieInstance[];
     followers?: User[];
     following?: User[];
     watch_list: MovieInstance[];
     favorites: [favorite, favorite, favorite, favorite];
     lists: MovieList[];
-    liked_movies?: MovieInstance[];
+    liked_movies: MovieInstance[];
     liked_reviews: [string];
 }
 

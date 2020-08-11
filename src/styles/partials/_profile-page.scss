@@ -408,3 +408,80 @@ section.settings {
         }
     }
 }
+
+// USER FILM PAGE
+
+.user-films {
+    padding-top: 10em;
+    .wrap-user-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+        background-color: #303c48;
+        margin-bottom: 4em;
+        & > div {
+            display: flex;
+            align-items: center;
+            margin-right: 50px;
+            padding: 0.5em 0;
+            img {
+                width: 30px;
+                height: 30px;
+            }
+            a {
+                display: flex;
+                align-items: center;
+            }
+            span {
+                font-weight: bold;
+                font-size: 1.1rem;
+                margin-left: 20px;
+            }
+        }
+        .profile-nav {
+            margin: 1px 0;
+            border: none;
+            &:hover {
+                background-color: #303c48;
+            }
+            a {
+                display: flex;
+                align-items: center;
+            }
+            .active:hover {
+                background-color: #667788;
+            }
+        }
+    }
+}
+
+.posters-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+    gap: 20px;
+    a {
+        text-decoration: none;
+    }
+    figure {
+        img {
+            max-width: 100%;
+            border-radius: 4px;
+            border: 1px solid #99aabb4b;
+        }
+        figcaption {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+
+.like-gray {
+    background-image: url('../images/heart-gray-darkbg.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}

@@ -1201,6 +1201,117 @@ section.settings .container .profile-form textarea:focus {
   color: #40bcf4;
 }
 
+.user-films {
+  padding-top: 10em;
+}
+
+.user-films .wrap-user-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 3px;
+  background-color: #303c48;
+  margin-bottom: 4em;
+}
+
+.user-films .wrap-user-nav > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 50px;
+  padding: 0.5em 0;
+}
+
+.user-films .wrap-user-nav > div img {
+  width: 30px;
+  height: 30px;
+}
+
+.user-films .wrap-user-nav > div a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-films .wrap-user-nav > div span {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-left: 20px;
+}
+
+.user-films .wrap-user-nav .profile-nav {
+  margin: 1px 0;
+  border: none;
+}
+
+.user-films .wrap-user-nav .profile-nav:hover {
+  background-color: #303c48;
+}
+
+.user-films .wrap-user-nav .profile-nav a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-films .wrap-user-nav .profile-nav .active:hover {
+  background-color: #667788;
+}
+
+.posters-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(80px, 100px))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+  gap: 20px;
+}
+
+.posters-container a {
+  text-decoration: none;
+}
+
+.posters-container figure img {
+  max-width: 100%;
+  border-radius: 4px;
+  border: 1px solid #99aabb4b;
+}
+
+.posters-container figure figcaption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.like-gray {
+  background-image: url("../images/heart-gray-darkbg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
 header {
   display: -webkit-box;
   display: -ms-flexbox;
