@@ -14,7 +14,7 @@ import FollowBtn from './FollowBtn';
 import Navigation from './Navigation';
 import { getProfilePage } from '../../features/user/userSlice';
 
-interface LocationState {
+export interface LocationState {
     userID: string;
 }
 
@@ -41,7 +41,7 @@ const ProfilePage = () => {
                 <div className="container">
                     <div className="left-col">
                         <Favorites favorites={user.favorites} user={user} />
-                        <RecentReviews reviews={user.reviews} user={user} />
+                        <RecentReviews reviews={user.reviews} />
                         <div className="following">
                             <h4 className="h4-subtitle">
                                 FOLLOWING <span>{user.following?.length}</span>

@@ -16,8 +16,8 @@ const useOMDB = async (searchQuery: string): Promise<MovieInstance | undefined> 
     const processedQuery = searchQuery.replace(' ', '+');
     const response = await Axios.get(`${OMDB_URL}${processedQuery}`);
     const data = response.data;
-    const year = data.Year.slice(0, 4);
     if (!data.Error) {
+        const year = data.Year.slice(0, 4);
         return {
             title: data.Title,
             year,

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { userLogInInput } from '../features/types';
 import authHeader from './authHeader';
 import Axios from 'axios';
-import { favorite } from '../features/user/userSlice';
 
 const baseUrl = 'http://localhost:3001/api/users';
 

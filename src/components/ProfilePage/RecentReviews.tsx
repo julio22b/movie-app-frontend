@@ -1,13 +1,16 @@
 import React from 'react';
-import { Review, User } from '../../features/types';
+import { Review } from '../../features/types';
 import RecentReview from './RecentReview';
 
-const RecentReviews: React.FC<{ reviews: Review[]; user: User }> = ({ reviews, user }) => {
-    const fiveReviews = [...reviews].reverse().slice(0, 5);
+const RecentReviews: React.FC<{ reviews: Review[] }> = ({ reviews }) => {
+    const threeReviews = [...reviews]
+        .reverse()
+        .slice(0, 3)
+        .sort((a, b) => b.likes - a.likes);
     return (
         <section className="recent-reviews">
             <h4 className="h4-subtitle">RECENT REVIEWS</h4>
-            {fiveReviews.map((r) => (
+            {threeReviews.map((r) => (
                 <RecentReview review={r} key={r._id} />
             ))}
         </section>

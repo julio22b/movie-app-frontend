@@ -15,6 +15,7 @@ import ReviewPage from './components/ReviewPage/ReviewPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import SettingsPage from './components/SettingsPage/SettingsPage';
 import UserFilms from './components/ProfilePage/Film/UserFilms';
+import UserReviews from './components/ProfilePage/ReviewsPage/UserReviews';
 
 function App() {
     const dispatch = useDispatch();
@@ -57,6 +58,9 @@ function App() {
                     </Route>
                     <Route path="/:username/films" exact>
                         <UserFilms />
+                    </Route>
+                    <Route path="/:username/reviews" exact>
+                        <UserReviews />
                     </Route>
                 </Switch>
             </Router>

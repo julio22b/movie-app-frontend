@@ -115,7 +115,8 @@
     }
 }
 
-.recent-reviews {
+.recent-reviews,
+.reviews-container {
     .review {
         display: flex;
         align-items: flex-start;
@@ -409,9 +410,10 @@ section.settings {
     }
 }
 
-// USER FILM PAGE
+// FIXES THE NAVBAR FOR THE PROFILE SUBPAGES
 
-.user-films {
+.user-films,
+.user-reviews {
     padding-top: 10em;
     .wrap-user-nav {
         display: flex;
@@ -456,6 +458,8 @@ section.settings {
     }
 }
 
+// *********** POSTERS ON THE USER FILMS PAGE
+
 .posters-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
@@ -484,4 +488,22 @@ section.settings {
     display: inline-block;
     width: 20px;
     height: 20px;
+}
+
+// *********** REVIEWS ON THE USER REVIEWS PAGE
+
+.user-reviews .date {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    i {
+        margin: 0;
+        margin-right: 5px;
+        height: 15px;
+        background-position: left;
+    }
+}
+
+.reviews-container {
+    width: 70%;
 }

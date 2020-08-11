@@ -1,15 +1,11 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../app/store';
-import Navigation from '../Navigation';
 import { getProfilePage } from '../../../features/user/userSlice';
 import { useLocation, Link } from 'react-router-dom';
-import ProfilePicture from '../../_helpers/ProfilePicture';
 import Poster from '../../Home/Poster';
-
-interface LocationState {
-    userID: string;
-}
+import { LocationState } from '../ProfilePage';
+import NavWithUsername from './NavWithUsername';
 
 const UserFilms = () => {
     const { state } = useLocation<LocationState>();
@@ -21,13 +17,7 @@ const UserFilms = () => {
     if (user) {
         return (
             <section className="user-films">
-                <div className="wrap-user-nav">
-                    <div>
-                        <ProfilePicture user={user} />
-                        <span>{user.username}</span>
-                    </div>
-                    <Navigation />
-                </div>
+                <NavWithUsername user={user} />
                 <div className="posters-container">
                     {user.watched_movies.map((movie) => (
                         <Link
