@@ -14,6 +14,7 @@ import Notification from './components/Home/Notification';
 import ReviewPage from './components/ReviewPage/ReviewPage';
 import ProfilePage from './components/ProfilePage/ProfilePage';
 import SettingsPage from './components/SettingsPage/SettingsPage';
+import UserFilms from './components/ProfilePage/Film/UserFilms';
 
 function App() {
     const dispatch = useDispatch();
@@ -53,6 +54,9 @@ function App() {
                     </Route>
                     <Route path="/:username" exact>
                         <ProfilePage />
+                    </Route>
+                    <Route path="/:username/films" exact>
+                        <UserFilms />
                     </Route>
                 </Switch>
             </Router>

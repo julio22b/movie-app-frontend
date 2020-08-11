@@ -8,6 +8,7 @@ const baseUrl = 'http://localhost:3001/api/users';
 
 async function logIn(user: userLogInInput) {
     const response = await axios.post(`${baseUrl}/log-in`, user);
+    console.log(response);
     localStorage.setItem('filmlyCurrentUser', JSON.stringify(response.data));
     return response.data;
 }

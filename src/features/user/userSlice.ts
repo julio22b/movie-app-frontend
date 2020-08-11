@@ -22,6 +22,11 @@ interface initialState {
             favorites: [favorite, favorite, favorite, favorite];
         };
     };
+    user_for_profile_page: {
+        loading: boolean;
+        error: boolean;
+        user: User | null;
+    };
 }
 
 const initialState: initialState = {
@@ -38,6 +43,11 @@ const initialState: initialState = {
             open: false,
             favorites: [null, null, null, null],
         },
+    },
+    user_for_profile_page: {
+        loading: false,
+        error: false,
+        user: null,
     },
 };
 
@@ -115,6 +125,18 @@ const userSlice = createSlice({
         ) => {
             state.form_status.favorites_form.favorites = payload;
         },
+        getUserForProfile: (state) => {
+            state.user_for_profile_page.loading = true;
+        },
+        getUserForProfileSuccess: (state, { payload }: PayloadAction<User>) => {
+            state.user_for_profile_page.user = payload;
+            state.user_for_profile_page.loading = false;
+            state.user_for_profile_page.error = false;
+        },
+        getUserForProfileFailure: (state) => {
+            state.user_for_profile_page.loading = false;
+            state.user_for_profile_page.error = true;
+        },
     },
 });
 
@@ -137,6 +159,9 @@ export const {
     addFavorite,
     removeFavorite,
     setFavorites,
+    getUserForProfile,
+    getUserForProfileFailure,
+    getUserForProfileSuccess,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {
@@ -150,6 +175,16 @@ export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) =>
         dispatch(changeSignInFormStatus(false));
     } catch {
         dispatch(logInFailure());
+    }
+};
+
+export const getProfilePage = (userID: string): AppThunk => async (dispatch) => {
+    dispatch(getUserForProfile());
+    try {
+        const user = await userService.getUserInfo(userID);
+        dispatch(getUserForProfileSuccess(user));
+    } catch {
+        dispatch(getUserForProfileFailure());
     }
 };
 

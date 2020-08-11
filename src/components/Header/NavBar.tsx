@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { userLogIn, logOut, changeSignInFormStatus } from '../../features/user/userSlice';
+import { logOut, changeSignInFormStatus } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
 import userService from '../../services/userService';

@@ -8,12 +8,13 @@ import Favorites from './Favorites';
 import Bio from './Bio';
 import WatchlistPeek from './WatchlistPeek';
 import RecentReviews from './RecentReviews';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import RecentLists from './RecentLists';
 import SettingsBtn from './SettingsBtn';
 import FollowBtn from './FollowBtn';
 import Navigation from './Navigation';
+import { getProfilePage } from '../../features/user/userSlice';
 
 interface LocationState {
     userID: string;
@@ -21,16 +22,12 @@ interface LocationState {
 
 const ProfilePage = () => {
     const { state } = useLocation<LocationState>();
-    const [user, setUser] = useState<User | null>(null);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-
+    const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
+    const dispatch = useDispatch();
     useEffect(() => {
-        const getUserInfo = async () => {
-            const data = await userService.getUserInfo(state.userID);
-            setUser(data);
-        };
-        if (!user) getUserInfo();
-    });
+        dispatch(getProfilePage(state.userID));
+    }, [dispatch, state.userID]);
     if (user) {
         return (
             <section className="profile-page">
@@ -42,7 +39,7 @@ const ProfilePage = () => {
                     </h2>
                     <Stats user={user} />
                 </div>
-                <Navigation user={user} />
+                <Navigation />
                 <div className="container">
                     <div className="left-col">
                         <Favorites favorites={user.favorites} user={user} />

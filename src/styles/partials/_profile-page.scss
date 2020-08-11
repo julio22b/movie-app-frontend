@@ -33,7 +33,6 @@
     .stats {
         margin-left: auto;
         opacity: 0.8;
-        color: white;
         li {
             display: flex;
             flex-direction: column;
@@ -42,6 +41,7 @@
             padding: 0 0.5em;
             font-size: 1.6rem;
             span {
+                color: #99aabb;
                 font-size: 0.8rem;
                 opacity: 0.6;
             }
@@ -143,6 +143,7 @@
             .content {
                 margin: 2em 0;
                 opacity: 0.8;
+                color: #97abbe;
             }
             div:last-child {
                 font-size: 0.8rem;
@@ -170,6 +171,16 @@ section.settings {
         .profile-form {
             margin-right: 4em;
             width: 40%;
+            label:first-of-type {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-end;
+                span {
+                    color: #99aabb;
+                    font-size: 0.8rem;
+                    opacity: 0.8;
+                }
+            }
             label {
                 display: inline-block;
                 width: 100%;

@@ -42,7 +42,9 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
     return (
         <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
             <SearchFavorite index={index} />
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">
+                Username <span>(also changes your log in username)</span>
+            </label>
             <input
                 type="text"
                 name="username"

@@ -16,7 +16,7 @@ const Favorites: React.FC<{ favorites: [favorite, favorite, favorite, favorite];
         <article className="favorite-films">
             <h4 className="h4-subtitle">FAVORITE FILMS</h4>
             {favorites.length > 0 &&
-                favorites.map((f) =>
+                favorites.map((f, index) =>
                     f ? (
                         <Link
                             to={`/film/${f.title.toLocaleLowerCase().replace(/ /g, '-')}`}
@@ -25,7 +25,7 @@ const Favorites: React.FC<{ favorites: [favorite, favorite, favorite, favorite];
                             <Poster url={f.poster} title={f.title} tmdb={false} />
                         </Link>
                     ) : (
-                        <div className="placeholder"></div>
+                        <div className="placeholder" key={index}></div>
                     ),
                 )}
             {favorites.every((f) => f === null) && (

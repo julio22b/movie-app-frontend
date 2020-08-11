@@ -517,6 +517,11 @@ i[data-rating='0.5'] {
   border: none;
 }
 
+.review-page > div .sign-in-btn {
+  min-width: 100%;
+  margin-top: 5em;
+}
+
 .review-page .sign-in-btn button {
   margin: 0;
 }
@@ -692,7 +697,6 @@ i[data-rating='0.5'] {
 .profile-page .stats {
   margin-left: auto;
   opacity: 0.8;
-  color: white;
 }
 
 .profile-page .stats li {
@@ -712,6 +716,7 @@ i[data-rating='0.5'] {
 }
 
 .profile-page .stats li span {
+  color: #99aabb;
   font-size: 0.8rem;
   opacity: 0.6;
 }
@@ -848,6 +853,7 @@ i[data-rating='0.5'] {
 .recent-reviews .review div .content {
   margin: 2em 0;
   opacity: 0.8;
+  color: #97abbe;
 }
 
 .recent-reviews .review div div:last-child {
@@ -880,6 +886,24 @@ section.settings .container {
 section.settings .container .profile-form {
   margin-right: 4em;
   width: 40%;
+}
+
+section.settings .container .profile-form label:first-of-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+}
+
+section.settings .container .profile-form label:first-of-type span {
+  color: #99aabb;
+  font-size: 0.8rem;
+  opacity: 0.8;
 }
 
 section.settings .container .profile-form label {
