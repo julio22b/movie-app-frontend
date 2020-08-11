@@ -12,7 +12,7 @@ const ReviewBody: React.FC<{ review: Review; stars: boolean }> = ({ review, star
                 {stars && <i className="stars" data-rating={`${review.rating}`}></i>} Watched{' '}
                 {moment(review.created_at).format('MMM DD[,] YYYY')}
             </p>
-            <p className="content">{review.content}</p>
+            <p className="content" dangerouslySetInnerHTML={{ __html: review.content }}></p>
             <div>{review.likes === 1 ? '1 like' : `${review.likes} likes`}</div>
         </div>
     );

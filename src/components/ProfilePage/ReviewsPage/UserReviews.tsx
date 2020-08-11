@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import NavWithUsername from '../Film/NavWithUsername';
-import RecentReview from '../RecentReview';
 import ReviewBody from '../ReviewBody';
 import Poster from '../../Home/Poster';
 

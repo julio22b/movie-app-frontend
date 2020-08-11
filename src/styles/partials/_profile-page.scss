@@ -413,8 +413,11 @@ section.settings {
 // FIXES THE NAVBAR FOR THE PROFILE SUBPAGES
 
 .user-films,
-.user-reviews {
+.user-reviews,
+.user-watchlist {
     padding-top: 10em;
+    width: 80%;
+    margin: 0 auto;
     .wrap-user-nav {
         display: flex;
         align-items: center;
@@ -462,7 +465,7 @@ section.settings {
 
 .posters-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(80px, 100px));
+    grid-template-columns: repeat(auto-fit, 70px);
     gap: 20px;
     a {
         text-decoration: none;
@@ -506,4 +509,55 @@ section.settings {
 
 .reviews-container {
     width: 70%;
+}
+
+.user-watchlist {
+    h4 {
+        color: #99aabb;
+        font-weight: normal;
+    }
+}
+
+.watchlist-posters-container {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    margin-top: 2em;
+    gap: 20px;
+    & > div {
+        position: relative;
+        &:hover span {
+            opacity: 1;
+        }
+    }
+    img {
+        max-width: 100%;
+        border-radius: 3px;
+        border: 1px solid #99aabb4b;
+        cursor: pointer;
+    }
+    span {
+        position: absolute;
+        display: inline-block;
+        width: max-content;
+        border-radius: 3px;
+        top: -5px;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        background-color: $gray-border;
+        font-size: 0.7rem;
+        padding: 0.2em 0.4em;
+        color: #c6cdd4;
+        transition: opacity 250ms ease;
+        opacity: 0;
+        &:after {
+            content: '';
+            width: 10px;
+            height: 10px;
+            background-color: $gray-border;
+            position: absolute;
+            bottom: -5px;
+            left: 50%;
+            transform: translateX(-50%) rotate(230deg);
+        }
+    }
 }
