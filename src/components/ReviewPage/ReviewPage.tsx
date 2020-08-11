@@ -80,7 +80,10 @@ const ReviewPage = () => {
                         <p className="date-watched">
                             Watched {moment(review.created_at).format('MMM DD[,] YYYY')}
                         </p>
-                        <p className="content">{review.content}</p>
+                        <p
+                            className="content"
+                            dangerouslySetInnerHTML={{ __html: review.content }}
+                        ></p>
                         {loggedUser && (
                             <LikeReviewBtn
                                 likeReview={likeReview}

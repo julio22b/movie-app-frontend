@@ -3,6 +3,7 @@ import { MovieInstance, User } from '../../features/types';
 import VoidMsg from './VoidMsg';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
+import PosterStack from './PosterStack';
 
 const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
     watchlist,
@@ -22,7 +23,9 @@ const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
                     text={'films in their watchlist'}
                 />
             )}
-            <div>LITTLE 6 POSTERS HERE</div>
+            {watchlist.length && (
+                <PosterStack user={user} list={watchlist} profile_section={'watchlist'} />
+            )}
         </div>
     );
 };
