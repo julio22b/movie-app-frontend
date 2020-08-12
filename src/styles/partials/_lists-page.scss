@@ -1,0 +1,112 @@
+.input-styling {
+    background-color: #2c3440;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.151);
+    border-radius: 3px;
+    width: 100%;
+    resize: none;
+    margin-bottom: 2em;
+    padding: 0.5em;
+    color: #99aabb;
+    &:focus {
+        background-color: white;
+        color: $bg-black;
+    }
+}
+
+.user-lists {
+    .container {
+        display: flex;
+        .left-col {
+            flex: 1;
+        }
+        & > button {
+            background-color: $gray-border;
+            border: none;
+            border-radius: 3px;
+            padding: 0 4em;
+            margin-left: 30px;
+            a {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.new-list-page {
+    padding-top: 10em;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.new-list-form {
+    h4 {
+        font-size: 1.6rem;
+        padding: 0.2em 0;
+        font-weight: normal;
+        color: #aabbcc;
+        margin-bottom: 1em;
+    }
+    & > div:not(.actions-container) {
+        display: flex;
+        flex-direction: column;
+        label {
+            margin-bottom: 10px;
+        }
+        input,
+        textarea {
+            @extend .input-styling;
+        }
+    }
+}
+
+.actions-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    .add-film,
+    .cancel-save {
+        display: flex;
+        align-items: center;
+    }
+    .add-film {
+        width: 49.5%;
+        max-width: 600px;
+        min-width: 350px;
+        .green-btn {
+            margin: 0;
+            font-size: 0.8rem;
+            width: min-content;
+            margin-right: 10px;
+        }
+        input {
+            @extend .input-styling;
+            margin: 0;
+            flex: 1;
+        }
+    }
+    .cancel-save {
+        min-width: 350px;
+        max-width: 600px;
+        width: 49.5%;
+        display: flex;
+        justify-content: flex-end;
+        button {
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        .green-btn {
+            margin: 0 0 0 10px;
+        }
+        .cancel {
+            border: none;
+            border-top: 1px solid #99aabb83;
+            background-color: $gray-border;
+            border-radius: 3px;
+            padding: 0.3em 0.7em;
+            &:hover {
+                background-color: $gray;
+            }
+        }
+    }
+}

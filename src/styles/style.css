@@ -1220,7 +1220,8 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films,
 .user-reviews,
-.user-watchlist {
+.user-watchlist,
+.user-lists {
   padding-top: 10em;
   width: 80%;
   margin: 0 auto;
@@ -1228,7 +1229,8 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films .wrap-user-nav,
 .user-reviews .wrap-user-nav,
-.user-watchlist .wrap-user-nav {
+.user-watchlist .wrap-user-nav,
+.user-lists .wrap-user-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1245,7 +1247,8 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films .wrap-user-nav > div,
 .user-reviews .wrap-user-nav > div,
-.user-watchlist .wrap-user-nav > div {
+.user-watchlist .wrap-user-nav > div,
+.user-lists .wrap-user-nav > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1258,14 +1261,16 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films .wrap-user-nav > div img,
 .user-reviews .wrap-user-nav > div img,
-.user-watchlist .wrap-user-nav > div img {
+.user-watchlist .wrap-user-nav > div img,
+.user-lists .wrap-user-nav > div img {
   width: 30px;
   height: 30px;
 }
 
 .user-films .wrap-user-nav > div a,
 .user-reviews .wrap-user-nav > div a,
-.user-watchlist .wrap-user-nav > div a {
+.user-watchlist .wrap-user-nav > div a,
+.user-lists .wrap-user-nav > div a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1276,7 +1281,8 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films .wrap-user-nav > div span,
 .user-reviews .wrap-user-nav > div span,
-.user-watchlist .wrap-user-nav > div span {
+.user-watchlist .wrap-user-nav > div span,
+.user-lists .wrap-user-nav > div span {
   font-weight: bold;
   font-size: 1.1rem;
   margin-left: 20px;
@@ -1284,20 +1290,23 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films .wrap-user-nav .profile-nav,
 .user-reviews .wrap-user-nav .profile-nav,
-.user-watchlist .wrap-user-nav .profile-nav {
+.user-watchlist .wrap-user-nav .profile-nav,
+.user-lists .wrap-user-nav .profile-nav {
   margin: 1px 0;
   border: none;
 }
 
 .user-films .wrap-user-nav .profile-nav:hover,
 .user-reviews .wrap-user-nav .profile-nav:hover,
-.user-watchlist .wrap-user-nav .profile-nav:hover {
+.user-watchlist .wrap-user-nav .profile-nav:hover,
+.user-lists .wrap-user-nav .profile-nav:hover {
   background-color: #303c48;
 }
 
 .user-films .wrap-user-nav .profile-nav a,
 .user-reviews .wrap-user-nav .profile-nav a,
-.user-watchlist .wrap-user-nav .profile-nav a {
+.user-watchlist .wrap-user-nav .profile-nav a,
+.user-lists .wrap-user-nav .profile-nav a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1308,7 +1317,8 @@ section.settings .container .profile-form textarea:focus {
 
 .user-films .wrap-user-nav .profile-nav .active:hover,
 .user-reviews .wrap-user-nav .profile-nav .active:hover,
-.user-watchlist .wrap-user-nav .profile-nav .active:hover {
+.user-watchlist .wrap-user-nav .profile-nav .active:hover,
+.user-lists .wrap-user-nav .profile-nav .active:hover {
   background-color: #667788;
 }
 
@@ -1476,6 +1486,155 @@ section.settings .container .profile-form textarea:focus {
 
 .wrapper-4 {
   z-index: calc(1 - 4);
+}
+
+.input-styling, .new-list-form > div:not(.actions-container) input,
+.new-list-form > div:not(.actions-container) textarea, .actions-container .add-film input {
+  background-color: #2c3440;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.151);
+  border-radius: 3px;
+  width: 100%;
+  resize: none;
+  margin-bottom: 2em;
+  padding: 0.5em;
+  color: #99aabb;
+}
+
+.input-styling:focus, .new-list-form > div:not(.actions-container) input:focus,
+.new-list-form > div:not(.actions-container) textarea:focus, .actions-container .add-film input:focus {
+  background-color: white;
+  color: #14181c;
+}
+
+.user-lists .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.user-lists .container .left-col {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.user-lists .container > button {
+  background-color: #445566;
+  border: none;
+  border-radius: 3px;
+  padding: 0 4em;
+  margin-left: 30px;
+}
+
+.user-lists .container > button a {
+  text-decoration: none;
+}
+
+.new-list-page {
+  padding-top: 10em;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.new-list-form h4 {
+  font-size: 1.6rem;
+  padding: 0.2em 0;
+  font-weight: normal;
+  color: #aabbcc;
+  margin-bottom: 1em;
+}
+
+.new-list-form > div:not(.actions-container) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.new-list-form > div:not(.actions-container) label {
+  margin-bottom: 10px;
+}
+
+.actions-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.actions-container .add-film,
+.actions-container .cancel-save {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.actions-container .add-film {
+  width: 49.5%;
+  max-width: 600px;
+  min-width: 350px;
+}
+
+.actions-container .add-film .green-btn, .actions-container .add-film .sign-in-form button:last-of-type, .sign-in-form .actions-container .add-film button:last-of-type, .actions-container .add-film .add-new-review article form button, .add-new-review article form .actions-container .add-film button {
+  margin: 0;
+  font-size: 0.8rem;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+  margin-right: 10px;
+}
+
+.actions-container .add-film input {
+  margin: 0;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.actions-container .cancel-save {
+  min-width: 350px;
+  max-width: 600px;
+  width: 49.5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+
+.actions-container .cancel-save button {
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.actions-container .cancel-save .green-btn, .actions-container .cancel-save .sign-in-form button:last-of-type, .sign-in-form .actions-container .cancel-save button:last-of-type, .actions-container .cancel-save .add-new-review article form button, .add-new-review article form .actions-container .cancel-save button {
+  margin: 0 0 0 10px;
+}
+
+.actions-container .cancel-save .cancel {
+  border: none;
+  border-top: 1px solid #99aabb83;
+  background-color: #445566;
+  border-radius: 3px;
+  padding: 0.3em 0.7em;
+}
+
+.actions-container .cancel-save .cancel:hover {
+  background-color: #717f8e;
 }
 
 header {
