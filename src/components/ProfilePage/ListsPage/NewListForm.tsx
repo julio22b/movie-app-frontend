@@ -1,6 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { MovieInstance } from '../../../features/types';
+import { useDispatch } from 'react-redux';
+import movieService from '../../../services/movieService';
+import { addMovieForNewList } from '../../../features/user/userSlice';
 
 const NewListForm = () => {
+    const [query, setQuery] = useState<string>('');
+    const [omdbMovie, setOmdbMovie] = useState<MovieInstance | null>(null);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const pickMovie = async () => {
+            const movie = await movieService.useOMDB(query);
+            if (movie) setOmdbMovie(movie);
+        };
+        if (query.length > 2) {
+            pickMovie();
+        }
+    }, [query]);
+
+    const handleClick = async () => {
+        const movieSavedOnDB = await movieService.getMovieInstance(omdbMovie as MovieInstance);
+        dispatch(addMovieForNewList(movieSavedOnDB));
+        setQuery('');
+        setOmdbMovie(null);
+    };
+
     return (
         <form className="new-list-form">
             <h4 className="h4-subtitle">New List</h4>
@@ -17,7 +42,19 @@ const NewListForm = () => {
                     <button className="green-btn" type="button">
                         ADD A FILM
                     </button>
-                    <input type="text" placeholder="Enter name of film..."/>
+                    <div className="selection">
+                        <input
+                            type="text"
+                            placeholder="Enter name of film..."
+                            onChange={(e) => setQuery(e.target.value)}
+                            value={query}
+                        />
+                        {omdbMovie && (
+                            <p onClick={handleClick}>
+                                {omdbMovie?.title} {omdbMovie?.year}
+                            </p>
+                        )}
+                    </div>
                 </div>
                 <div className="cancel-save">
                     <button className="cancel" type="button">

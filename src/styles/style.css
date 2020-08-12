@@ -555,6 +555,7 @@ i[data-rating='0.5'] {
 .comment-form textarea:focus {
   background-color: white;
   color: #14181c;
+  outline: none;
 }
 
 .comments {
@@ -948,6 +949,7 @@ section.settings .container .profile-form input:focus,
 section.settings .container .profile-form textarea:focus {
   background-color: white;
   color: #14181c;
+  outline: none;
 }
 
 .edit-favorites {
@@ -1078,6 +1080,7 @@ section.settings .container .profile-form textarea:focus {
 .search-favorite input:focus {
   background-color: white;
   color: #14181c;
+  outline: none;
 }
 
 .search-favorite p:last-of-type {
@@ -1505,6 +1508,7 @@ section.settings .container .profile-form textarea:focus {
 .new-list-form > div:not(.actions-container) textarea:focus, .actions-container .add-film input:focus {
   background-color: white;
   color: #14181c;
+  outline: none;
 }
 
 .user-lists .container {
@@ -1591,10 +1595,32 @@ section.settings .container .profile-form textarea:focus {
 .actions-container .add-film .green-btn, .actions-container .add-film .sign-in-form button:last-of-type, .sign-in-form .actions-container .add-film button:last-of-type, .actions-container .add-film .add-new-review article form button, .add-new-review article form .actions-container .add-film button {
   margin: 0;
   font-size: 0.8rem;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
   margin-right: 10px;
+}
+
+.actions-container .add-film .selection {
+  position: relative;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.actions-container .add-film .selection > p {
+  position: absolute;
+  background-color: #445566;
+  width: 100%;
+  border-radius: 3px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  padding: 0.3em 0.7em;
+  cursor: pointer;
+}
+
+.actions-container .add-film .selection > p:hover {
+  background-color: #00c030;
 }
 
 .actions-container .add-film input {
@@ -1635,6 +1661,122 @@ section.settings .container .profile-form textarea:focus {
 
 .actions-container .cancel-save .cancel:hover {
   background-color: #717f8e;
+}
+
+.new-list-page .movies-container {
+  border: 1px solid #99aabb3d;
+  border-radius: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-top: 3em;
+}
+
+.new-list-page .movies-container.empty {
+  padding: 4em;
+}
+
+.new-list-page .movies-container p {
+  color: #717f8e;
+  font-weight: 0.9rem;
+  margin-top: 2em;
+}
+
+.new-list-page .movies-container .film {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  cursor: move;
+  padding: 0.8em;
+  border-bottom: 1px solid #99aabb3d;
+}
+
+.new-list-page .movies-container .film:last-of-type {
+  border-bottom: none;
+}
+
+.new-list-page .movies-container .film:hover {
+  background-color: #99aabb17;
+}
+
+.new-list-page .movies-container .film > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.new-list-page .movies-container .film img {
+  max-width: 40px;
+  border-radius: 3px;
+  border: 1px solid #99aabb3d;
+  margin-right: 10px;
+}
+
+.new-list-page .movies-container .film figcaption {
+  font-weight: bold;
+  font-size: 1.3rem;
+}
+
+.new-list-page .movies-container .film figcaption p {
+  color: white;
+  margin: 0;
+}
+
+.new-list-page .movies-container .film figcaption span,
+.new-list-page .movies-container .film figcaption p:last-of-type {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: #aabbcc7a;
+}
+
+.new-list-page .movies-container .remove {
+  border: none;
+  background-color: transparent;
+  position: relative;
+  color: transparent;
+  outline: none;
+}
+
+.new-list-page .movies-container .remove:after, .new-list-page .movies-container .remove:before {
+  content: '';
+  width: 2px;
+  background-color: #717f8e;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.new-list-page .movies-container .remove:hover::after, .new-list-page .movies-container .remove:hover::before {
+  background-color: #ff9010;
+}
+
+.new-list-page .movies-container .remove:after {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+  left: 0;
+}
+
+.new-list-page .movies-container .remove:before {
+  -webkit-transform: rotate(-135deg);
+          transform: rotate(-135deg);
+  left: 0;
 }
 
 header {

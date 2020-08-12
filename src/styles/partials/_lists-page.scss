@@ -11,6 +11,7 @@
     &:focus {
         background-color: white;
         color: $bg-black;
+        outline: none;
     }
 }
 
@@ -76,8 +77,25 @@
         .green-btn {
             margin: 0;
             font-size: 0.8rem;
-            width: min-content;
+            width: max-content;
             margin-right: 10px;
+        }
+        .selection {
+            position: relative;
+            flex: 1;
+            & > p {
+                position: absolute;
+                background-color: $gray-border;
+                width: 100%;
+                border-radius: 3px;
+                border-top-left-radius: 0;
+                border-top-right-radius: 0;
+                padding: 0.3em 0.7em;
+                cursor: pointer;
+                &:hover {
+                    background-color: $green;
+                }
+            }
         }
         input {
             @extend .input-styling;
@@ -107,6 +125,90 @@
             &:hover {
                 background-color: $gray;
             }
+        }
+    }
+}
+
+.new-list-page .movies-container {
+    border: 1px solid #99aabb3d;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3em;
+    &.empty {
+        padding: 4em;
+    }
+    p {
+        color: $gray;
+        font-weight: 0.9rem;
+        margin-top: 2em;
+    }
+    .film {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: move;
+        padding: 0.8em;
+        border-bottom: 1px solid #99aabb3d;
+        &:last-of-type {
+            border-bottom: none;
+        }
+        &:hover {
+            background-color: #99aabb17;
+        }
+        & > div {
+            display: flex;
+        }
+        img {
+            max-width: 40px;
+            border-radius: 3px;
+            border: 1px solid #99aabb3d;
+            margin-right: 10px;
+        }
+        figcaption {
+            font-weight: bold;
+            font-size: 1.3rem;
+            p {
+                color: white;
+                margin: 0;
+            }
+            span,
+            p:last-of-type {
+                font-size: 0.8rem;
+                font-weight: normal;
+                color: #aabbcc7a;
+            }
+        }
+    }
+    .remove {
+        border: none;
+        background-color: transparent;
+        position: relative;
+        color: transparent;
+        outline: none;
+        &:after,
+        &:before {
+            content: '';
+            width: 2px;
+            background-color: $gray;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+        }
+        &:hover::after,
+        &:hover::before {
+            background-color: $orange;
+        }
+        &:after {
+            transform: rotate(135deg);
+            left: 0;
+        }
+        &:before {
+            transform: rotate(-135deg);
+            left: 0;
         }
     }
 }

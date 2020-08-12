@@ -203,6 +203,7 @@ section.settings {
                 &:focus {
                     background-color: white;
                     color: $bg-black;
+                    outline: none;
                 }
             }
         }
@@ -296,6 +297,7 @@ section.settings {
         &:focus {
             background-color: white;
             color: $bg-black;
+            outline: none;
         }
     }
     p:last-of-type {

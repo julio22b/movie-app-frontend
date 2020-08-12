@@ -21,6 +21,10 @@ interface initialState {
             open: boolean;
             favorites: [favorite, favorite, favorite, favorite];
         };
+        new_list_form: {
+            open: boolean;
+            movies: MovieInstance[];
+        };
     };
     user_for_profile_page: {
         loading: boolean;
@@ -42,6 +46,10 @@ const initialState: initialState = {
         favorites_form: {
             open: false,
             favorites: [null, null, null, null],
+        },
+        new_list_form: {
+            open: false,
+            movies: [],
         },
     },
     user_for_profile_page: {
@@ -137,6 +145,14 @@ const userSlice = createSlice({
             state.user_for_profile_page.loading = false;
             state.user_for_profile_page.error = true;
         },
+        addMovieForNewList: (state, { payload }: PayloadAction<MovieInstance>) => {
+            state.form_status.new_list_form.movies.push(payload);
+        },
+        removeMovieFromNewList: (state, { payload }: PayloadAction<MovieInstance>) => {
+            state.form_status.new_list_form.movies = state.form_status.new_list_form.movies.filter(
+                (m) => m._id !== payload._id,
+            );
+        },
     },
 });
 
@@ -162,14 +178,13 @@ export const {
     getUserForProfile,
     getUserForProfileFailure,
     getUserForProfileSuccess,
+    addMovieForNewList,
+    removeMovieFromNewList,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {
     try {
-        const response = await userService.logIn({
-            username: user.username,
-            password: user.password,
-        });
+        const response = await userService.logIn(user);
         const userData = await userService.getUserInfo(response.id);
         dispatch(logInSuccess(userData));
         dispatch(changeSignInFormStatus(false));
