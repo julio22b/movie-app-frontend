@@ -1390,6 +1390,36 @@ section.settings .container .profile-form textarea:focus {
   font-weight: normal;
 }
 
+.recent-lists a {
+  text-decoration: none;
+}
+
+.recent-lists a:hover h2 {
+  color: #40bcf4;
+}
+
+.recent-lists h2 {
+  font-size: 1.2rem;
+}
+
+.recent-lists h2 span {
+  font-size: 0.75rem;
+  font-weight: normal;
+  opacity: 0.6;
+  color: #99aabb;
+}
+
+.recent-lists .poster-stack .wrapper,
+.recent-lists .poster-stack .placeholder {
+  height: 120px;
+}
+
+.recent-lists .poster-stack img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 120px;
+}
+
 .watchlist-posters-container {
   display: -ms-grid;
   display: grid;
@@ -1812,6 +1842,7 @@ section.settings .container .profile-form textarea:focus {
   display: -ms-flexbox;
   display: flex;
   border-bottom: 1px solid #99aabb3d;
+  padding-bottom: 1em;
 }
 
 .list a {

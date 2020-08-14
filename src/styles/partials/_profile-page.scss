@@ -521,6 +521,34 @@ section.settings {
     }
 }
 
+.recent-lists {
+    a {
+        text-decoration: none;
+        &:hover h2 {
+            color: $blue;
+        }
+    }
+    h2 {
+        font-size: 1.2rem;
+        span {
+            font-size: 0.75rem;
+            font-weight: normal;
+            opacity: 0.6;
+            color: #99aabb;
+        }
+    }
+    .poster-stack {
+        .wrapper,
+        .placeholder {
+            height: 120px;
+        }
+        img {
+            object-fit: cover;
+            height: 120px;
+        }
+    }
+}
+
 .watchlist-posters-container {
     display: grid;
     grid-template-columns: repeat(7, 1fr);

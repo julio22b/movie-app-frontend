@@ -13,7 +13,7 @@ const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
     return (
         <div className="watchlist-peek">
             <h4 className="h4-subtitle">
-                Watchlist <span>{watchlist.length}</span>
+                WATCHLIST <span>{watchlist.length}</span>
             </h4>
             {!watchlist.length && (
                 <VoidMsg
