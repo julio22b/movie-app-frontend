@@ -35,7 +35,10 @@ const SearchFavorite: React.FC<props> = ({ index }) => {
 
     return ReactDOM.createPortal(
         <>
-            <div className={open ? 'blanket open' : 'blanket'}></div>
+            <div
+                className={open ? 'blanket open' : 'blanket'}
+                onClick={() => changePickFavoriteFormStatus(false)}
+            ></div>
             <div className={open ? 'search-favorite open' : 'search-favorite'}>
                 <h4>
                     PICK A FAVORITE FILM{' '}

@@ -1,16 +1,19 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeSignInFormStatus } from '../../features/user/userSlice';
+import { changeSignInFormStatus, changeSignUpFormStatus } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
 import SignInForm from './SignInForm';
 import { Link } from 'react-router-dom';
 import UserDropDown from './UserDropDown';
 import ProfilePicture from '../_helpers/ProfilePicture';
+import CreateAccForm from './CreateAccForm';
 
 export const NavBar = () => {
     const { user } = useSelector((state: RootState) => state.userAuth);
-    const { sign_in_form } = useSelector((state: RootState) => state.userAuth.form_status);
+    const { sign_in_form, sign_up_form } = useSelector(
+        (state: RootState) => state.userAuth.form_status,
+    );
     const dispatch = useDispatch();
 
     return (
@@ -18,17 +21,26 @@ export const NavBar = () => {
             <p className="app-name">
                 <Link to={'/'}>Filmly</Link>
             </p>
+            <CreateAccForm />
             {sign_in_form && <SignInForm />}
             <ul>
                 {!user && (
                     <>
                         <li>
-                            <button onClick={() => dispatch(changeSignInFormStatus(!sign_in_form))}>
+                            <button
+                                onClick={() => dispatch(changeSignInFormStatus(!sign_in_form))}
+                                type="button"
+                            >
                                 SIGN IN
                             </button>
                         </li>
                         <li>
-                            <button>CREATE ACCOUNT</button>
+                            <button
+                                type="button"
+                                onClick={() => dispatch(changeSignUpFormStatus(!sign_up_form))}
+                            >
+                                CREATE ACCOUNT
+                            </button>
                         </li>
                     </>
                 )}

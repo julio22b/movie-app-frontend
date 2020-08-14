@@ -1,9 +1,12 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import Poster from './Poster';
+import { changeSignUpFormStatus } from '../../features/user/userSlice';
 
 const MostPopular = () => {
+    const { sign_up_form } = useSelector((state: RootState) => state.userAuth.form_status);
+    const dispatch = useDispatch();
     const [mostPopular] = useSelector((state: RootState) => state.popularMovies.topSix);
     if (!mostPopular) {
         return null;
@@ -14,7 +17,13 @@ const MostPopular = () => {
                 <p>Track films you've watched</p>
                 <p>Save those you want to see</p>
                 <p>Tell your friends what's good</p>
-                <button className="green-btn">CREATE AN ACCOUNT</button>
+                <button
+                    className="green-btn"
+                    type="button"
+                    onClick={() => dispatch(changeSignUpFormStatus(!sign_up_form))}
+                >
+                    CREATE AN ACCOUNT
+                </button>
             </div>
             <figure className="backdrop">
                 <Poster title={mostPopular.title} url={mostPopular.backdrop_path} tmdb={true} />
