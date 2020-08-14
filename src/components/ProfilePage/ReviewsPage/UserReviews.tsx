@@ -36,7 +36,17 @@ const UserReviews = () => {
                             >
                                 <Poster url={r.movie.poster} title={r.movie.title} tmdb={false} />
                             </Link>
-                            <ReviewBody review={r} stars={true} />
+                            <ReviewBody
+                                review={r}
+                                link={{
+                                    pathname: `/${
+                                        user.username
+                                    }/film/${r.movie.title.toLocaleLowerCase().replace(/ /g, '-')}`,
+                                    state: {
+                                        reviewID: r._id as string,
+                                    },
+                                }}
+                            />
                         </article>
                     ))}
                 </div>

@@ -10,6 +10,7 @@ import PosterStack from '../PosterStack';
 const UserLists = () => {
     const { state } = useLocation<LocationState>();
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
+    const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const dispatch = useDispatch();
     useEffect(() => {
         if (!user) dispatch(getProfilePage(state.userID));
@@ -23,7 +24,7 @@ const UserLists = () => {
                         <h4 className="h4-subtitle">ALL LISTS</h4>
 
                         {user.lists.map((list) => (
-                            <div className="list">
+                            <div className="list" key={list._id}>
                                 <PosterStack user={user} custom_list={list} watchlist={null} />
                                 <div>
                                     <h2>
@@ -39,9 +40,11 @@ const UserLists = () => {
                             </div>
                         ))}
                     </div>
-                    <button>
-                        <Link to={'/list/new'}>Start a new list...</Link>{' '}
-                    </button>
+                    {loggedUser?._id === user._id && (
+                        <button>
+                            <Link to={'/list/new'}>Start a new list...</Link>{' '}
+                        </button>
+                    )}
                 </div>
             </section>
         );

@@ -1,23 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut, changeSignInFormStatus } from '../../features/user/userSlice';
+import { changeSignInFormStatus } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
-import userService from '../../services/userService';
 import SignInForm from './SignInForm';
+import { Link } from 'react-router-dom';
+import UserDropDown from './UserDropDown';
+import ProfilePicture from '../_helpers/ProfilePicture';
 
 export const NavBar = () => {
     const { user } = useSelector((state: RootState) => state.userAuth);
     const { sign_in_form } = useSelector((state: RootState) => state.userAuth.form_status);
     const dispatch = useDispatch();
 
-    const signOut = () => {
-        userService.removeCurrentUser();
-        dispatch(logOut());
-    };
     return (
         <header>
-            <p>Filmly</p>
+            <p className="app-name">
+                <Link to={'/'}>Filmly</Link>
+            </p>
             {sign_in_form && <SignInForm />}
             <ul>
                 {!user && (
@@ -33,14 +33,25 @@ export const NavBar = () => {
                     </>
                 )}
                 {user && (
-                    <>
-                        <li>
-                            <button onClick={signOut}>Sign out</button>
-                        </li>
-                        <li className="log">
-                            <button onClick={() => dispatch(changeModalState())}>+ LOG</button>
-                        </li>
-                    </>
+                    <li className="has-dropdown">
+                        <ProfilePicture user={user} />
+                        {user.username}
+                        <UserDropDown />
+                    </li>
+                )}
+                <li>
+                    <Link to={`/films`}>FILMS</Link>
+                </li>
+                <li>
+                    <Link to={`/lists`}>LISTS</Link>
+                </li>
+                <li>
+                    <Link to={`/people`}>PEOPLE</Link>
+                </li>
+                {user && (
+                    <li className="log">
+                        <button onClick={() => dispatch(changeModalState())}>+ LOG</button>
+                    </li>
                 )}
             </ul>
         </header>

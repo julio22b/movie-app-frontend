@@ -14,6 +14,7 @@ const MostPopular = () => {
                 <p>Track films you've watched</p>
                 <p>Save those you want to see</p>
                 <p>Tell your friends what's good</p>
+                <button className="green-btn">CREATE AN ACCOUNT</button>
             </div>
             <figure className="backdrop">
                 <Poster title={mostPopular.title} url={mostPopular.backdrop_path} tmdb={true} />

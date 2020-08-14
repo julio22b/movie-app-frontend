@@ -21,6 +21,7 @@ const NavLinkWithState: React.FC<props> = ({ user, section }) => {
                     },
                 }}
                 activeClassName="active"
+                exact
             >
                 {section || 'Profile'}
             </NavLink>

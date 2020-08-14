@@ -123,6 +123,12 @@
         margin: 1em 0 0 0;
         padding-bottom: 2em;
         border-bottom: 1px solid #445566;
+        a {
+            text-decoration: none;
+            &:hover {
+                color: $blue;
+            }
+        }
         img {
             width: 70px;
             border-radius: 4px;
@@ -140,6 +146,11 @@
             .date {
                 font-size: 0.8rem;
                 color: #667788;
+                display: flex;
+                align-items: center;
+                .stars {
+                    margin-left: 0;
+                }
             }
             .content {
                 margin: 2em 0;
@@ -150,6 +161,7 @@
                 font-size: 0.8rem;
                 opacity: 0.6;
                 font-weight: bold;
+                color: #99aabb;
             }
         }
     }
@@ -391,7 +403,7 @@ section.settings {
                     content: '';
                     position: absolute;
                     display: inline-block;
-                    right: 0;
+                    right: -1px;
                     top: 50%;
                     transform: translateY(-50%);
                     width: 1px;
@@ -423,11 +435,11 @@ section.settings {
     margin: 0 auto;
     .wrap-user-nav {
         display: flex;
-        align-items: center;
         justify-content: center;
         border-radius: 3px;
         background-color: #303c48;
         margin-bottom: 4em;
+        height: 45px;
         & > div {
             display: flex;
             align-items: center;
@@ -456,9 +468,6 @@ section.settings {
             a {
                 display: flex;
                 align-items: center;
-            }
-            .active:hover {
-                background-color: #667788;
             }
         }
     }

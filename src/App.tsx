@@ -56,6 +56,15 @@ function App() {
                     <Route path="/settings" exact>
                         <SettingsPage />
                     </Route>
+                    <Route path="/films" exact>
+                        <p>FILMS</p>
+                    </Route>
+                    <Route path="/lists" exact>
+                        <p>LISTS</p>
+                    </Route>
+                    <Route path="/people" exact>
+                        <p>PEOPLE</p>
+                    </Route>
                     <Route path="/:username" exact>
                         <ProfilePage />
                     </Route>

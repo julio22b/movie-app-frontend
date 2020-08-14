@@ -1,15 +1,26 @@
 import React from 'react';
 import moment from 'moment';
 import { Review } from '../../features/types';
+import { Link } from 'react-router-dom';
 
-const ReviewBody: React.FC<{ review: Review; stars: boolean }> = ({ review, stars }) => {
+interface props {
+    review: Review;
+    link: {
+        pathname: string;
+        state: { reviewID: string };
+    };
+}
+
+const ReviewBody: React.FC<props> = ({ review, link }) => {
     return (
         <div>
             <h2>
-                {review.movie.title} <span>{review.movie.year}</span>
+                <Link to={link}>
+                    {review.movie.title} <span>{review.movie.year}</span>
+                </Link>
             </h2>
             <p className="date">
-                {stars && <i className="stars" data-rating={`${review.rating}`}></i>} Watched{' '}
+                <i className="stars" data-rating={`${review.rating}`}></i> Watched{' '}
                 {moment(review.created_at).format('MMM DD[,] YYYY')}
             </p>
             <p className="content" dangerouslySetInnerHTML={{ __html: review.content }}></p>

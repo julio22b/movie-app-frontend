@@ -839,6 +839,16 @@ i[data-rating='0.5'] {
   border-bottom: 1px solid #445566;
 }
 
+.recent-reviews .review a,
+.reviews-container .review a {
+  text-decoration: none;
+}
+
+.recent-reviews .review a:hover,
+.reviews-container .review a:hover {
+  color: #40bcf4;
+}
+
 .recent-reviews .review img,
 .reviews-container .review img {
   width: 70px;
@@ -864,6 +874,17 @@ i[data-rating='0.5'] {
 .reviews-container .review div .date {
   font-size: 0.8rem;
   color: #667788;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.recent-reviews .review div .date .stars,
+.reviews-container .review div .date .stars {
+  margin-left: 0;
 }
 
 .recent-reviews .review div .content,
@@ -878,6 +899,7 @@ i[data-rating='0.5'] {
   font-size: 0.8rem;
   opacity: 0.6;
   font-weight: bold;
+  color: #99aabb;
 }
 
 section.settings {
@@ -1200,7 +1222,7 @@ section.settings .container .profile-form textarea:focus {
   content: '';
   position: absolute;
   display: inline-block;
-  right: 0;
+  right: -1px;
   top: 50%;
   -webkit-transform: translateY(-50%);
           transform: translateY(-50%);
@@ -1237,15 +1259,13 @@ section.settings .container .profile-form textarea:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   border-radius: 3px;
   background-color: #303c48;
   margin-bottom: 4em;
+  height: 45px;
 }
 
 .user-films .wrap-user-nav > div,
@@ -1316,13 +1336,6 @@ section.settings .container .profile-form textarea:focus {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-}
-
-.user-films .wrap-user-nav .profile-nav .active:hover,
-.user-reviews .wrap-user-nav .profile-nav .active:hover,
-.user-watchlist .wrap-user-nav .profile-nav .active:hover,
-.user-lists .wrap-user-nav .profile-nav .active:hover {
-  background-color: #667788;
 }
 
 .posters-container {
@@ -1909,12 +1922,16 @@ header {
   width: 80%;
   position: absolute;
   padding-top: 1em;
-  background: -webkit-gradient(linear, left bottom, left top, color-stop(15%, rgba(255, 255, 255, 0)), to(rgba(20, 24, 28, 0.7)));
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 15%, rgba(20, 24, 28, 0.7) 100%);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(20, 24, 28, 0.82)));
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(20, 24, 28, 0.82) 100%);
 }
 
-header > p {
+header .app-name {
   font-size: 2.5rem;
+}
+
+header .app-name a {
+  text-decoration: none;
 }
 
 header button {
@@ -1933,29 +1950,130 @@ header ul {
           align-items: center;
 }
 
-header ul li {
+header ul li,
+header ul button {
   margin: 0 10px;
+  padding: 0.3em 0.6em;
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+header ul li a,
+header ul button a {
+  text-decoration: none;
+}
+
+header ul li a:hover,
+header ul button a:hover {
+  color: white;
 }
 
 header ul button {
   margin: 0 10px;
 }
 
-header ul li.log {
+header ul li.log button {
   background: #00c030;
   color: white;
   border-radius: 4px;
+  margin: 0;
 }
 
-header ul li.log:hover {
+header ul li.log button:hover {
   background-color: #01a52a;
 }
 
-header ul li.log button {
-  padding: 0.3em 0.6em;
+header .has-dropdown {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5em 2em;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+header .has-dropdown:hover {
+  background-color: #717f8e;
+  border-top: 1px solid rgba(255, 255, 255, 0.568);
   color: white;
+}
+
+header .has-dropdown:hover ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+header .has-dropdown img {
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+}
+
+header .has-dropdown ul {
+  position: absolute;
+  display: none;
+  left: 0;
+  right: 0;
+  top: 100%;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #717f8e;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  -webkit-box-shadow: 0 8px 8px #14181c;
+          box-shadow: 0 8px 8px #14181c;
+}
+
+header .has-dropdown ul li a,
+header .has-dropdown ul button {
+  color: #14181c;
+  font-weight: normal;
+  font-size: 0.8rem;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  text-transform: none;
+  padding: 0.5em 0.8em;
+}
+
+header .has-dropdown ul li,
+header .has-dropdown ul button {
+  width: 100%;
   margin: 0;
-  font-size: 0.9rem;
+  padding: 0;
+}
+
+header .has-dropdown ul li:hover,
+header .has-dropdown ul button:hover {
+  color: white;
+  background-color: #445566;
+}
+
+header .has-dropdown ul li:hover a,
+header .has-dropdown ul button:hover a {
+  color: white;
+}
+
+header .has-dropdown ul .settings,
+header .has-dropdown ul li:first-of-type {
+  border-top: 1px solid #14181c27;
+}
+
+header .has-dropdown .sign-out {
+  padding: 0.5em 0.8em;
 }
 
 .most-popular {
@@ -1973,13 +2091,23 @@ header ul li.log button {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding-bottom: 4em;
-  margin-bottom: 4em;
+  padding-bottom: 3em;
+  margin-bottom: 3em;
 }
 
 .most-popular .taglines {
   position: absolute;
   bottom: 8%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
 .most-popular .taglines p {
@@ -1987,6 +2115,11 @@ header ul li.log button {
   font-weight: bold;
   color: white;
   font-size: 2.5rem;
+}
+
+.most-popular .taglines button {
+  margin: 20px auto 0 auto;
+  color: white;
 }
 
 figure.backdrop {
@@ -2014,7 +2147,7 @@ figure.backdrop img {
 figure.backdrop figcaption {
   position: absolute;
   top: 50%;
-  right: -10%;
+  right: -5%;
   -webkit-transform: rotate(-90deg);
           transform: rotate(-90deg);
   color: #717f8e;
