@@ -22,7 +22,6 @@ interface initialState {
             favorites: [favorite, favorite, favorite, favorite];
         };
         new_list_form: {
-            open: boolean;
             movies: MovieInstance[];
         };
     };
@@ -48,7 +47,6 @@ const initialState: initialState = {
             favorites: [null, null, null, null],
         },
         new_list_form: {
-            open: false,
             movies: [],
         },
     },

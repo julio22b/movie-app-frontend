@@ -1451,44 +1451,62 @@ section.settings .container .profile-form textarea:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  width: 100%;
+  height: 130px;
 }
 
 .poster-stack .wrapper:first-of-type {
   margin-left: 0;
 }
 
-.poster-stack .wrapper {
+.poster-stack .wrapper,
+.poster-stack .placeholder {
   width: 30%;
   margin-left: -25px;
   -webkit-box-shadow: 0 2px 6px #14181c;
           box-shadow: 0 2px 6px #14181c;
 }
 
-.poster-stack img {
+.poster-stack img,
+.poster-stack .placeholder {
   right: 20px;
   max-width: 100%;
   border: 1px solid #99aabb4b;
   border-radius: 3px;
 }
 
-.wrapper-0 {
+.poster-stack .placeholder {
+  background-color: #111111;
+}
+
+.wrapper-0,
+.placeholder-0 {
   z-index: calc(1 - 0);
 }
 
-.wrapper-1 {
+.wrapper-1,
+.placeholder-1 {
   z-index: calc(1 - 1);
 }
 
-.wrapper-2 {
+.wrapper-2,
+.placeholder-2 {
   z-index: calc(1 - 2);
 }
 
-.wrapper-3 {
+.wrapper-3,
+.placeholder-3 {
   z-index: calc(1 - 3);
 }
 
-.wrapper-4 {
+.wrapper-4,
+.placeholder-4 {
   z-index: calc(1 - 4);
+}
+
+.wrapper-5,
+.placeholder-5 {
+  z-index: calc(1 - 5);
 }
 
 .input-styling, .new-list-form > div:not(.actions-container) input,
@@ -1527,8 +1545,14 @@ section.settings .container .profile-form textarea:focus {
   background-color: #445566;
   border: none;
   border-radius: 3px;
-  padding: 0 4em;
+  padding: 0.4em 4em;
   margin-left: 30px;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+}
+
+.user-lists .container > button:hover a {
+  color: #40bcf4;
 }
 
 .user-lists .container > button a {
@@ -1659,6 +1683,10 @@ section.settings .container .profile-form textarea:focus {
   padding: 0.3em 0.7em;
 }
 
+.actions-container .cancel-save .cancel a {
+  text-decoration: none;
+}
+
 .actions-container .cancel-save .cancel:hover {
   background-color: #717f8e;
 }
@@ -1777,6 +1805,63 @@ section.settings .container .profile-form textarea:focus {
   -webkit-transform: rotate(-135deg);
           transform: rotate(-135deg);
   left: 0;
+}
+
+.list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-bottom: 1px solid #99aabb3d;
+}
+
+.list a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-item-align: start;
+      align-self: flex-start;
+  width: 45%;
+  max-width: 350px;
+  min-width: 300px;
+}
+
+.list .wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.list .wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.list > div {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  margin: 2em 0 1em 20px;
+}
+
+.list > div h2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.list > div h2 span {
+  font-size: 0.75rem;
+  font-weight: normal;
+  opacity: 0.6;
+}
+
+.list > div p {
+  opacity: 0.6;
+  margin-top: 20px;
 }
 
 header {

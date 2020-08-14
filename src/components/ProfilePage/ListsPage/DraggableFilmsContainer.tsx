@@ -4,9 +4,7 @@ import { RootState } from '../../../app/store';
 import DraggableFilm from './DraggableFilm';
 
 const DraggableFilmsContainer = () => {
-    const { open, movies } = useSelector(
-        (state: RootState) => state.userAuth.form_status.new_list_form,
-    );
+    const { movies } = useSelector((state: RootState) => state.userAuth.form_status.new_list_form);
     if (!movies.length) {
         return (
             <div className="movies-container empty">
@@ -17,7 +15,8 @@ const DraggableFilmsContainer = () => {
     }
     return (
         <div className="movies-container">
-            {movies.length > 0 && movies.map((movie) => <DraggableFilm movie={movie} />)}
+            {movies.length > 0 &&
+                movies.map((movie) => <DraggableFilm movie={movie} key={movie._id} />)}
         </div>
     );
 };

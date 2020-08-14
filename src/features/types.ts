@@ -77,5 +77,5 @@ export interface MovieList {
     title: string;
     description: string;
     movies: MovieInstance[];
-    user: User;
+    user?: User;
 }

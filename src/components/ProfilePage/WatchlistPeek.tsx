@@ -24,7 +24,7 @@ const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
                 />
             )}
             {watchlist.length && (
-                <PosterStack user={user} list={watchlist} profile_section={'watchlist'} />
+                <PosterStack user={user} watchlist={watchlist} custom_list={null} />
             )}
         </div>
     );

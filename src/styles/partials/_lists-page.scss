@@ -25,8 +25,14 @@
             background-color: $gray-border;
             border: none;
             border-radius: 3px;
-            padding: 0 4em;
+            padding: 0.4em 4em;
             margin-left: 30px;
+            align-self: flex-start;
+            &:hover {
+                a {
+                    color: $blue;
+                }
+            }
             a {
                 text-decoration: none;
             }
@@ -122,6 +128,9 @@
             background-color: $gray-border;
             border-radius: 3px;
             padding: 0.3em 0.7em;
+            a {
+                text-decoration: none;
+            }
             &:hover {
                 background-color: $gray;
             }
@@ -209,6 +218,41 @@
         &:before {
             transform: rotate(-135deg);
             left: 0;
+        }
+    }
+}
+
+.list {
+    display: flex;
+    border-bottom: 1px solid #99aabb3d;
+    a {
+        display: flex;
+        align-self: flex-start;
+        width: 45%;
+        max-width: 350px;
+        min-width: 300px;
+    }
+    .wrapper {
+        display: flex;
+        img {
+            object-fit: cover;
+        }
+    }
+    & > div {
+        flex: 1;
+        margin: 2em 0 1em 20px;
+        h2 {
+            display: flex;
+            flex-direction: column;
+            span {
+                font-size: 0.75rem;
+                font-weight: normal;
+                opacity: 0.6;
+            }
+        }
+        p {
+            opacity: 0.6;
+            margin-top: 20px;
         }
     }
 }

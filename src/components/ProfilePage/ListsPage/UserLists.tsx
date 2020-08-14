@@ -5,6 +5,7 @@ import { LocationState } from '../ProfilePage';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
+import PosterStack from '../PosterStack';
 
 const UserLists = () => {
     const { state } = useLocation<LocationState>();
@@ -20,6 +21,23 @@ const UserLists = () => {
                 <div className="container">
                     <div className="left-col">
                         <h4 className="h4-subtitle">ALL LISTS</h4>
+
+                        {user.lists.map((list) => (
+                            <div className="list">
+                                <PosterStack user={user} custom_list={list} watchlist={null} />
+                                <div>
+                                    <h2>
+                                        {list.title}{' '}
+                                        <span>
+                                            {list.movies.length === 1
+                                                ? '1 film'
+                                                : `${list.movies.length} films`}
+                                        </span>
+                                    </h2>
+                                    <p>{list.description}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                     <button>
                         <Link to={'/list/new'}>Start a new list...</Link>{' '}
