@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { MovieInstance } from '../../features/types';
@@ -24,25 +25,33 @@ const FindMovieModal = () => {
             findMovieOMDB();
         }
     }, [searchQuery]);
-    return (
-        <div className={open ? 'search-movie-modal open' : 'search-movie-modal'}>
-            {!movie && (
-                <>
-                    <p>
-                        ADD TO YOUR FILMS... <CloseModalBtn handleModalState={changeModalState} />
-                    </p>
-                    <label htmlFor="movie">Name of Film</label>
-                    <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />
-                    {foundMovie.title && (
-                        <p onClick={() => dispatch(fetchMovieForReview(foundMovie))}>
-                            {foundMovie.title} ({foundMovie.year}){' '}
-                            <span>{foundMovie.director}</span>
+    return ReactDOM.createPortal(
+        <>
+            <div
+                className={open ? 'blanket open' : 'blanket'}
+                onClick={() => dispatch(changeModalState())}
+            ></div>
+            <div className={open ? 'search-movie-modal open' : 'search-movie-modal'}>
+                {!movie && (
+                    <>
+                        <p>
+                            ADD TO YOUR FILMS...{' '}
+                            <CloseModalBtn handleModalState={changeModalState} />
                         </p>
-                    )}
-                </>
-            )}
-            {movie && <NewReview />}
-        </div>
+                        <label htmlFor="movie">Name of Film</label>
+                        <input type="text" onChange={(e) => setSearchQuery(e.target.value)} />
+                        {foundMovie.title && (
+                            <p onClick={() => dispatch(fetchMovieForReview(foundMovie))}>
+                                {foundMovie.title} ({foundMovie.year}){' '}
+                                <span>{foundMovie.director}</span>
+                            </p>
+                        )}
+                    </>
+                )}
+                {movie && <NewReview />}
+            </div>
+        </>,
+        document.getElementById('portal')!,
     );
 };
 

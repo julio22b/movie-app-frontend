@@ -7,9 +7,7 @@ import reviewService from '../../services/reviewService';
 import { fetchLatestReviews, changeModalState } from '../../features/reviews/reviewsSlice';
 
 const NewReview = () => {
-    const { loading, movie } = useSelector(
-        (state: RootState) => state.popularMovies.movie_for_review,
-    );
+    const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const dispatch = useDispatch();
     const [content, setContent] = useState<string>('');
@@ -63,6 +61,7 @@ const NewReview = () => {
                         <div className="like">
                             <label htmlFor="like">Like</label>
                             <input type="checkbox" name="like" onChange={() => setLike(!like)} />
+                            <i className={like ? 'not-liked actually-liked' : 'not-liked'}></i>
                         </div>
                         <div className="rating">
                             <label htmlFor="rating">
@@ -83,6 +82,9 @@ const NewReview = () => {
                                 <input type="radio" name="rating" value="4" />
                                 <input type="radio" name="rating" value="4.5" />
                                 <input type="radio" name="rating" value="5" />
+                                <i className="grey-stars"></i>
+                                <i className="blue-stars"></i>
+                                <i className="green-stars" data-value={rating * 2}></i>
                             </div>
                         </div>
                         <button>SAVE</button>

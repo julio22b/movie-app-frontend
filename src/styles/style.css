@@ -2337,8 +2337,8 @@ figure.backdrop figcaption {
   position: absolute;
   top: 50%;
   width: 700px;
-  -webkit-transform: translate(50%);
-          transform: translate(50%);
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
   left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2366,6 +2366,7 @@ figure.backdrop figcaption {
 .search-movie-modal.open {
   opacity: 1;
   pointer-events: all;
+  z-index: 100;
 }
 
 .search-movie-modal p {
@@ -2556,6 +2557,7 @@ figure.backdrop figcaption {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  position: relative;
 }
 
 .add-new-review article form .like input,
@@ -2565,13 +2567,172 @@ figure.backdrop figcaption {
 
 .add-new-review article form .like input[type='radio'],
 .add-new-review article form .rating input[type='radio'] {
-  margin-right: 5px;
+  z-index: 10;
+  position: relative;
+  opacity: 0;
+  height: 100%;
 }
 
-.add-new-review article form .rating {
+.add-new-review article form .rating label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.add-new-review article form .rating span {
+  font-size: 0.7rem;
+}
+
+.add-new-review article form .rating > div {
+  position: relative;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+}
+
+.add-new-review article form .rating > div input:nth-child(1):hover ~ i.blue-stars {
+  width: calc(1 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(2):hover ~ i.blue-stars {
+  width: calc(2 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(3):hover ~ i.blue-stars {
+  width: calc(3 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(4):hover ~ i.blue-stars {
+  width: calc(4 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(5):hover ~ i.blue-stars {
+  width: calc(5 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(6):hover ~ i.blue-stars {
+  width: calc(6 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(7):hover ~ i.blue-stars {
+  width: calc(7 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(8):hover ~ i.blue-stars {
+  width: calc(8 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(9):hover ~ i.blue-stars {
+  width: calc(9 * 13px);
+}
+
+.add-new-review article form .rating > div input:nth-child(10):hover ~ i.blue-stars {
+  width: calc(10 * 13px);
+}
+
+.add-new-review article form .rating > div input:hover ~ .green-stars {
+  display: none;
+}
+
+.add-new-review article form .rating > div i {
+  position: absolute;
+  display: inline-block;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.add-new-review article form .rating > div .grey-stars {
+  background-image: url("../images/5-gray-stars.png");
+}
+
+.add-new-review article form .rating > div .blue-stars {
+  width: 0;
+  background-image: url("../images/5-blue-stars.png");
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='1'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(1 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='2'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(2 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='3'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(3 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='4'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(4 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='5'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(5 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='6'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(6 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='7'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(7 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='8'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(8 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='9'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(9 * 13px);
+}
+
+.add-new-review article form .rating > div .green-stars[data-value='10'] {
+  background-image: url("../images/5-green-stars.png");
+  width: calc(10 * 13px);
+}
+
+.add-new-review article form .like input {
+  padding: 20px;
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  z-index: 100;
+}
+
+.add-new-review article form .like input:hover + .not-liked:not(.actually-liked) {
+  background-image: url("../images/review-hover-like.png");
+}
+
+.add-new-review article form .like .not-liked {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  background-image: url("../images/review-gray-like.png");
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.add-new-review article form .like .not-liked.actually-liked {
+  background-image: url("../images/review-orange-like.png");
 }
 
 .notification {
