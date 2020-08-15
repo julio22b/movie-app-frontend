@@ -566,7 +566,7 @@ figure.backdrop {
                 resize: none;
                 width: 100%;
                 color: $gray-border;
-                background-color: $gray-text-secondary;
+                background-color: #ccddee;
                 border: none;
                 padding: 0.5em;
                 border-radius: 4px;
@@ -664,6 +664,72 @@ figure.backdrop {
                 @extend .green-btn;
             }
         }
+    }
+}
+
+.date {
+    margin: 1em 0;
+    width: 100%;
+    display: flex;
+    .date-picker {
+        display: flex;
+        align-items: center;
+        position: relative;
+    }
+    label {
+        margin: 0 10px;
+        font-size: 0.8rem;
+        width: max-content;
+    }
+    input[type='checkbox'] {
+        order: -1;
+        height: 20px;
+        width: 20px;
+        z-index: 10;
+        opacity: 0;
+        &:hover ~ .box {
+            background-color: white;
+        }
+        &:checked ~ .box:after,
+        &:checked ~ .box:before {
+            content: '';
+        }
+    }
+    input[type='date'] {
+        padding: 0;
+        width: auto;
+        font-size: 0.9rem;
+        background-color: #556677;
+        color: white;
+        cursor: pointer;
+    }
+    .box {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        border-radius: 4px;
+        background-color: #ccddee;
+        &:after,
+        &:before {
+            height: 2px;
+            background-color: #14181cc0;
+            position: absolute;
+            width: 90%;
+            bottom: 47%;
+            left: 1px;
+        }
+        &:after {
+            transform: rotate(130deg);
+        }
+        &:before {
+            transform: rotate(-130deg);
+        }
+    }
+    .first-watch {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-left: 20px;
     }
 }
 

@@ -13,6 +13,9 @@ const NewReview = () => {
     const [content, setContent] = useState<string>('');
     const [like, setLike] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(0);
+    const [specifyDate, setSpecifyDate] = useState<boolean>(false);
+    const [watchedDate, setWatchedDate] = useState<string>('');
+    const [firstWatch, setFirstWatch] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -50,6 +53,38 @@ const NewReview = () => {
                         {movie.title} <span>{movie.year}</span>
                     </h3>
                     <form onSubmit={(e) => handleSubmit(e)}>
+                        <div className="date">
+                            <div className="date-picker">
+                                <label htmlFor="add_date">
+                                    {specifyDate ? 'on' : 'Specify the date you watched it'}
+                                </label>
+                                <input
+                                    type="checkbox"
+                                    name="add_date"
+                                    onChange={() => setSpecifyDate(!specifyDate)}
+                                />
+                                {specifyDate && (
+                                    <input
+                                        type="date"
+                                        onChange={(e) => setWatchedDate(e.target.value)}
+                                    />
+                                )}
+                                <div className="box"></div>
+                            </div>
+                            {specifyDate && (
+                                <div className="first-watch">
+                                    <label htmlFor="first_watch">
+                                        I've watched this film before
+                                    </label>
+                                    <input
+                                        type="checkbox"
+                                        name="first_watch"
+                                        onChange={() => setFirstWatch(!firstWatch)}
+                                    />
+                                    <div className="box"></div>
+                                </div>
+                            )}
+                        </div>
                         <textarea
                             name="content"
                             cols={30}
