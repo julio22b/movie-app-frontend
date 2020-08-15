@@ -43,6 +43,8 @@ export interface Review {
     likes: number;
     rating?: number;
     comments: ReviewComment[];
+    watched_on?: string;
+    first_watch?: boolean;
     movieTitle?: string;
     created_at?: string;
 }

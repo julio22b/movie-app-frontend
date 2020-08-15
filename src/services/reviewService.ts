@@ -4,11 +4,9 @@ import authHeader from './authHeader';
 
 const baseUrl = `http://localhost:3001/api/reviews`;
 
-const postReview = async (
-    data: Pick<Review, 'content' | 'liked_movie' | 'rating'>,
-    movieID: string,
-    userID: string,
-) => {
+type ReviewData = Pick<Review, 'content' | 'first_watch' | 'liked_movie' | 'rating' | 'watched_on'>;
+
+const postReview = async (data: ReviewData, movieID: string, userID: string) => {
     const response = await Axios.post(`${baseUrl}/${movieID}/${userID}/create`, data, {
         headers: authHeader(),
     });

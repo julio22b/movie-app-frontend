@@ -60,15 +60,8 @@ const FilmPage = () => {
                                 ? movie.reviews.map((review) => (
                                       <FilmReview
                                           movieTitle={movie.title}
-                                          content={review.content}
-                                          user={review.user}
-                                          comments={review.comments}
-                                          rating={review.rating}
-                                          likes={review.likes}
-                                          liked_movie={review.liked_movie}
                                           key={review._id}
-                                          movie={review.movie}
-                                          _id={review._id}
+                                          {...review}
                                       />
                                   ))
                                 : 'This film has no reviews yet.'}

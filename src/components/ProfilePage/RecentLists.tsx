@@ -25,21 +25,22 @@ const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
                     text={'any lists'}
                 />
             )}
-            {fixedLists.length &&
-                fixedLists.map((list) => (
-                    <div key={list._id}>
-                        <PosterStack user={user} watchlist={null} custom_list={list} />
-                        <Link
-                            to={`/${
-                                loggedUser?.username
-                            }/lists/${list.title.toLocaleLowerCase().replace(/ /g, '-')}`}
-                        >
-                            <h2>
-                                {list.title} <span>{list.movies.length} films</span>
-                            </h2>
-                        </Link>
-                    </div>
-                ))}
+            {fixedLists.length
+                ? fixedLists.map((list) => (
+                      <div key={list._id}>
+                          <PosterStack user={user} watchlist={null} custom_list={list} />
+                          <Link
+                              to={`/${
+                                  loggedUser?.username
+                              }/lists/${list.title.toLocaleLowerCase().replace(/ /g, '-')}`}
+                          >
+                              <h2>
+                                  {list.title} <span>{list.movies.length} films</span>
+                              </h2>
+                          </Link>
+                      </div>
+                  ))
+                : ''}
         </article>
     );
 };

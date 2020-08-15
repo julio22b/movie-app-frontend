@@ -5,6 +5,7 @@ import { removeMovieForReview } from '../../features/movies/popularMoviesSlice';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
 import reviewService from '../../services/reviewService';
 import { fetchLatestReviews, changeModalState } from '../../features/reviews/reviewsSlice';
+import { useHistory, withRouter } from 'react-router-dom';
 
 const NewReview = () => {
     const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
@@ -14,17 +15,25 @@ const NewReview = () => {
     const [like, setLike] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(0);
     const [specifyDate, setSpecifyDate] = useState<boolean>(false);
-    const [watchedDate, setWatchedDate] = useState<string>('');
-    const [firstWatch, setFirstWatch] = useState<boolean>(false);
+    const [watched_on, setWatchedOn] = useState<string>('');
+    const [first_watch, setFirstWatch] = useState<boolean>(true);
+    const history = useHistory();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (movie && loggedUser) {
             try {
-                await reviewService.postReview(
-                    { content, liked_movie: like, rating },
+                const { savedReview } = await reviewService.postReview(
+                    { content, liked_movie: like, rating, watched_on, first_watch },
                     movie._id!,
                     loggedUser._id!,
+                );
+
+                history.push(
+                    `/${loggedUser.username}/film/${movie.title.toLowerCase().replace(/ /g, '-')}`,
+                    {
+                        reviewID: savedReview._id,
+                    },
                 );
                 dispatch(fetchLatestReviews());
                 dispatch(removeMovieForReview());
@@ -66,7 +75,8 @@ const NewReview = () => {
                                 {specifyDate && (
                                     <input
                                         type="date"
-                                        onChange={(e) => setWatchedDate(e.target.value)}
+                                        onChange={(e) => setWatchedOn(e.target.value)}
+                                        required
                                     />
                                 )}
                                 <div className="box"></div>
@@ -79,7 +89,7 @@ const NewReview = () => {
                                     <input
                                         type="checkbox"
                                         name="first_watch"
-                                        onChange={() => setFirstWatch(!firstWatch)}
+                                        onChange={() => setFirstWatch(!first_watch)}
                                     />
                                     <div className="box"></div>
                                 </div>
@@ -131,4 +141,4 @@ const NewReview = () => {
     return null;
 };
 
-export default NewReview;
+export default withRouter(NewReview);

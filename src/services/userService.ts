@@ -63,6 +63,11 @@ const editProfile = async (userID: string | undefined, data: ProfileData) => {
     return response.data;
 };
 
+const getAll = async () => {
+    const response = await Axios.get(`${baseUrl}/all`);
+    return response.data;
+};
+
 export default {
     logIn,
     removeCurrentUser,
@@ -71,4 +76,5 @@ export default {
     changeWatchListStatus,
     changeWatchedStatus,
     editProfile,
+    getAll,
 };

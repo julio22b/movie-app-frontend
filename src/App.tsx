@@ -19,6 +19,7 @@ import UserReviews from './components/ProfilePage/ReviewsPage/UserReviews';
 import UserWatchList from './components/ProfilePage/UserWatchlist.tsx/UserWatchList';
 import UserLists from './components/ProfilePage/ListsPage/UserLists';
 import AddNewListPage from './components/ProfilePage/ListsPage/AddNewListPage';
+import PeoplePage from './components/Home/People/PeoplePage';
 
 function App() {
     const dispatch = useDispatch();
@@ -35,10 +36,10 @@ function App() {
 
     return (
         <>
-            <FindMovieModal />
             <Notification />
             <Router>
                 <NavBar />
+                <FindMovieModal />
                 <Switch>
                     <Route path="/" exact>
                         <section>
@@ -63,7 +64,7 @@ function App() {
                         <p>LISTS</p>
                     </Route>
                     <Route path="/people" exact>
-                        <p>PEOPLE</p>
+                        <PeoplePage />
                     </Route>
                     <Route path="/:username" exact>
                         <ProfilePage />
