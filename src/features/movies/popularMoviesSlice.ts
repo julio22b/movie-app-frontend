@@ -130,9 +130,11 @@ export const fetchMovieForPage = (obj: MovieInstance): AppThunk => async (dispat
     }
 };
 
-export const fetchBackdropForPage = (searchQuery: string): AppThunk => async (dispatch) => {
+export const fetchBackdropForPage = (searchQuery: string, year: number): AppThunk => async (
+    dispatch,
+) => {
     const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false`,
+        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false&year=${year}`,
     );
     dispatch(setBackdropForPage(response.data.results[0].backdrop_path));
 };

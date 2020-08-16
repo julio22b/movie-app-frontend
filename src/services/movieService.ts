@@ -3,7 +3,7 @@ import Axios from 'axios';
 import { MovieInstance } from '../features/types';
 
 const baseUrl = 'http://localhost:3001/api/movies';
-const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&t=`;
+const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}`;
 
 const getMovieInstance = async (obj: MovieInstance, username?: string) => {
     const response = await Axios.post(`${baseUrl}/create?username=${username}`, obj, {
@@ -12,9 +12,9 @@ const getMovieInstance = async (obj: MovieInstance, username?: string) => {
     return response.data as MovieInstance;
 };
 
-const useOMDB = async (searchQuery: string): Promise<MovieInstance | undefined> => {
-    const processedQuery = searchQuery.replace(' ', '+');
-    const response = await Axios.get(`${OMDB_URL}${processedQuery}`);
+const useOMDB = async (title: string, year?: string): Promise<MovieInstance | undefined> => {
+    const processedTitle = title.replace(' ', '+');
+    const response = await Axios.get(`${OMDB_URL}&t=${processedTitle}&y=${year}`);
     const data = response.data;
     if (!data.Error) {
         const year = data.Year.slice(0, 4);

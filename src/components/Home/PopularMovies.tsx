@@ -22,7 +22,12 @@ const PopularMovies = () => {
                     <p>POPULAR FILMS</p>
                     {topSix.map((movie) => (
                         <Link
-                            to={`/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`}
+                            to={{
+                                pathname: `/film/${movie.title
+                                    .toLocaleLowerCase()
+                                    .replace(/ /g, '-')}`,
+                                state: { year: movie.release_date.slice(0, 4) },
+                            }}
                             key={movie.title}
                         >
                             <Poster url={movie.poster_path} title={movie.title} tmdb={true} />

@@ -6,7 +6,7 @@ import {
     removeMovieForPage,
     fetchBackdropForPage,
 } from '../../features/movies/popularMoviesSlice';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import movieService from '../../services/movieService';
 import Poster from '../Home/Poster';
 import FilmReview from './FilmReview';
@@ -15,6 +15,10 @@ import PosterCaption from './PosterCaption';
 import FilmDetails from './FilmDetails';
 import SignInBtn from '../_helpers/SignInBtn';
 
+interface LocationState {
+    year: string;
+}
+
 const FilmPage = () => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.userAuth.user);
@@ -22,18 +26,19 @@ const FilmPage = () => {
         (state: RootState) => state.popularMovies.movie_for_page,
     );
     const params = useParams<{ title: string }>();
+    const { state } = useLocation<LocationState>();
     useEffect(() => {
         dispatch(removeMovieForPage());
         const getMovie = async () => {
-            const movie = await movieService.useOMDB(params.title);
+            const movie = await movieService.useOMDB(params.title, state.year);
             if (movie) {
                 dispatch(fetchMovieForPage(movie));
                 const searchQuery = movie.title.replace(/ /g, '%20');
-                dispatch(fetchBackdropForPage(searchQuery));
+                dispatch(fetchBackdropForPage(searchQuery, Number(state.year)));
             }
         };
         getMovie();
-    }, [dispatch, params.title]);
+    }, [dispatch, params.title, state.year]);
 
     if (loading) {
         return <p>Loading...</p>;
