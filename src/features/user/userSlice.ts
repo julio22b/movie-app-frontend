@@ -151,6 +151,15 @@ const userSlice = createSlice({
                 (m) => m._id !== payload._id,
             );
         },
+        addToFollowing: (state, { payload }: PayloadAction<User>) => {
+            if (state.user) state.user.following?.push(payload);
+        },
+        removeFromFollowing: (state, { payload }: PayloadAction<User>) => {
+            if (state.user)
+                state.user.following = state.user.following?.filter(
+                    (user) => user._id !== payload._id,
+                );
+        },
     },
 });
 
@@ -178,6 +187,8 @@ export const {
     getUserForProfileSuccess,
     addMovieForNewList,
     removeMovieFromNewList,
+    addToFollowing,
+    removeFromFollowing,
 } = userSlice.actions;
 
 export const userLogIn = (user: userLogInInput): AppThunk => async (dispatch) => {

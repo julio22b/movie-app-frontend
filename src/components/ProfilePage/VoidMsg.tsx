@@ -13,7 +13,7 @@ const VoidMsg: React.FC<props> = ({ userID, loggedUserID, username, text }) => {
     }
     return (
         <p className="void-msg">
-            {username} doesn't have {text} yet.
+            {username} doesn't have {text}.
         </p>
     );
 };

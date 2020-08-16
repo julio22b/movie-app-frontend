@@ -55,9 +55,6 @@ export const NavBar = () => {
                     <Link to={`/films`}>FILMS</Link>
                 </li>
                 <li>
-                    <Link to={`/lists`}>LISTS</Link>
-                </li>
-                <li>
                     <Link to={`/people`}>PEOPLE</Link>
                 </li>
                 {user && (

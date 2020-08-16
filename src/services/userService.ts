@@ -63,6 +63,22 @@ const editProfile = async (userID: string | undefined, data: ProfileData) => {
     return response.data;
 };
 
+const follow = async (loggedUserID: string, userToFollowID: string) => {
+    const response = await Axios.put(`${baseUrl}/${loggedUserID}/follow/${userToFollowID}`, null, {
+        headers: authHeader(),
+    });
+    return response.data;
+};
+
+const unfollow = async (loggedUserID: string, userToFollowID: string) => {
+    const response = await Axios.put(
+        `${baseUrl}/${loggedUserID}/unfollow/${userToFollowID}`,
+        null,
+        { headers: authHeader() },
+    );
+    return response.data;
+};
+
 const getAll = async () => {
     const response = await Axios.get(`${baseUrl}/all`);
     return response.data;
@@ -77,4 +93,6 @@ export default {
     changeWatchedStatus,
     editProfile,
     getAll,
+    follow,
+    unfollow,
 };

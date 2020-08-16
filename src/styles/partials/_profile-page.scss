@@ -13,6 +13,7 @@
         margin-left: 30px;
         display: flex;
         flex-direction: column;
+        .action,
         .settings {
             background-color: $gray-border;
             padding: 0.3em 0.7em;
@@ -22,10 +23,34 @@
             font-size: 0.7rem;
             font-weight: bold;
             border-top: 1px solid rgba(255, 255, 255, 0.37);
+            letter-spacing: 1px;
             a {
                 text-decoration: none;
                 &:hover {
                     color: white;
+                }
+            }
+        }
+        .action:hover {
+            background-color: $gray;
+            color: white;
+        }
+        .action.unfollow {
+            background-color: $green;
+            width: 90px;
+            span {
+                color: white;
+            }
+            span:last-of-type {
+                display: none;
+            }
+            &:hover {
+                background-color: $orange;
+                span:last-of-type {
+                    display: inline-block;
+                }
+                span:first-of-type {
+                    display: none;
                 }
             }
         }
@@ -424,6 +449,19 @@ section.settings {
     }
 }
 
+.following div {
+    margin-top: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    a {
+        margin: 0 15px 10px 0;
+        img {
+            width: 40px !important;
+            height: 40px;
+        }
+    }
+}
+
 // FIXES THE NAVBAR FOR THE PROFILE SUBPAGES
 
 .user-films,
@@ -547,6 +585,7 @@ section.settings {
         }
     }
     .poster-stack {
+        margin-bottom: 0;
         .wrapper,
         .placeholder {
             height: 120px;

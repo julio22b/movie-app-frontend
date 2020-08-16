@@ -20,6 +20,7 @@ import UserWatchList from './components/ProfilePage/UserWatchlist.tsx/UserWatchL
 import UserLists from './components/ProfilePage/ListsPage/UserLists';
 import AddNewListPage from './components/ProfilePage/ListsPage/AddNewListPage';
 import PeoplePage from './components/Home/People/PeoplePage';
+import FilmsPage from './components/Home/Films/FilmsPage';
 
 function App() {
     const dispatch = useDispatch();
@@ -58,10 +59,7 @@ function App() {
                         <SettingsPage />
                     </Route>
                     <Route path="/films" exact>
-                        <p>FILMS</p>
-                    </Route>
-                    <Route path="/lists" exact>
-                        <p>LISTS</p>
+                        <FilmsPage />
                     </Route>
                     <Route path="/people" exact>
                         <PeoplePage />
