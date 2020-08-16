@@ -13,6 +13,7 @@ import SettingsBtn from './SettingsBtn';
 import FollowBtn from './FollowBtn';
 import Navigation from './Navigation';
 import { getProfilePage } from '../../features/user/userSlice';
+import Following from './Following';
 
 export interface LocationState {
     userID: string;
@@ -41,17 +42,8 @@ const ProfilePage = () => {
                 <div className="container">
                     <div className="left-col">
                         <Favorites favorites={user.favorites} user={user} />
-                        <RecentReviews reviews={user.reviews} />
-                        <div className="following">
-                            <h4 className="h4-subtitle">
-                                FOLLOWING <span>{user.following?.length}</span>
-                            </h4>
-                            <div>
-                                {user.following?.map((user) => (
-                                    <ProfilePicture user={user} />
-                                ))}
-                            </div>
-                        </div>
+                        <RecentReviews user={user} loggedUserID={loggedUser?._id} />
+                        <Following user={user} loggedUser={loggedUser?._id} />
                     </div>
                     <div className="right-col">
                         {user.bio && <Bio bio={user.bio} />}
