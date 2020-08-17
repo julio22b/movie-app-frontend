@@ -54,6 +54,7 @@ const changeWatchListStatus = async (
 
 interface ProfileData {
     username: string;
+    profile_picture: string | null | ArrayBuffer;
     bio: string;
     favorites: Array<string | null>;
 }

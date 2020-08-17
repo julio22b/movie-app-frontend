@@ -10,18 +10,17 @@ const SettingsPage = () => {
     const [index, setIndex] = useState<number>(0);
     const dispatch = useDispatch();
     useEffect(() => {
-        if (loggedUser) dispatch(setFavorites(loggedUser.favorites));
+        if (loggedUser) {
+            dispatch(setFavorites(loggedUser.favorites));
+        }
     }, [dispatch, loggedUser]);
-
     return (
         <section className="settings">
             <h2>Account Settings</h2>
             <div className="container">
                 <Form index={index} />
                 <article className="edit-favorites">
-                    <h4 className="h4-subtitle">
-                        Favorite Films <span>Drag posters to reorder.</span>
-                    </h4>
+                    <h4 className="h4-subtitle">Favorite Films</h4>
                     <div className="posters">
                         <AddFavoriteBtn index={0} setIndex={setIndex} />
                         <AddFavoriteBtn index={1} setIndex={setIndex} />

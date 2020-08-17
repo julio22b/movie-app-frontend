@@ -681,7 +681,10 @@ i[data-rating='0'] {
 }
 
 .profile-page .profile-picture {
-  width: 100px;
+  width: 120px;
+  height: 120px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .profile-page .username {
@@ -860,9 +863,14 @@ i[data-rating='0'] {
 .favorite-films img,
 .favorite-films .placeholder {
   width: 24%;
+  max-width: 180px;
   border-radius: 4px;
   border: 1px solid #717f8e;
   background-color: #111111;
+}
+
+.favorite-films .placeholder.height {
+  height: 225px;
 }
 
 .favorite-films img {
@@ -972,6 +980,10 @@ section.settings .container .profile-form {
   width: 40%;
 }
 
+section.settings .container .profile-form .green-btn, section.settings .container .profile-form .sign-in-form button:last-of-type, .sign-in-form section.settings .container .profile-form button:last-of-type, section.settings .container .profile-form .add-new-review article form button, .add-new-review article form section.settings .container .profile-form button {
+  color: white;
+}
+
 section.settings .container .profile-form label:first-of-type {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1016,6 +1028,44 @@ section.settings .container .profile-form textarea:focus {
   background-color: white;
   color: #14181c;
   outline: none;
+}
+
+section.settings .container .profile-form .image-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: relative;
+  margin-bottom: 3em;
+}
+
+section.settings .container .profile-form .image-wrapper .green-btn, section.settings .container .profile-form .image-wrapper .sign-in-form button:last-of-type, .sign-in-form section.settings .container .profile-form .image-wrapper button:last-of-type, section.settings .container .profile-form .image-wrapper .add-new-review article form button, .add-new-review article form section.settings .container .profile-form .image-wrapper button {
+  margin: 0;
+  color: white;
+}
+
+section.settings .container .profile-form .image-wrapper input[type='file'] {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  z-index: 10;
+  cursor: pointer;
+  height: 100%;
+  margin: 0;
+  width: 60%;
+}
+
+section.settings .container .profile-form .image-wrapper img {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .edit-favorites {
@@ -1091,7 +1141,6 @@ section.settings .container .profile-form textarea:focus {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  cursor: move;
 }
 
 .edit-favorites .posters .add:hover .gray-btn {
@@ -1104,6 +1153,8 @@ section.settings .container .profile-form textarea:focus {
   border-radius: 3px;
   width: 400px;
   z-index: 1000;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
 }
 
 .search-favorite h4 {
@@ -1292,17 +1343,21 @@ section.settings .container .profile-form textarea:focus {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
 }
 
 .following div a {
   margin: 0 15px 10px 0;
+  width: 8%;
 }
 
-.following div a img {
-  width: 40px !important;
-  height: 40px;
+.following div a .profile-picture {
+  width: 100%;
+  height: auto;
 }
 
 .user-films,
@@ -2256,6 +2311,8 @@ header .has-dropdown img {
   width: 25px;
   height: 25px;
   margin-right: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 header .has-dropdown ul {

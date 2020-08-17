@@ -5,42 +5,74 @@ import userService from '../../services/userService';
 import { notify } from '../../services/helpers';
 import SearchFavorite from './SearchFavorite';
 
+import defaultAvatar from '../../images/avatar.webp';
+import { useHistory } from 'react-router-dom';
+
 const Form: React.FC<{ index: number }> = ({ index }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const { favorites } = useSelector(
         (state: RootState) => state.userAuth.form_status.favorites_form,
     );
     const dispatch = useDispatch();
-    const [username, setUsername] = useState<string>('');
-    const [bio, setBio] = useState<string>('');
-
+    const [username, setUsername] = useState<string>(loggedUser?.username || '');
+    const [bio, setBio] = useState<string>(loggedUser?.bio || '');
+    const [profile_picture, setProfile_picture] = useState<ArrayBuffer | null | string>('');
+    const [saveBtnText, setSaveBtnText] = useState('SAVE CHANGES');
     useEffect(() => {
         if (loggedUser) {
-            setUsername(loggedUser?.username);
-            setBio(loggedUser?.bio);
+            setUsername(loggedUser.username);
+            setBio(loggedUser.bio);
+            setProfile_picture(loggedUser.profile_picture);
         }
     }, [loggedUser]);
+    const history = useHistory();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (loggedUser) {
             try {
                 const favoriteIDS = favorites.map((f) => f?._id || null);
-                const data = await userService.editProfile(loggedUser?._id, {
+                setSaveBtnText('SAVING...');
+                const { message } = await userService.editProfile(loggedUser?._id, {
                     username,
+                    profile_picture,
                     bio,
                     favorites: favoriteIDS,
                 });
-                notify({ message: data.message, type: 'success' }, dispatch);
+                notify({ message: message, type: 'success' }, dispatch);
+                history.go(0);
             } catch (e) {
                 notify({ message: 'Something went wrong', type: 'warning' }, dispatch);
             }
         }
     };
 
+    const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const reader = new FileReader();
+        if (e && e.target && e.target.files) {
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        reader.onload = () => setProfile_picture(reader.result);
+    };
+
     return (
         <form className="profile-form" onSubmit={(e) => handleSubmit(e)}>
             <SearchFavorite index={index} />
+            <div className="image-wrapper">
+                <input
+                    type="file"
+                    onChange={(e) => handleFile(e)}
+                    defaultValue={profile_picture as string}
+                />
+                <img
+                    className="profile-picture"
+                    src={(profile_picture as string) || defaultAvatar}
+                    alt=""
+                />
+                <button className="green-btn" type="button">
+                    SELECT NEW AVATAR
+                </button>
+            </div>
             <label htmlFor="username">
                 Username <span>(also changes your log in username)</span>
             </label>
@@ -62,7 +94,7 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
                 onChange={(e) => setBio(e.target.value)}
                 maxLength={500}
             ></textarea>
-            <button className="green-btn">SAVE CHANGES</button>
+            <button className="green-btn">{saveBtnText}</button>
         </form>
     );
 };
