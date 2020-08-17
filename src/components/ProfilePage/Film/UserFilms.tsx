@@ -13,7 +13,7 @@ const UserFilms = () => {
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
     const dispatch = useDispatch();
     useEffect(() => {
-        if (!user) dispatch(getProfilePage(state.userID));
+        dispatch(getProfilePage(state.userID));
     }, [dispatch, user, state.userID]);
     if (user) {
         return (

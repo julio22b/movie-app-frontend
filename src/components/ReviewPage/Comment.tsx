@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import moment from 'moment';
 
 const Comment: React.FC<ReviewComment> = ({ user, content, created_at }) => {
-    const date = new Date(created_at as string);
+    const date = moment(created_at);
     return (
         <article className="comment">
             <div>
@@ -21,7 +21,7 @@ const Comment: React.FC<ReviewComment> = ({ user, content, created_at }) => {
                     >
                         <p>{user.username}</p>
                     </Link>
-                    <p className="date">{moment(date).fromNow()}</p>
+                    <p className="date">{date.fromNow()}</p>
                 </div>
             </div>
             <p>{content}</p>

@@ -38,12 +38,13 @@ const ReviewPage = () => {
             setComments(review.comments);
             setIsLiked(loggedUser?.liked_reviews.some((r) => r === review?._id));
         };
-        fetchReview();
-    }, [state.reviewID, loggedUser, review]);
+        if (!review) fetchReview();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [state.reviewID, loggedUser]);
 
     useEffect(() => {
         if (review) dispatch(fetchMovieForPage(review.movie));
-    }, [dispatch, review]);
+    }, [review, dispatch]);
 
     const likeReview = () => {
         reviewService.likeReview(loggedUser?._id as string, review?._id as string);
@@ -103,6 +104,7 @@ const ReviewPage = () => {
                                     user={c.user}
                                     movie={c.movie}
                                     content={c.content}
+                                    created_at={c.created_at}
                                     key={c._id}
                                 />
                             ))}

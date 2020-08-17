@@ -16,7 +16,7 @@ const UserDiary = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        if (!user) dispatch(getProfilePage(state.userID));
+        dispatch(getProfilePage(state.userID));
     }, [dispatch, user, state.userID]);
 
     if (user) {
@@ -60,19 +60,23 @@ const UserDiary = () => {
                                 </p>
                                 <p className="rewatch">{!review.first_watch && <i></i>}</p>
                                 <p className="review">
-                                    <Link
-                                        to={{
-                                            pathname: `/${
-                                                user.username
-                                            }/film/${review.movie.title
-                                                .toLocaleLowerCase()
-                                                .replace(/ /g, '-')}`,
-                                            state: { reviewID: review._id },
-                                        }}
-                                    >
-                                        <span>Read review</span>
-                                        <i></i>
-                                    </Link>{' '}
+                                    {review.content ? (
+                                        <Link
+                                            to={{
+                                                pathname: `/${
+                                                    user.username
+                                                }/film/${review.movie.title
+                                                    .toLocaleLowerCase()
+                                                    .replace(/ /g, '-')}`,
+                                                state: { reviewID: review._id },
+                                            }}
+                                        >
+                                            <span>Read review</span>
+                                            <i></i>
+                                        </Link>
+                                    ) : (
+                                        ''
+                                    )}
                                 </p>
                                 <p className="edit">
                                     <i></i>

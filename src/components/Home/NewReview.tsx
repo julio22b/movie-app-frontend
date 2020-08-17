@@ -6,6 +6,7 @@ import CloseModalBtn from '../_helpers/CloseModalBtn';
 import reviewService from '../../services/reviewService';
 import { fetchLatestReviews, changeModalState } from '../../features/reviews/reviewsSlice';
 import { useHistory, withRouter } from 'react-router-dom';
+import { addMovieToLiked, addMovieToWatched } from '../../features/user/userSlice';
 
 const NewReview = () => {
     const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
@@ -31,6 +32,10 @@ const NewReview = () => {
                 dispatch(fetchLatestReviews());
                 dispatch(removeMovieForReview());
                 dispatch(changeModalState());
+                dispatch(addMovieToWatched(movie));
+                if (like) {
+                    dispatch(addMovieToLiked(movie));
+                }
                 history.push(
                     `/${loggedUser.username}/film/${movie.title.toLowerCase().replace(/ /g, '-')}`,
                     {
@@ -100,7 +105,6 @@ const NewReview = () => {
                             rows={10}
                             placeholder="Add a review..."
                             onChange={(e) => setContent(e.target.value)}
-                            required
                         ></textarea>
                         <div className="like">
                             <label htmlFor="like">Like</label>
