@@ -6,6 +6,7 @@ import { RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import NavWithUsername from '../Film/NavWithUsername';
 import Poster from '../../Home/Poster';
+import { titleToUrl } from '../../../services/helpers';
 
 const UserWatchList = () => {
     const { state } = useLocation<LocationState>();
@@ -24,7 +25,12 @@ const UserWatchList = () => {
                 <div className="watchlist-posters-container">
                     {user.watch_list.map((m) => (
                         <div key={m._id}>
-                            <Link to={`/film/${m.title.toLocaleLowerCase().replace(/ /g, '-')}`}>
+                            <Link
+                                to={{
+                                    pathname: `/film/${titleToUrl(m.title)}`,
+                                    state: { year: m.year },
+                                }}
+                            >
                                 <Poster url={m.poster} title={m.title} tmdb={false} />
                             </Link>
                             <span>

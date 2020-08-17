@@ -2,17 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Poster from '../../Home/Poster';
 import { Review } from '../../../features/types';
+import { titleToUrl } from '../../../services/helpers';
 
 const MovieColumn: React.FC<{ review: Review }> = ({ review }) => {
-    const processedTitle = review.movie.title.toLocaleLowerCase().replace(/ /g, '-');
+    const pathname = `/film/${titleToUrl(review.movie.title)}`;
+    const state = {
+        year: review.movie.year,
+    };
     return (
         <figure>
-            <Link to={`/film/${processedTitle}`}>
+            <Link to={{ pathname, state }}>
                 <Poster url={review.movie.poster} title={review.movie.title} tmdb={false} />
             </Link>
             <figcaption>
                 {' '}
-                <Link to={`/film/${processedTitle}`}>{review.movie.title}</Link>
+                <Link to={{ pathname, state }}>{review.movie.title}</Link>
             </figcaption>
         </figure>
     );

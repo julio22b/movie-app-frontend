@@ -16,6 +16,7 @@ import { fetchMovieForPage } from '../../features/movies/popularMoviesSlice';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import MovieTitle from './MovieTitle';
+import { titleToUrl } from '../../services/helpers';
 
 interface LocationState {
     reviewID: string;
@@ -49,13 +50,14 @@ const ReviewPage = () => {
         setIsLiked(true);
     };
 
-    const titleForURL = review?.movie.title.toLocaleLowerCase().replace(/ /g, '+');
     if (review && review.movie) {
+        const state = { year: review.movie.year };
+        const pathname = `/film/${titleToUrl(review.movie.title)}`;
         return (
             <section className="review-page">
                 <div>
                     <figure>
-                        <Link to={`/film/${titleForURL}`}>
+                        <Link to={{ pathname, state }}>
                             <Poster
                                 url={review.movie.poster}
                                 title={review.movie.title}

@@ -6,6 +6,7 @@ import { RootState } from '../../app/store';
 import VoidMsg from './VoidMsg';
 import { favorite } from '../../features/user/userSlice';
 import { Link } from 'react-router-dom';
+import { titleToUrl } from '../../services/helpers';
 
 const Favorites: React.FC<{ favorites: [favorite, favorite, favorite, favorite]; user: User }> = ({
     favorites,
@@ -19,7 +20,10 @@ const Favorites: React.FC<{ favorites: [favorite, favorite, favorite, favorite];
                 favorites.map((f, index) =>
                     f ? (
                         <Link
-                            to={`/film/${f.title.toLocaleLowerCase().replace(/ /g, '-')}`}
+                            to={{
+                                pathname: `/film/${titleToUrl(f.title)}`,
+                                state: { year: f.year },
+                            }}
                             key={f._id}
                         >
                             <Poster url={f.poster} title={f.title} tmdb={false} />
