@@ -10,12 +10,13 @@ const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
     user,
 }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
+    const fiveFilms = [...watchlist].slice(0, 5);
     return (
         <div className="watchlist-peek">
             <h4 className="h4-subtitle">
                 WATCHLIST <span>{watchlist.length}</span>
             </h4>
-            {!watchlist.length && (
+            {!fiveFilms.length && (
                 <VoidMsg
                     userID={user._id}
                     loggedUserID={loggedUser?._id}
@@ -23,8 +24,8 @@ const WatchlistPeek: React.FC<{ watchlist: MovieInstance[]; user: User }> = ({
                     text={'films in their watchlist'}
                 />
             )}
-            {watchlist.length ? (
-                <PosterStack user={user} watchlist={watchlist} custom_list={null} />
+            {fiveFilms.length ? (
+                <PosterStack user={user} watchlist={fiveFilms} custom_list={null} />
             ) : (
                 ''
             )}

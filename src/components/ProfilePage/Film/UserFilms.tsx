@@ -6,6 +6,7 @@ import { useLocation, Link } from 'react-router-dom';
 import Poster from '../../Home/Poster';
 import { LocationState } from '../ProfilePage';
 import NavWithUsername from './NavWithUsername';
+import { titleToUrl } from '../../../services/helpers';
 
 const UserFilms = () => {
     const { state } = useLocation<LocationState>();
@@ -19,10 +20,15 @@ const UserFilms = () => {
             <section className="user-films">
                 <NavWithUsername user={user} />
                 <div className="posters-container">
-                    {user.watched_movies.map((movie) => (
+                    {user.watched_movies.map((movie, index) => (
                         <Link
-                            key={movie._id}
-                            to={`/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`}
+                            key={index}
+                            to={{
+                                pathname: `/film/${titleToUrl(movie.title)}`,
+                                state: {
+                                    year: movie.year,
+                                },
+                            }}
                         >
                             <figure>
                                 <Poster url={movie.poster} title={movie.title} tmdb={false} />

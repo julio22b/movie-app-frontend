@@ -37,9 +37,7 @@ const ReviewPage = () => {
             setComments(review.comments);
             setIsLiked(loggedUser?.liked_reviews.some((r) => r === review?._id));
         };
-        if (!review) {
-            fetchReview();
-        }
+        fetchReview();
     }, [state.reviewID, loggedUser, review]);
 
     useEffect(() => {

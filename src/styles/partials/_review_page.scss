@@ -157,4 +157,7 @@
     i[data-rating='0.5'] {
         width: 20px;
     }
+    i[data-rating='0'] {
+        margin: 0;
+    }
 }

@@ -427,6 +427,10 @@ i[data-rating='0.5'] {
   width: 15px;
 }
 
+i[data-rating='0'] {
+  margin: 0;
+}
+
 .review-page {
   margin-top: 0;
   padding-top: 10em;
@@ -654,6 +658,11 @@ i[data-rating='0.5'] {
 .review-page i[data-rating='0.5'],
 .user-reviews i[data-rating='0.5'] {
   width: 20px;
+}
+
+.review-page i[data-rating='0'],
+.user-reviews i[data-rating='0'] {
+  margin: 0;
 }
 
 .profile-page {
@@ -919,6 +928,7 @@ i[data-rating='0.5'] {
 .recent-reviews .review div .date .stars,
 .reviews-container .review div .date .stars {
   margin-left: 0;
+  margin-top: -2px;
 }
 
 .recent-reviews .review div .content,
@@ -1298,7 +1308,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films,
 .user-reviews,
 .user-watchlist,
-.user-lists {
+.user-lists,
+.user-diary {
   padding-top: 10em;
   width: 80%;
   margin: 0 auto;
@@ -1307,7 +1318,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav,
 .user-reviews .wrap-user-nav,
 .user-watchlist .wrap-user-nav,
-.user-lists .wrap-user-nav {
+.user-lists .wrap-user-nav,
+.user-diary .wrap-user-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1323,7 +1335,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav > div,
 .user-reviews .wrap-user-nav > div,
 .user-watchlist .wrap-user-nav > div,
-.user-lists .wrap-user-nav > div {
+.user-lists .wrap-user-nav > div,
+.user-diary .wrap-user-nav > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1337,7 +1350,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav > div img,
 .user-reviews .wrap-user-nav > div img,
 .user-watchlist .wrap-user-nav > div img,
-.user-lists .wrap-user-nav > div img {
+.user-lists .wrap-user-nav > div img,
+.user-diary .wrap-user-nav > div img {
   width: 30px;
   height: 30px;
 }
@@ -1345,7 +1359,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav > div a,
 .user-reviews .wrap-user-nav > div a,
 .user-watchlist .wrap-user-nav > div a,
-.user-lists .wrap-user-nav > div a {
+.user-lists .wrap-user-nav > div a,
+.user-diary .wrap-user-nav > div a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1357,7 +1372,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav > div span,
 .user-reviews .wrap-user-nav > div span,
 .user-watchlist .wrap-user-nav > div span,
-.user-lists .wrap-user-nav > div span {
+.user-lists .wrap-user-nav > div span,
+.user-diary .wrap-user-nav > div span {
   font-weight: bold;
   font-size: 1.1rem;
   margin-left: 20px;
@@ -1366,7 +1382,8 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav .profile-nav,
 .user-reviews .wrap-user-nav .profile-nav,
 .user-watchlist .wrap-user-nav .profile-nav,
-.user-lists .wrap-user-nav .profile-nav {
+.user-lists .wrap-user-nav .profile-nav,
+.user-diary .wrap-user-nav .profile-nav {
   margin: 1px 0;
   border: none;
 }
@@ -1374,14 +1391,16 @@ section.settings .container .profile-form textarea:focus {
 .user-films .wrap-user-nav .profile-nav:hover,
 .user-reviews .wrap-user-nav .profile-nav:hover,
 .user-watchlist .wrap-user-nav .profile-nav:hover,
-.user-lists .wrap-user-nav .profile-nav:hover {
+.user-lists .wrap-user-nav .profile-nav:hover,
+.user-diary .wrap-user-nav .profile-nav:hover {
   background-color: #303c48;
 }
 
 .user-films .wrap-user-nav .profile-nav a,
 .user-reviews .wrap-user-nav .profile-nav a,
 .user-watchlist .wrap-user-nav .profile-nav a,
-.user-lists .wrap-user-nav .profile-nav a {
+.user-lists .wrap-user-nav .profile-nav a,
+.user-diary .wrap-user-nav .profile-nav a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1402,8 +1421,15 @@ section.settings .container .profile-form textarea:focus {
   text-decoration: none;
 }
 
+.posters-container figure {
+  height: 100%;
+}
+
 .posters-container figure img {
   max-width: 100%;
+  height: 100px;
+  -o-object-fit: cover;
+     object-fit: cover;
   border-radius: 4px;
   border: 1px solid #99aabb4b;
 }
@@ -1543,6 +1569,187 @@ section.settings .container .profile-form textarea:focus {
   left: 50%;
   -webkit-transform: translateX(-50%) rotate(230deg);
           transform: translateX(-50%) rotate(230deg);
+}
+
+.user-diary article {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(50px, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+  margin-bottom: 1em;
+  padding: 0.5em 0;
+  border-bottom: 1px solid #99aabb1a;
+}
+
+.user-diary article p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 0.8rem;
+  color: #99aabb;
+  opacity: 0.9;
+}
+
+.user-diary article:first-of-type p {
+  color: #99aabb;
+  opacity: 0.6;
+  border-top: 1px solid #99aabb52;
+  padding: 1em 0 0.2em 0;
+  text-align: center;
+  font-size: 0.7rem;
+}
+
+.user-diary article:first-of-type p:nth-child(3) {
+  grid-column: span 4;
+  text-align: left;
+}
+
+.user-diary p.day {
+  font-size: 1.5rem;
+  opacity: 0.5;
+  color: #99aabb;
+}
+
+.user-diary p.month {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.user-diary p.month span:first-of-type {
+  font-size: 1.3rem;
+  color: #99aabb;
+  opacity: 0.5;
+}
+
+.user-diary p.month span:last-of-type {
+  font-size: 0.6rem;
+  opacity: 0.4;
+}
+
+.user-diary figure {
+  grid-column: span 4;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.user-diary figure img {
+  width: 35px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #99aabb52;
+}
+
+.user-diary figure figcaption {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-left: 10px;
+}
+
+.user-diary figure figcaption a {
+  color: white;
+  text-decoration: none;
+}
+
+.user-diary figure figcaption a:hover {
+  color: #40bcf4;
+}
+
+.user-diary i {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.user-diary p {
+  position: relative;
+}
+
+.user-diary i.not-liked,
+.user-diary i.liked,
+.user-diary .review i,
+.user-diary .edit i,
+.user-diary .rewatch i {
+  max-width: 25px;
+  max-height: 25px;
+  left: 50%;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+}
+
+.user-diary i.not-liked {
+  background-image: url("../images/heart-gray-darkbg.png");
+}
+
+.user-diary i.liked {
+  background-image: url("../images/heart-yellow-darkbg.png");
+}
+
+.user-diary .review a {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.user-diary .review a:hover span {
+  opacity: 1;
+}
+
+.user-diary .review span {
+  position: absolute;
+  font-size: 0.7rem;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  -webkit-transform: translate(-50%);
+          transform: translate(-50%);
+  top: -10px;
+  opacity: 0;
+  background-color: #445566;
+  padding: 0.2em 0.5em;
+  border-radius: 4px;
+}
+
+.user-diary .review i {
+  background-image: url("../images/review.png");
+}
+
+.user-diary .edit i {
+  background-image: url("../images/edit.png");
+  cursor: pointer;
+}
+
+.user-diary .rewatch i {
+  background-image: url("../images/rewatch.png");
 }
 
 .poster-stack {

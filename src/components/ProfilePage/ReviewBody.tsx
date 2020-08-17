@@ -12,6 +12,7 @@ interface props {
 }
 
 const ReviewBody: React.FC<props> = ({ review, link }) => {
+    const watched_on = review.watched_on ? moment(review.watched_on).format('MMM DD[,] YYYY') : '';
     return (
         <div>
             <h2>
@@ -19,10 +20,12 @@ const ReviewBody: React.FC<props> = ({ review, link }) => {
                     {review.movie.title} <span>{review.movie.year}</span>
                 </Link>
             </h2>
-            <p className="date">
-                <i className="stars" data-rating={`${review.rating}`}></i> Watched{' '}
-                {moment(review.created_at).format('MMM DD[,] YYYY')}
-            </p>
+            {(review.rating || watched_on) && (
+                <p className="date">
+                    <i className="stars" data-rating={`${review.rating}`}></i>{' '}
+                    {watched_on && `Watched ${watched_on}`}
+                </p>
+            )}
             <p className="content" dangerouslySetInnerHTML={{ __html: review.content }}></p>
             <div>{review.likes === 1 ? '1 like' : `${review.likes} likes`}</div>
         </div>

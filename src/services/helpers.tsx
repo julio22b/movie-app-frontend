@@ -14,3 +14,7 @@ export const notify = (notification: Notif, dispatch: Dispatch<any>) => {
         dispatch(hideNotification());
     }, 5000);
 };
+
+export const titleToUrl = (title: string) => {
+    return title.toLocaleLowerCase().replace(/ /g, '-');
+};

@@ -28,16 +28,15 @@ const NewReview = () => {
                     movie._id!,
                     loggedUser._id!,
                 );
-
+                dispatch(fetchLatestReviews());
+                dispatch(removeMovieForReview());
+                dispatch(changeModalState());
                 history.push(
                     `/${loggedUser.username}/film/${movie.title.toLowerCase().replace(/ /g, '-')}`,
                     {
                         reviewID: savedReview._id,
                     },
                 );
-                dispatch(fetchLatestReviews());
-                dispatch(removeMovieForReview());
-                dispatch(changeModalState());
             } catch (e) {
                 console.log(e);
             }

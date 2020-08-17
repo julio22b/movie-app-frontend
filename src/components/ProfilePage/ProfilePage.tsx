@@ -47,8 +47,8 @@ const ProfilePage = () => {
                     </div>
                     <div className="right-col">
                         {user.bio && <Bio bio={user.bio} />}
-                        <WatchlistPeek watchlist={user.watch_list.slice(0, 5)} user={user} />
-                        <RecentLists recent_lists={user.lists.slice(0, 3)} user={user} />
+                        <WatchlistPeek watchlist={user.watch_list} user={user} />
+                        <RecentLists recent_lists={user.lists} user={user} />
                     </div>
                 </div>
             </section>

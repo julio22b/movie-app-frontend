@@ -15,7 +15,7 @@ const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
     return (
         <article className="recent-lists">
             <h4 className="h4-subtitle">
-                RECENT LISTS <span>{fixedLists.length}</span>
+                RECENT LISTS <span>{recent_lists.length}</span>
             </h4>
             {!fixedLists.length && (
                 <VoidMsg

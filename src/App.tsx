@@ -21,6 +21,7 @@ import UserLists from './components/ProfilePage/ListsPage/UserLists';
 import AddNewListPage from './components/ProfilePage/ListsPage/AddNewListPage';
 import PeoplePage from './components/Home/People/PeoplePage';
 import FilmsPage from './components/Home/Films/FilmsPage';
+import UserDiary from './components/ProfilePage/Diary/UserDiary';
 
 function App() {
     const dispatch = useDispatch();
@@ -72,6 +73,9 @@ function App() {
                     </Route>
                     <Route path="/:username/reviews" exact>
                         <UserReviews />
+                    </Route>
+                    <Route path="/:username/diary" exact>
+                        <UserDiary />
                     </Route>
                     <Route path="/:username/watchlist" exact>
                         <UserWatchList />
