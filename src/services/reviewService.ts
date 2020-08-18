@@ -13,8 +13,10 @@ const postReview = async (data: ReviewData, movieID: string, userID: string) => 
     return response.data;
 };
 
-const getReviewsByFriends = async (userID: string) => {
-    const response = await Axios.get(`${baseUrl}/${userID}/friends`, { headers: authHeader() });
+const getReviewsByFriends = async (userID: string, amount: number) => {
+    const response = await Axios.get(`${baseUrl}/${userID}/friends?amount=${amount}`, {
+        headers: authHeader(),
+    });
     return response.data;
 };
 

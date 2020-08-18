@@ -489,16 +489,13 @@ section.settings {
 
 .following div {
     margin-top: 2em;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    a {
-        margin: 0 15px 10px 0;
-        width: 8%;
-        .profile-picture {
-            width: 100%;
-            height: auto;
-        }
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 55px);
+    gap: 10px;
+    .profile-picture {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
     }
 }
 

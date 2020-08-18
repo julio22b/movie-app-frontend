@@ -72,6 +72,9 @@
         .selection {
             position: relative;
             flex: 1;
+            input {
+                margin: 0 !important;
+            }
             & > p {
                 position: absolute;
                 background-color: $gray-border;
@@ -142,7 +145,6 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        cursor: move;
         padding: 0.8em;
         border-bottom: 1px solid #99aabb3d;
         &:last-of-type {

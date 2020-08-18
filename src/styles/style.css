@@ -20,7 +20,7 @@ ul {
 }
 
 body {
-  background-color: #14181c;
+  background-color: #1a1d20;
   padding-bottom: 4em;
 }
 
@@ -1353,24 +1353,18 @@ section.settings .container .profile-form .image-wrapper img {
 
 .following div {
   margin-top: 2em;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (55px)[auto-fit];
+      grid-template-columns: repeat(auto-fit, 55px);
+  gap: 10px;
 }
 
-.following div a {
-  margin: 0 15px 10px 0;
-  width: 8%;
-}
-
-.following div a .profile-picture {
-  width: 100%;
-  height: auto;
+.following div .profile-picture {
+  width: 50px;
+  height: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .user-films,
@@ -1986,6 +1980,10 @@ section.settings .container .profile-form .image-wrapper img {
           flex: 1;
 }
 
+.actions-container .add-film .selection input {
+  margin: 0 !important;
+}
+
 .actions-container .add-film .selection > p {
   position: absolute;
   background-color: #445566;
@@ -2085,7 +2083,6 @@ section.settings .container .profile-form .image-wrapper img {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  cursor: move;
   padding: 0.8em;
   border-bottom: 1px solid #99aabb3d;
 }
@@ -2230,11 +2227,13 @@ header {
       -ms-flex-align: center;
           align-items: center;
   z-index: 5;
-  width: 80%;
+  width: 100%;
+  left: 0;
+  background-color: #14181c;
   position: absolute;
-  padding-top: 1em;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(20, 24, 28, 0.82)));
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(20, 24, 28, 0.82) 100%);
+  padding: 0.5em 0;
+  background-image: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0)), to(rgba(20, 24, 28, 0.82)));
+  background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(20, 24, 28, 0.82) 100%);
 }
 
 header .app-name {
@@ -3281,6 +3280,10 @@ figure.backdrop figcaption {
 
 .grid-container article figure img {
   margin-right: 20px;
+  width: 45px;
+  height: 45px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .grid-container article figure figcaption a {
@@ -3354,7 +3357,7 @@ figure.backdrop figcaption {
   margin: auto;
 }
 
-.friends-reviews div {
+.friends-reviews .reviews-container div {
   -webkit-box-flex: 0 !important;
       -ms-flex: none !important;
           flex: none !important;
@@ -3362,7 +3365,7 @@ figure.backdrop figcaption {
 
 .friends-reviews h2 {
   font-weight: normal;
-  color: #6e7c8a;
+  color: #8794a1;
   text-align: center;
   margin-bottom: 2em;
 }
@@ -3377,6 +3380,8 @@ figure.backdrop figcaption {
 
 .friends-reviews h4 {
   color: #99aabb;
+  opacity: 0.8;
+  font-weight: normal;
 }
 
 .friends-reviews .reviews-container {
@@ -3404,6 +3409,9 @@ figure.backdrop figcaption {
 
 .friends-reviews .movie-user-info img {
   width: 100%;
+  height: 230px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .friends-reviews .movie-user-info > span {
@@ -3494,11 +3502,84 @@ figure.backdrop figcaption {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  font-size: 0.7rem !important;
 }
 
 .friends-reviews .popular {
   margin: 3em 0 0 0;
   width: 100%;
+}
+
+.friends-reviews .popular p {
+  color: #99aabb;
+  opacity: 0.8;
+}
+
+.lists-friends {
+  margin-top: 4em;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  -webkit-column-gap: 30px;
+          column-gap: 30px;
+}
+
+.lists-friends h4 {
+  grid-column: span 3;
+}
+
+.lists-friends .wrapper img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  height: 100%;
+}
+
+.lists-friends .poster-stack {
+  margin-bottom: 5px;
+}
+
+.lists-friends article p:first-of-type a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.lists-friends article p:first-of-type a:hover {
+  color: white;
+}
+
+.lists-friends article p:last-of-type {
+  margin-top: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.lists-friends article p:last-of-type a {
+  text-decoration: none;
+  font-weight: bold;
+  color: #99aabb;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.lists-friends article p:last-of-type a:hover {
+  color: #d8e0e8;
+}
+
+.lists-friends article p:last-of-type img {
+  margin-right: 5px;
+  width: 25px;
+  height: 25px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .notification {

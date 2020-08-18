@@ -26,7 +26,7 @@ ul {
 }
 
 body {
-    background-color: $bg-black;
+    background-color: #1a1d20;
     padding-bottom: 4em;
 }
 
@@ -47,10 +47,12 @@ header {
     justify-content: space-evenly;
     align-items: center;
     z-index: 5;
-    width: 80%;
+    width: 100%;
+    left: 0;
+    background-color: $bg-black;
     position: absolute;
-    padding-top: 1em;
-    background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(20, 24, 28, 0.82) 100%);
+    padding: 0.5em 0;
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(20, 24, 28, 0.82) 100%);
     .app-name {
         font-size: 2.5rem;
         a {
@@ -824,6 +826,9 @@ figure.backdrop {
             display: flex;
             img {
                 margin-right: 20px;
+                width: 45px;
+                height: 45px;
+                object-fit: cover;
             }
             figcaption {
                 a {
@@ -886,12 +891,12 @@ figure.backdrop {
     padding-top: 10em;
     width: 90%;
     margin: auto;
-    div {
+    .reviews-container div {
         flex: none !important;
     }
     h2 {
         font-weight: normal;
-        color: #6e7c8a;
+        color: #8794a1;
         text-align: center;
         margin-bottom: 2em;
         a {
@@ -903,6 +908,8 @@ figure.backdrop {
     }
     h4 {
         color: $gray-text-secondary;
+        opacity: 0.8;
+        font-weight: normal;
     }
     .reviews-container {
         width: 100%;
@@ -919,6 +926,8 @@ figure.backdrop {
         position: relative;
         img {
             width: 100%;
+            height: 230px;
+            object-fit: cover;
         }
         & > span {
             position: absolute;
@@ -942,7 +951,6 @@ figure.backdrop {
                 object-fit: cover;
                 border-radius: 50%;
                 border: 1px solid rgba(255, 255, 255, 0.377);
-
                 margin: 3px;
             }
             span {
@@ -982,6 +990,7 @@ figure.backdrop {
         }
         .date {
             width: max-content;
+            font-size: 0.7rem !important;
         }
     }
 }
@@ -989,6 +998,57 @@ figure.backdrop {
 .friends-reviews .popular {
     margin: 3em 0 0 0;
     width: 100%;
+    p {
+        color: $gray-text-secondary;
+        opacity: 0.8;
+    }
+}
+
+.lists-friends {
+    margin-top: 4em;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 30px;
+    h4 {
+        grid-column: span 3;
+    }
+    .wrapper img {
+        object-fit: cover;
+        height: 100%;
+    }
+    .poster-stack {
+        margin-bottom: 5px;
+    }
+    article {
+        p:first-of-type a {
+            font-weight: bold;
+            text-decoration: none;
+            &:hover {
+                color: white;
+            }
+        }
+        p:last-of-type {
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            a {
+                text-decoration: none;
+                font-weight: bold;
+                color: $gray-text-secondary;
+                display: flex;
+                align-items: center;
+                &:hover {
+                    color: $gray-text;
+                }
+            }
+            img {
+                margin-right: 5px;
+                width: 25px;
+                height: 25px;
+                object-fit: cover;
+            }
+        }
+    }
 }
 
 .notification {
