@@ -304,6 +304,13 @@ body {
   opacity: 0.8;
 }
 
+.reviews .review .profile-picture {
+  height: 50px;
+  width: 50px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .like-review-btn {
   background-color: transparent !important;
   display: -webkit-box;
@@ -465,6 +472,9 @@ i[data-rating='0'] {
 
 .review-page > div .user-info .profile-picture {
   width: 30px;
+  height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .review-page > div .user-info a {
@@ -581,7 +591,10 @@ i[data-rating='0'] {
 }
 
 .comments .comment .profile-picture {
-  width: 30px;
+  width: 35px;
+  height: 35px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .comments .comment div {
@@ -2372,6 +2385,68 @@ header .has-dropdown .sign-out {
   padding: 0.5em 0.8em;
 }
 
+header .magnifier {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-width: 40px;
+}
+
+header .magnifier button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0;
+}
+
+header .magnifier img {
+  width: 20px;
+  height: 20px;
+  -webkit-filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(195deg) brightness(104%) contrast(101%);
+          filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(195deg) brightness(104%) contrast(101%);
+  opacity: 0.8;
+}
+
+header .magnifier img:hover {
+  opacity: 1;
+}
+
+header .log {
+  position: relative;
+}
+
+header .log button.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+
+header .search {
+  position: absolute;
+  right: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  border-radius: 20px;
+  border: none;
+  padding: 0.3em 0.6em;
+  color: #14181c;
+  -webkit-transition: width 500ms ease;
+  transition: width 500ms ease;
+  pointer-events: none;
+}
+
+header .search.open {
+  width: 200%;
+  opacity: 1;
+  pointer-events: all;
+}
+
 .most-popular {
   position: relative;
   display: -webkit-box;
@@ -3271,6 +3346,159 @@ figure.backdrop figcaption {
   width: 15px;
   height: 15px;
   background-image: url("../images/transparent-liked.png");
+}
+
+.friends-reviews {
+  padding-top: 10em;
+  width: 90%;
+  margin: auto;
+}
+
+.friends-reviews div {
+  -webkit-box-flex: 0 !important;
+      -ms-flex: none !important;
+          flex: none !important;
+}
+
+.friends-reviews h2 {
+  font-weight: normal;
+  color: #6e7c8a;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.friends-reviews h2 a {
+  opacity: 1;
+}
+
+.friends-reviews h2 a:hover {
+  color: white;
+}
+
+.friends-reviews h4 {
+  color: #99aabb;
+}
+
+.friends-reviews .reviews-container {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -webkit-column-gap: 20px;
+          column-gap: 20px;
+  -ms-grid-columns: (1fr)[6];
+      grid-template-columns: repeat(6, 1fr);
+}
+
+.friends-reviews .review {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  padding: 0;
+  border: none;
+}
+
+.friends-reviews .movie-user-info {
+  position: relative;
+}
+
+.friends-reviews .movie-user-info img {
+  width: 100%;
+}
+
+.friends-reviews .movie-user-info > span {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: #445566;
+  border: 1px solid #717f8e;
+  border-top: none;
+}
+
+.friends-reviews .movie-user-info > span a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.friends-reviews .movie-user-info > span img {
+  width: 20px;
+  height: 20px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.377);
+  margin: 3px;
+}
+
+.friends-reviews .movie-user-info > span span {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.friends-reviews .meta {
+  margin-top: 2px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.friends-reviews .meta > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.friends-reviews .meta i {
+  display: inline-block;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 0;
+}
+
+.friends-reviews .meta i.review-icon {
+  background-image: url("../images/review.png");
+  width: 18px;
+  height: 18px;
+  margin: 0 3px;
+}
+
+.friends-reviews .meta i.liked {
+  background-image: url("../images/heart-yellow-darkbg.png");
+  width: 18px;
+  height: 18px;
+  margin: 0 3px;
+}
+
+.friends-reviews .meta .date {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+}
+
+.friends-reviews .popular {
+  margin: 3em 0 0 0;
+  width: 100%;
 }
 
 .notification {

@@ -41,7 +41,7 @@ const ProfilePage = () => {
                 <Navigation />
                 <div className="container">
                     <div className="left-col">
-                        <Favorites favorites={user.favorites} user={user} />
+                        <Favorites favorites={user.favorites} />
                         <RecentReviews user={user} loggedUserID={loggedUser?._id} />
                         <Following user={user} loggedUser={loggedUser?._id} />
                     </div>

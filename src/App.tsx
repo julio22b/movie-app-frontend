@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavBar } from './components/Header/NavBar';
 import './styles/style.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { saveUserInfo } from './features/user/userSlice';
 import userService from './services/userService';
 import PopularMovies from './components/Home/PopularMovies';
@@ -22,9 +22,11 @@ import AddNewListPage from './components/ProfilePage/ListsPage/AddNewListPage';
 import PeoplePage from './components/Home/People/PeoplePage';
 import FilmsPage from './components/Home/Films/FilmsPage';
 import UserDiary from './components/ProfilePage/Diary/UserDiary';
+import { RootState } from './app/store';
 
 function App() {
     const dispatch = useDispatch();
+    const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('filmlyCurrentUser')!);
         const userInfo = async () => {
@@ -44,11 +46,15 @@ function App() {
                 <FindMovieModal />
                 <Switch>
                     <Route path="/" exact>
-                        <section>
-                            <MostPopular />
-                            <PopularMovies />
-                            <JustReviewed />
-                        </section>
+                        {loggedUser ? (
+                            <FilmsPage />
+                        ) : (
+                            <section>
+                                <MostPopular />
+                                <PopularMovies />
+                                <JustReviewed />
+                            </section>
+                        )}
                     </Route>
                     <Route path="/film/:title" exact>
                         <FilmPage />
@@ -58,9 +64,6 @@ function App() {
                     </Route>
                     <Route path="/settings" exact>
                         <SettingsPage />
-                    </Route>
-                    <Route path="/films" exact>
-                        <FilmsPage />
                     </Route>
                     <Route path="/people" exact>
                         <PeoplePage />

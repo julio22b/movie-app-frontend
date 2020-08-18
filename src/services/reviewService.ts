@@ -13,6 +13,11 @@ const postReview = async (data: ReviewData, movieID: string, userID: string) => 
     return response.data;
 };
 
+const getReviewsByFriends = async (userID: string) => {
+    const response = await Axios.get(`${baseUrl}/${userID}/friends`, { headers: authHeader() });
+    return response.data;
+};
+
 const likeReview = async (userID: string, reviewID: string) => {
     const response = await Axios.put(`${baseUrl}/${userID}/like/${reviewID}`, null, {
         headers: authHeader(),
@@ -39,4 +44,5 @@ export default {
     likeReview,
     getReview,
     postComment,
+    getReviewsByFriends,
 };

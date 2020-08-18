@@ -182,6 +182,11 @@
                 opacity: 0.8;
             }
         }
+        .profile-picture {
+            height: 50px;
+            width: 50px;
+            object-fit: cover;
+        }
     }
 }
 

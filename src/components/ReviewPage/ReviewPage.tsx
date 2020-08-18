@@ -77,10 +77,11 @@ const ReviewPage = () => {
                         </div>
 
                         <MovieTitle review={review} />
-
-                        <p className="date-watched">
-                            Watched {moment(review.created_at).format('MMM DD[,] YYYY')}
-                        </p>
+                        {review.watched_on && (
+                            <p className="date-watched">
+                                Watched {moment(review.watched_on).format('MMM DD[,] YYYY')}
+                            </p>
+                        )}
                         <p
                             className="content"
                             dangerouslySetInnerHTML={{ __html: review.content }}
