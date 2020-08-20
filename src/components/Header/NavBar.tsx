@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeSignInFormStatus, changeSignUpFormStatus } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
@@ -8,24 +8,26 @@ import { Link } from 'react-router-dom';
 import UserDropDown from './UserDropDown';
 import ProfilePicture from '../_helpers/ProfilePicture';
 import CreateAccForm from './CreateAccForm';
-import magnifier from '../../images/magnifier.svg';
 
-export const NavBar = () => {
-    const [openSearch, setOpenSearch] = useState(false);
+export const NavBar: React.FC<{ handleRef: (ref: any) => void }> = ({ handleRef }) => {
     const { user } = useSelector((state: RootState) => state.userAuth);
+    const dispatch = useDispatch();
     const { sign_in_form, sign_up_form } = useSelector(
         (state: RootState) => state.userAuth.form_status,
     );
-    const dispatch = useDispatch();
-    const searchRef = useRef<HTMLInputElement>(null);
-
+    const [openSearch, setOpenSearch] = useState(false);
+    /* const searchRef = useRef<HTMLInputElement>(null);
     const search = () => {
         setOpenSearch(!openSearch);
         if (openSearch && searchRef.current) searchRef.current.focus();
-    };
+    }; */
+    const ref = useRef<HTMLElement>(null);
+    useEffect(() => {
+        handleRef(ref);
+    }, []);
 
     return (
-        <header>
+        <header id="header" ref={ref}>
             <p className="app-name">
                 <Link to={'/'}>Filmly</Link>
             </p>
@@ -65,11 +67,11 @@ export const NavBar = () => {
                 <li>
                     <Link to={`/people`}>PEOPLE</Link>
                 </li>
-                <li className="magnifier" onClick={search}>
+                {/*    <li className="magnifier" onClick={search}>
                     <button type="button">
                         {openSearch ? 'X' : <img src={magnifier} alt="" />}
                     </button>
-                </li>
+                </li> */}
                 <li className="log">
                     {user && (
                         <button
@@ -79,11 +81,11 @@ export const NavBar = () => {
                             + LOG
                         </button>
                     )}
-                    <input
+                    {/*    <input
                         type="search"
                         className={openSearch ? 'search open' : 'search'}
                         ref={searchRef}
-                    />
+                    /> */}
                 </li>
             </ul>
         </header>

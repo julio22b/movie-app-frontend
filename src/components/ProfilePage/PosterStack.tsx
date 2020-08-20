@@ -25,14 +25,22 @@ const PosterStack: React.FC<props> = ({ user, watchlist, custom_list }) => {
     } else if (custom_list) {
         const listTitle = custom_list.title.toLocaleLowerCase().replace(/ /g, '-');
         const fixedMovies: Array<null | MovieInstance> = [null, null, null, null, null];
-        fixedMovies.splice(0, custom_list.movies.length, ...custom_list.movies.slice(0,5));
+        fixedMovies.splice(0, custom_list.movies.length, ...custom_list.movies.slice(0, 5));
 
         const fixedList: MovieList = {
             ...custom_list,
             movies: fixedMovies as MovieInstance[],
         };
         return (
-            <Link to={`/${user.username}/lists/${listTitle}`}>
+            <Link
+                to={{
+                    pathname: `/${user.username}/lists/${listTitle}`,
+                    state: {
+                        userID: user._id,
+                        list: custom_list,
+                    },
+                }}
+            >
                 <div className="poster-stack">
                     {fixedList.movies.map((m, index) =>
                         m ? (

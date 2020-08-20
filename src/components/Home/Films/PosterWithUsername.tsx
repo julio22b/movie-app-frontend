@@ -18,15 +18,16 @@ const PosterWithUsername: React.FC<props> = ({ review }) => {
     };
     return (
         <div className="review">
-            <Link to={{ pathname, state }}>
-                <div className="movie-user-info">
+            <div className="movie-user-info">
+                <Link to={{ pathname, state }}>
                     <Poster url={review.movie.poster} title={review.movie.title} tmdb={false} />
-                    <span>
-                        <ProfilePicture user={review.user} />
-                        <span>{review.user.username}</span>
-                    </span>
-                </div>
-            </Link>
+                </Link>
+                <span>
+                    <ProfilePicture user={review.user} />
+                    <span>{review.user.username}</span>
+                </span>
+            </div>
+
             <div className="meta">
                 <div>
                     {review.rating ? <i className="stars" data-rating={review.rating}></i> : ''}

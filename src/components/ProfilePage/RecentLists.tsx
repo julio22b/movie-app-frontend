@@ -12,37 +12,46 @@ const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
 }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const fixedLists = recent_lists.slice(0, 3).reverse();
-    return (
-        <article className="recent-lists">
-            <h4 className="h4-subtitle">
-                RECENT LISTS <span>{recent_lists.length}</span>
-            </h4>
-            {!fixedLists.length && (
-                <VoidMsg
-                    userID={user._id}
-                    loggedUserID={loggedUser?._id}
-                    username={user.username}
-                    text={'any lists'}
-                />
-            )}
-            {fixedLists.length
-                ? fixedLists.map((list) => (
-                      <div key={list._id}>
-                          <PosterStack user={user} watchlist={null} custom_list={list} />
-                          <Link
-                              to={`/${
-                                  loggedUser?.username
-                              }/lists/${list.title.toLocaleLowerCase().replace(/ /g, '-')}`}
-                          >
-                              <h2>
-                                  {list.title} <span>{list.movies.length} films</span>
-                              </h2>
-                          </Link>
-                      </div>
-                  ))
-                : ''}
-        </article>
-    );
+    if (user) {
+        return (
+            <article className="recent-lists">
+                <h4 className="h4-subtitle">
+                    RECENT LISTS <span>{recent_lists.length}</span>
+                </h4>
+                {!fixedLists.length && (
+                    <VoidMsg
+                        userID={user._id}
+                        loggedUserID={loggedUser?._id}
+                        username={user.username}
+                        text={'any lists'}
+                    />
+                )}
+                {fixedLists.length
+                    ? fixedLists.map((list) => (
+                          <div key={list._id}>
+                              <PosterStack user={user} watchlist={null} custom_list={list} />
+                              <Link
+                                  to={{
+                                      pathname: `/${
+                                          loggedUser?.username
+                                      }/lists/${list.title.toLocaleLowerCase().replace(/ /g, '-')}`,
+                                      state: {
+                                          userID: list.user._id,
+                                          list,
+                                      },
+                                  }}
+                              >
+                                  <h2>
+                                      {list.title} <span>{list.movies.length} films</span>
+                                  </h2>
+                              </Link>
+                          </div>
+                      ))
+                    : ''}
+            </article>
+        );
+    }
+    return null;
 };
 
 export default RecentLists;

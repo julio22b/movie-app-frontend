@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import Poster from './Poster';
 import { changeSignUpFormStatus } from '../../features/user/userSlice';
 
-const MostPopular = () => {
+const MostPopular: React.FC<{ headerRef: any }> = ({ headerRef }) => {
     const { sign_up_form } = useSelector((state: RootState) => state.userAuth.form_status);
     const dispatch = useDispatch();
     const [mostPopular] = useSelector((state: RootState) => state.popularMovies.topSix);
+
+    useLayoutEffect(() => {
+        document.querySelector('body')?.classList.add('darkest');
+        let current: any;
+        if (headerRef) {
+            current = headerRef.current;
+            current.classList.add('transparent');
+        }
+        return () => {
+            if (current) current.classList.remove('transparent');
+        };
+    }, [headerRef]);
+
     if (!mostPopular) {
         return null;
     }

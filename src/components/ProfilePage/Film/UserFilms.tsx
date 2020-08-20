@@ -14,7 +14,7 @@ const UserFilms = () => {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getProfilePage(state.userID));
-    }, [dispatch, user, state.userID]);
+    }, [dispatch, state.userID]);
     if (user) {
         return (
             <section className="user-films">

@@ -12,7 +12,6 @@ import moment from 'moment';
 const UserDiary = () => {
     const { state } = useLocation<LocationState>();
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
-    const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -37,7 +36,6 @@ const UserDiary = () => {
                     <p>LIKE</p>
                     <p>REWATCH</p>
                     <p>REVIEW</p>
-                    <p>EDIT?</p>
                 </article>
                 {reviewsByDate.map(
                     (review) =>
@@ -78,9 +76,9 @@ const UserDiary = () => {
                                         ''
                                     )}
                                 </p>
-                                <p className="edit">
+                                {/*  <p className="edit">
                                     <i></i>
-                                </p>
+                                </p> */}
                             </article>
                         ),
                 )}

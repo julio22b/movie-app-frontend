@@ -16,7 +16,7 @@ import { fetchMovieForPage } from '../../features/movies/popularMoviesSlice';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import MovieTitle from './MovieTitle';
-import { titleToUrl } from '../../services/helpers';
+import { titleToUrl, checkStatus } from '../../services/helpers';
 
 interface LocationState {
     reviewID: string;
@@ -33,14 +33,14 @@ const ReviewPage = () => {
 
     useEffect(() => {
         const fetchReview = async () => {
-            const review = (await reviewService.getReview(state.reviewID)) as Review;
-            setReview(review);
-            setComments(review.comments);
-            setIsLiked(loggedUser?.liked_reviews.some((r) => r === review?._id));
+            const fetchedReview = (await reviewService.getReview(state.reviewID)) as Review;
+            setReview(fetchedReview);
+            setComments(fetchedReview.comments);
+            setIsLiked(loggedUser?.liked_reviews.some((r) => r === fetchedReview._id));
         };
         if (!review) fetchReview();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.reviewID, loggedUser]);
+    }, [state.reviewID]);
 
     useEffect(() => {
         if (review) dispatch(fetchMovieForPage(review.movie));
@@ -90,7 +90,7 @@ const ReviewPage = () => {
                             <LikeReviewBtn
                                 likeReview={likeReview}
                                 isLiked={isLiked}
-                                likes={review.likes as number}
+                                likes={review.likes}
                             />
                         )}
                     </article>

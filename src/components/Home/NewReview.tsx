@@ -42,9 +42,19 @@ const NewReview = () => {
                         reviewID: savedReview._id,
                     },
                 );
+                history.go(0);
             } catch (e) {
                 console.log(e);
             }
+        }
+    };
+
+    const openDatePicker = () => {
+        setSpecifyDate(!specifyDate);
+        if (watched_on) {
+            setWatchedOn('');
+        } else if (!watched_on) {
+            setWatchedOn(new Date().toLocaleDateString('en-CA'));
         }
     };
 
@@ -71,15 +81,12 @@ const NewReview = () => {
                                 <label htmlFor="add_date">
                                     {specifyDate ? 'on' : 'Specify the date you watched it'}
                                 </label>
-                                <input
-                                    type="checkbox"
-                                    name="add_date"
-                                    onChange={() => setSpecifyDate(!specifyDate)}
-                                />
+                                <input type="checkbox" name="add_date" onChange={openDatePicker} />
                                 {specifyDate && (
                                     <input
                                         type="date"
                                         onChange={(e) => setWatchedOn(e.target.value)}
+                                        value={watched_on}
                                         required
                                     />
                                 )}

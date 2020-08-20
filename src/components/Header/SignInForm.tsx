@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useLayoutEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogIn, changeSignInFormStatus } from '../../features/user/userSlice';
 import { RootState } from '../../app/store';
@@ -9,11 +9,19 @@ const SignInForm = () => {
     const { sign_in_form } = useSelector((state: RootState) => state.userAuth.form_status);
     const { error } = useSelector((state: RootState) => state.userAuth);
     const dispatch = useDispatch();
+    const inputRef = useRef<HTMLInputElement>(null);
 
     const logIn = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         dispatch(userLogIn({ username, password }));
     };
+
+    useLayoutEffect(() => {
+        if (sign_in_form && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [sign_in_form]);
+
     return (
         <form
             onSubmit={(e) => logIn(e)}
@@ -36,6 +44,7 @@ const SignInForm = () => {
                         onChange={(e) => setUsername(e.target.value)}
                         maxLength={25}
                         minLength={3}
+                        ref={inputRef}
                     />
                 </div>
                 <div>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { NavBar } from './components/Header/NavBar';
 import './styles/style.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,41 +23,52 @@ import PeoplePage from './components/Home/People/PeoplePage';
 import FilmsPage from './components/Home/Films/FilmsPage';
 import UserDiary from './components/ProfilePage/Diary/UserDiary';
 import { RootState } from './app/store';
+import ListPage from './components/ProfilePage/DisplayList/ListPage';
 
 function App() {
     const dispatch = useDispatch();
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
+    const [loading, setLoading] = useState(true);
+    const [headerRef, setHeaderRef] = useState<any>(null);
+
     useEffect(() => {
         const user = JSON.parse(localStorage.getItem('filmlyCurrentUser')!);
         const userInfo = async () => {
             const data = await userService.getUserInfo(user.id);
             dispatch(saveUserInfo(data));
+            setLoading(false);
         };
         if (user) {
             userInfo();
         }
+        if(!user){
+            setLoading(false)
+        }
     }, [dispatch]);
+
+    const handleRef = (ref: any) => {
+        setHeaderRef(ref);
+    };
 
     return (
         <>
             <Notification />
             <Router>
-                <NavBar />
+                {!loading && <NavBar handleRef={handleRef} />}
                 <FindMovieModal />
                 <Switch>
                     <Route path="/" exact>
-                        {loggedUser ? (
-                            <FilmsPage />
-                        ) : (
+                        {loggedUser && !loading && <FilmsPage />}
+                        {!loggedUser && !loading && (
                             <section>
-                                <MostPopular />
+                                <MostPopular headerRef={headerRef}/>
                                 <PopularMovies />
                                 <JustReviewed />
                             </section>
                         )}
                     </Route>
                     <Route path="/film/:title" exact>
-                        <FilmPage />
+                        <FilmPage headerRef={headerRef} />
                     </Route>
                     <Route path="/:username/film/:title" exact>
                         <ReviewPage />
@@ -85,6 +96,9 @@ function App() {
                     </Route>
                     <Route path="/:username/lists" exact>
                         <UserLists />
+                    </Route>
+                    <Route path="/:username/lists/:listName" exact>
+                        <ListPage />
                     </Route>
                     <Route path="/list/new" exact>
                         <AddNewListPage />

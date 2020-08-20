@@ -28,6 +28,11 @@ ul {
 body {
     background-color: #1a1d20;
     padding-bottom: 4em;
+    overflow-x: hidden;
+}
+
+body.darkest {
+    background-color: $bg-black;
 }
 
 #root {
@@ -41,6 +46,10 @@ body {
 @import './partials/lists-page';
 
 // HEADER
+
+#header.transparent {
+    background-color: transparent;
+}
 
 header {
     display: flex;
@@ -424,16 +433,20 @@ figure.backdrop {
 }
 
 .popular {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(130px, 200px));
+    grid-gap: 30px;
+    justify-content: center;
     width: 90%;
     margin: 0 auto;
-    flex-wrap: wrap;
     img {
         width: 150px;
         border: 1px solid $gray-border;
         cursor: pointer;
         border-radius: 4px;
+    }
+    p {
+        grid-column: 1/-1;
     }
 }
 
@@ -448,7 +461,7 @@ figure.backdrop {
 }
 
 .latest-reviews {
-    padding: 2em 0;
+    padding: 2em 0 2em 0;
     width: 90%;
     margin: 0 auto;
     article {
@@ -838,6 +851,7 @@ figure.backdrop {
                     font-size: 1.2rem;
                     font-weight: bold;
                     color: white;
+                    word-break: break-word;
                     &:hover {
                         color: $blue;
                     }
@@ -967,6 +981,7 @@ figure.backdrop {
         & > div {
             display: flex;
             align-items: center;
+            opacity: 1 !important;
         }
         i {
             display: inline-block;
@@ -1132,6 +1147,7 @@ figure.backdrop {
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    z-index: 1000;
 }
 
 .blanket {
@@ -1143,4 +1159,102 @@ figure.backdrop {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 1200px) {
+    #root {
+        width: 90%;
+    }
+    .most-popular {
+        .taglines p {
+            font-size: 2rem;
+        }
+        .backdrop {
+            min-height: 50vh;
+        }
+    }
+    .popular {
+        margin: 0;
+        width: 100%;
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+    .latest-reviews {
+        margin: 0;
+        width: 100%;
+        article {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 10px;
+            a {
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 992px) {
+    #root {
+        width: 100%;
+    }
+    .most-popular {
+        .taglines p {
+            font-size: 1.6rem;
+        }
+        .backdrop {
+            img {
+                min-height: 60vh;
+                object-fit: cover;
+            }
+            figcaption {
+                font-size: 0.7rem;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .green-btn {
+        font-size: 0.8rem;
+    }
+    .most-popular {
+        .taglines p {
+            font-size: 1.4rem;
+        }
+    }
+    .popular {
+        img {
+            width: 120px;
+        }
+    }
+    .people {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .most-popular {
+        .taglines p {
+            font-size: 1.2rem;
+        }
+    }
+    .popular {
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        img {
+            width: 110px;
+        }
+    }
+    .create-acc {
+        margin: 0 10px;
+    }
+    .people {
+        width: 95%;
+        article {
+            .username {
+                font-size: 1rem !important;
+            }
+            div {
+                font-size: 0.75rem;
+            }
+        }
+    }
 }

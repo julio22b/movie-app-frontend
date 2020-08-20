@@ -29,7 +29,7 @@ const UsernameHeader: React.FC<UsernameHeaderProps> = ({
         >
             <h4 className="user">
                 <span>Review by</span> {user.username}{' '}
-                {rating && <i className="stars" data-rating={`${rating}`}></i>}
+                {rating ? <i className="stars" data-rating={`${rating}`}></i> : ''}
                 {comments && (
                     <>
                         <i className="comments-number"></i>

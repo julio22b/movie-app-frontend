@@ -154,6 +154,9 @@
         margin: 1em 0 0 0;
         padding-bottom: 2em;
         border-bottom: 1px solid #445566;
+        &:last-of-type {
+            border-bottom: none;
+        }
         a {
             text-decoration: none;
             &:hover {
@@ -445,6 +448,12 @@ section.settings {
     border: 1px solid #99aabb11;
     display: flex;
     justify-content: center;
+    overflow-x: scroll;
+    scrollbar-width: none;
+    &::-webkit-scrollbar {
+        width: 0px;
+        background: transparent;
+    }
     &:hover {
         background: #303c48;
         ul li a.active {
@@ -509,6 +518,13 @@ section.settings {
     padding-top: 10em;
     width: 80%;
     margin: 0 auto;
+    @media screen and (max-width: 992px) {
+        width: 90%;
+        padding-top: 7em;
+    }
+    @media screen and (max-width: 768px) {
+        width: 95%;
+    }
     .wrap-user-nav {
         display: flex;
         justify-content: center;
@@ -538,6 +554,7 @@ section.settings {
         .profile-nav {
             margin: 1px 0;
             border: none;
+
             &:hover {
                 background-color: #303c48;
             }
@@ -634,6 +651,89 @@ section.settings {
         img {
             object-fit: cover;
             height: 120px;
+        }
+    }
+}
+
+.display-list {
+    padding-top: 10em;
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    section {
+        width: 70%;
+    }
+    h4 {
+        display: flex;
+        align-items: center;
+        font-weight: normal;
+        opacity: 1;
+        font-size: 0.8rem;
+        img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        a {
+            text-decoration: none;
+            font-weight: bold;
+            margin-left: 5px;
+            font-size: 1rem;
+        }
+    }
+    h2 {
+        margin: 1em 0;
+    }
+    .posters-container {
+        grid-template-columns: repeat(6, minmax(80px, 1fr));
+        img {
+            width: 100%;
+            border-radius: 4px;
+            border: 1px solid #c6cdd450;
+        }
+    }
+    .description {
+        margin-bottom: 2em;
+    }
+    .percentage {
+        border: 1px solid #c6cdd421;
+        padding: 1em;
+        position: relative;
+        width: 15%;
+        min-width: 230px;
+        .blue-bar,
+        .grey-bar {
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+        .grey-bar {
+            background-color: $gray-border;
+        }
+        .blue-bar {
+            background-color: $blue;
+            z-index: 10;
+        }
+        & > div:first-child {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            p {
+                color: $gray-text-secondary;
+            }
+            p:first-child {
+                width: min-content;
+            }
+            span {
+                font-size: 1.7rem;
+                color: $gray-text-secondary;
+            }
         }
     }
 }
@@ -849,5 +949,134 @@ section.settings {
     .wrapper-#{$i},
     .placeholder-#{$i} {
         z-index: calc(1 - #{$i});
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .profile-page {
+        width: 90%;
+        padding-top: 7em;
+    }
+}
+@media screen and (max-width: 768px) {
+    .profile-page {
+        width: 95%;
+        .user-info {
+            flex-direction: column;
+            .stats {
+                margin: 0 auto;
+            }
+            .username {
+                margin: 1em 0;
+            }
+        }
+        .container {
+            flex-direction: column;
+            .left-col,
+            .right-col {
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+        .bio,
+        .following {
+            margin-top: 2em;
+        }
+        .watchlist-peek {
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            .poster-stack {
+                margin: 0;
+                height: auto;
+                img {
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+            h4 {
+                width: 100%;
+            }
+            a {
+                max-width: 500px;
+                display: inline-block;
+                margin: 3em auto;
+            }
+        }
+        .recent-lists {
+            h4 {
+                margin-bottom: 2em;
+            }
+            .poster-stack,
+            h2 {
+                max-width: 500px;
+                margin: 0 auto;
+                .wrapper {
+                    width: auto;
+                }
+                .placeholder {
+                    display: none;
+                }
+            }
+        }
+    }
+    .user-diary {
+        article {
+            grid-template-columns: repeat(9, 1fr);
+            p:nth-child(4),
+            .rewatch {
+                display: none;
+            }
+            img {
+                width: 30px;
+            }
+            figcaption {
+                font-size: 1rem;
+            }
+            p.day,
+            p.month span:first-of-type {
+                font-size: 0.9rem !important;
+            }
+        }
+        article:first-of-type {
+            p {
+                font-size: 0.6rem;
+            }
+            p:last-child {
+                display: none;
+            }
+        }
+    }
+    .reviews-container {
+        width: 95%;
+    }
+    .watchlist-posters-container {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    }
+}
+@media screen and (max-width: 576px) {
+    .profile-page .watchlist-peek {
+        a {
+            margin: 2em auto;
+        }
+    }
+    .user-films .posters-container {
+        justify-content: center;
+    }
+    .wrap-user-nav > div {
+        margin-right: 15px !important;
+        img {
+            margin-left: 5px;
+        }
+        span {
+            margin-left: 10px !important;
+        }
+    }
+    .list {
+        flex-direction: column;
+        justify-content: center;
+        & > div {
+            margin: 0 !important;
+        }
     }
 }

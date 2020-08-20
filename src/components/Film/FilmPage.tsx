@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import {
@@ -19,7 +19,11 @@ interface LocationState {
     year: string;
 }
 
-const FilmPage = () => {
+interface props {
+    headerRef: any;
+}
+
+const FilmPage: React.FC<props> = ({ headerRef }) => {
     const dispatch = useDispatch();
     const user = useSelector((state: RootState) => state.userAuth.user);
     const { error, loading, movie, backdrop } = useSelector(
@@ -28,7 +32,6 @@ const FilmPage = () => {
     const params = useParams<{ title: string }>();
     const { state } = useLocation<LocationState>();
     useEffect(() => {
-        dispatch(removeMovieForPage());
         const getMovie = async () => {
             const movie = await movieService.useOMDB(params.title, state.year);
             if (movie) {
@@ -38,10 +41,26 @@ const FilmPage = () => {
             }
         };
         getMovie();
-    }, [dispatch, params.title, state.year]);
+        let current: any;
+        if (headerRef) {
+            current = headerRef.current;
+            current.classList.add('transparent');
+        }
+        return () => {
+            dispatch(removeMovieForPage());
+            if (current) current.classList.remove('transparent');
+        };
+    }, [dispatch, params.title, state.year, headerRef]);
+
+    useLayoutEffect(() => {
+        document.querySelector('body')?.classList.add('darkest');
+        return () => {
+            document.querySelector('body')?.classList.remove('darkest');
+        };
+    }, []);
 
     if (loading) {
-        return <p>Loading...</p>;
+        return null;
     } else if (error) {
         return <p>The gremlins took that page</p>;
     } else if (movie) {
@@ -61,15 +80,17 @@ const FilmPage = () => {
                         {user && <FilmActions />}
                         <section className="reviews">
                             <h4>RECENT REVIEWS</h4>
-                            {movie.reviews.length
-                                ? movie.reviews.map((review) => (
-                                      <FilmReview
-                                          movieTitle={movie.title}
-                                          key={review._id}
-                                          {...review}
-                                      />
-                                  ))
-                                : 'This film has no reviews yet.'}
+                            {movie.reviews.length ? (
+                                movie.reviews.map((review) => (
+                                    <FilmReview
+                                        movieTitle={movie.title}
+                                        key={review._id}
+                                        {...review}
+                                    />
+                                ))
+                            ) : (
+                                <p>This film doesn't have any reviews.</p>
+                            )}
                         </section>
                     </div>
                 </article>
