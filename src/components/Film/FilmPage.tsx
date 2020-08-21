@@ -31,6 +31,7 @@ const FilmPage: React.FC<props> = ({ headerRef }) => {
     );
     const params = useParams<{ title: string }>();
     const { state } = useLocation<LocationState>();
+
     useEffect(() => {
         const getMovie = async () => {
             const movie = await movieService.useOMDB(params.title, state.year);
@@ -66,7 +67,7 @@ const FilmPage: React.FC<props> = ({ headerRef }) => {
     } else if (movie) {
         return (
             <>
-                <figure className="backdrop">
+                <figure className="backdrop smaller">
                     <Poster url={backdrop} title={movie.title} tmdb={true} />
                 </figure>
                 <article className="film-page">

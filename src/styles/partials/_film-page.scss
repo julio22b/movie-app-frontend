@@ -67,6 +67,9 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
+        .film-actions {
+            display: none;
+        }
         div:last-child {
             button {
                 background-color: $gray-border;
@@ -256,6 +259,14 @@ i.stars {
     margin: 0 1em;
 }
 
+.backdrop.smaller {
+    width: auto;
+}
+
+.film-page .film-actions {
+    display: block !important;
+}
+
 i[data-rating='5'] {
     background-image: url('../images/5-stars.png');
     width: 60px;
@@ -303,18 +314,19 @@ i[data-rating='0'] {
 @media screen and (max-width: 1200px) {
 }
 @media screen and (max-width: 992px) {
-}
-@media screen and (max-width: 768px) {
-}
-@media screen and (max-width: 576px) {
-}
-
-@media screen and (max-width: 1200px) {
-}
-@media screen and (max-width: 992px) {
     .film-page {
-        margin-top: -9em;
+        margin: -9em 20px 0 20px;
         width: auto;
+        figure.poster {
+            width: 150px;
+            img {
+                min-width: auto;
+            }
+        }
+        & > div {
+            flex: 1;
+            margin: 0 20px;
+        }
     }
 }
 @media screen and (max-width: 768px) {
@@ -327,6 +339,8 @@ i[data-rating='0'] {
             }
         }
         .details {
+            width: 100%;
+            max-width: none;
             .title {
                 font-size: 1.4rem;
                 padding-bottom: 1em;
@@ -335,12 +349,28 @@ i[data-rating='0'] {
                 font-size: 0.9rem;
             }
         }
+        .film-actions {
+            margin-top: 2em;
+        }
     }
 }
 @media screen and (max-width: 576px) {
     .film-page {
         margin-top: -4em;
         width: auto;
+        .film-actions {
+            width: 230px;
+            margin: 2em auto;
+            margin-bottom: 0;
+        }
+        .reviews {
+            width: 90vw;
+            margin-top: 2em;
+        }
+        figure.poster {
+            position: static;
+            margin-bottom: 1em;
+        }
     }
     .user {
         flex-wrap: wrap;

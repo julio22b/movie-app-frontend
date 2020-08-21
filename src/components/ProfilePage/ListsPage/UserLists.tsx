@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import PosterStack from '../PosterStack';
+import { titleToUrl } from '../../../services/helpers';
 
 const UserLists = () => {
     const { state } = useLocation<LocationState>();
@@ -28,7 +29,19 @@ const UserLists = () => {
                                 <PosterStack user={user} custom_list={list} watchlist={null} />
                                 <div>
                                     <h2>
-                                        {list.title}{' '}
+                                        <Link
+                                            to={{
+                                                pathname: `/${user.username}/lists/${titleToUrl(
+                                                    list.title,
+                                                )}`,
+                                                state: {
+                                                    userID: user._id,
+                                                    list,
+                                                },
+                                            }}
+                                        >
+                                            {list.title}{' '}
+                                        </Link>
                                         <span>
                                             {list.movies.length === 1
                                                 ? '1 film'

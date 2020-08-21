@@ -5,7 +5,6 @@ import { RootState } from '../../../app/store';
 import { useSelector, useDispatch } from 'react-redux';
 import { getProfilePage } from '../../../features/user/userSlice';
 import NavWithUsername from '../Film/NavWithUsername';
-import Poster from '../../Home/Poster';
 import MovieColumn from './MovieColumn';
 import moment from 'moment';
 
@@ -16,7 +15,7 @@ const UserDiary = () => {
 
     useEffect(() => {
         dispatch(getProfilePage(state.userID));
-    }, [dispatch, user, state.userID]);
+    }, [dispatch, state.userID]);
 
     if (user) {
         const reviewsByDate = [...user.reviews].sort((a, b) => {

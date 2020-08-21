@@ -64,8 +64,11 @@ header {
     background-image: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, rgba(20, 24, 28, 0.82) 100%);
     .app-name {
         font-size: 2.5rem;
-        a {
-            text-decoration: none;
+        img {
+            opacity: 0.9;
+        }
+        img.mobile {
+            display: none;
         }
     }
     button {
@@ -111,6 +114,9 @@ header {
         padding: 0.5em 2em;
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
+        .mobile {
+            display: none;
+        }
         &:hover {
             background-color: $gray;
             border-top: 1px solid rgba(255, 255, 255, 0.568);
@@ -183,6 +189,7 @@ header {
             filter: invert(100%) sepia(0%) saturate(7494%) hue-rotate(195deg) brightness(104%)
                 contrast(101%);
             opacity: 0.8;
+            z-index: -1;
             &:hover {
                 opacity: 1;
             }
@@ -193,6 +200,9 @@ header {
         button.hide {
             opacity: 0;
             pointer-events: none;
+        }
+        button.placeholder {
+            visibility: hidden;
         }
     }
     .search {
@@ -245,6 +255,7 @@ header {
 figure.backdrop {
     z-index: -10;
     position: relative;
+    width: 115%;
     &::after {
         content: '';
         display: block;
@@ -313,7 +324,7 @@ figure.backdrop {
     figcaption {
         position: absolute;
         top: 50%;
-        right: -5%;
+        right: 5%;
         transform: rotate(-90deg);
         color: $gray;
         z-index: 10;
@@ -435,12 +446,14 @@ figure.backdrop {
 .popular {
     display: grid;
     grid-template-columns: repeat(6, minmax(130px, 200px));
-    grid-gap: 30px;
+    grid-gap: 20px;
     justify-content: center;
     width: 90%;
     margin: 0 auto;
     img {
-        width: 150px;
+        width: 100%;
+        min-width: 125px;
+        max-width: 250px;
         border: 1px solid $gray-border;
         cursor: pointer;
         border-radius: 4px;
@@ -484,7 +497,9 @@ figure.backdrop {
 .search-movie-modal {
     position: absolute;
     top: 50%;
-    width: 700px;
+    width: 50%;
+    min-width: 350px;
+    max-width: 750px;
     transform: translate(50%, -50%);
     left: 0;
     display: flex;
@@ -628,6 +643,9 @@ figure.backdrop {
         form {
             display: flex;
             flex-wrap: wrap;
+            .date {
+                min-height: 22px;
+            }
             textarea {
                 margin: 15px 0;
                 resize: none;
@@ -1035,6 +1053,8 @@ figure.backdrop {
         margin-bottom: 5px;
     }
     article {
+        max-width: 300px;
+        min-width: 200px;
         p:first-of-type a {
             font-weight: bold;
             text-decoration: none;
@@ -1190,6 +1210,41 @@ figure.backdrop {
             }
         }
     }
+    .friends-reviews {
+        width: 100%;
+        padding: 0 10px;
+        .reviews-container {
+            grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+        }
+        .movie-user-info {
+            img {
+                height: auto;
+            }
+        }
+    }
+    .add-new-review {
+        padding: 0;
+        figure {
+            width: auto;
+            img {
+                max-width: 110px;
+            }
+        }
+        article {
+            p {
+                font-size: 0.8rem;
+            }
+            h3 {
+                font-size: 1.3rem;
+                span {
+                    font-size: 0.9rem;
+                }
+            }
+        }
+    }
+    .log .results {
+        left: -200%;
+    }
 }
 
 @media screen and (max-width: 992px) {
@@ -1207,6 +1262,34 @@ figure.backdrop {
             }
             figcaption {
                 font-size: 0.7rem;
+            }
+        }
+    }
+    .lists-friends {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .search-movie-modal {
+        width: 70%;
+        transform: translate(-50%, -50%);
+        left: 50%;
+        margin: 0 auto;
+    }
+    .add-new-review {
+        figure {
+            width: auto;
+            img {
+                max-width: 100px;
+            }
+        }
+    }
+    header {
+        li:nth-child(2),
+        li:nth-child(3) {
+            display: none;
+        }
+        .has-dropdown {
+            .mobile {
+                display: block;
             }
         }
     }
@@ -1228,6 +1311,43 @@ figure.backdrop {
     }
     .people {
         width: 95%;
+    }
+    .search-movie-modal {
+        width: 80%;
+        .date {
+            flex-direction: column;
+            .first-watch {
+                margin: 10px 0 0 0;
+            }
+        }
+    }
+    .sign-in-form {
+        right: 0;
+        width: 300px;
+        .container,
+        div {
+            flex-direction: column;
+            width: 100%;
+        }
+        label,
+        input {
+            margin-left: 15px;
+            margin-bottom: 15px;
+        }
+    }
+    header {
+        ul {
+            width: 60%;
+        }
+        .app-name {
+            margin-left: 50px;
+            img.mobile {
+                display: block;
+            }
+            img:not(.mobile) {
+                display: none;
+            }
+        }
     }
 }
 
@@ -1255,6 +1375,53 @@ figure.backdrop {
             div {
                 font-size: 0.75rem;
             }
+        }
+    }
+    .notification {
+        width: 90%;
+    }
+    .search-movie-modal {
+        width: 95%;
+    }
+    .add-new-review {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        figure {
+            margin-bottom: 1em;
+            display: none;
+        }
+        article {
+            width: 100%;
+        }
+        textarea {
+            height: 200px;
+        }
+    }
+    header {
+        justify-content: flex-start;
+        ul {
+            width: 100%;
+            .has-dropdown {
+                order: 1;
+                margin-left: auto;
+                margin-right: 20px;
+            }
+            .magnifier {
+                margin-left: 20px;
+            }
+        }
+        .app-name {
+            margin-right: 20px;
+            margin-left: 0;
+            order: 1;
+            z-index: -10;
+            a {
+                display: flex;
+                align-items: center;
+            }
+        }
+        .log .results {
+            left: -50%;
         }
     }
 }

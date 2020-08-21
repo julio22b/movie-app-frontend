@@ -345,6 +345,8 @@ section.settings {
     width: 400px;
     z-index: 1000;
     transform: translate(-50%);
+    position: absolute;
+    left: 50%;
     h4 {
         opacity: 0.8;
         font-weight: normal;
@@ -563,6 +565,13 @@ section.settings {
                 align-items: center;
             }
         }
+    }
+}
+
+.user-lists .list a {
+    text-decoration: none;
+    &:hover {
+        color: $blue;
     }
 }
 
@@ -952,12 +961,64 @@ section.settings {
     }
 }
 
+@media screen and (max-width: 1200px) {
+    section.settings {
+        width: 90%;
+    }
+}
+
 @media screen and (max-width: 992px) {
     .profile-page {
         width: 90%;
         padding-top: 7em;
     }
+    section.settings {
+        width: 95%;
+        padding-top: 8em;
+    }
 }
+
+@media screen and (max-width: 900px) {
+    section.settings {
+        .container {
+            flex-direction: column;
+            position: relative;
+            .profile-form {
+                margin: 0 auto;
+                width: 70%;
+                min-width: 360px;
+                label[for='username'] {
+                    justify-content: flex-start;
+                    span {
+                        margin-left: 10px;
+                    }
+                }
+                input[name='username'] {
+                    max-width: 200px;
+                }
+                textarea {
+                    height: 150px;
+                }
+                & > .green-btn {
+                    position: absolute;
+                    bottom: -45px;
+                    left: 50%;
+                    transform: translate(-50%);
+                }
+            }
+            .edit-favorites {
+                margin: 0 auto;
+                width: 70%;
+                min-width: 360px;
+                max-width: none;
+            }
+        }
+    }
+    .search-favorite {
+        width: 340px;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .profile-page {
         width: 95%;
@@ -1053,7 +1114,58 @@ section.settings {
     .watchlist-posters-container {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     }
+    section.settings .edit-favorites {
+        .posters {
+            flex-wrap: wrap;
+        }
+        .add {
+            min-height: 130px;
+        }
+    }
+    .user-lists .container {
+        flex-direction: column;
+        & > button {
+            order: -1;
+            margin: 0 0 2em 0 !important;
+        }
+    }
 }
+
+.log {
+    position: relative;
+    .results {
+        width: 300px;
+        position: absolute;
+        left: -100%;
+        margin-top: 1.5em;
+        box-shadow: 0 2px 8px $bg-black;
+        p {
+            background-color: $gray-border;
+            border-bottom: 1px solid #c6cdd43d;
+            padding: 0.6em 0.4em;
+            color: white;
+            &:hover {
+                background-color: $green;
+            }
+            span {
+                color: white;
+                font-size: 0.7rem;
+            }
+            span:last-child {
+                font-size: 0.5rem;
+            }
+        }
+        a:first-child p {
+            border-top-right-radius: 4px;
+            border-top-left-radius: 4px;
+        }
+        a:last-child p {
+            border-bottom-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+        }
+    }
+}
+
 @media screen and (max-width: 576px) {
     .profile-page .watchlist-peek {
         a {

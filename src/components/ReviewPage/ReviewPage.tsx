@@ -16,7 +16,7 @@ import { fetchMovieForPage } from '../../features/movies/popularMoviesSlice';
 import CommentForm from './CommentForm';
 import Comment from './Comment';
 import MovieTitle from './MovieTitle';
-import { titleToUrl, checkStatus } from '../../services/helpers';
+import { titleToUrl } from '../../services/helpers';
 
 interface LocationState {
     reviewID: string;
@@ -82,10 +82,12 @@ const ReviewPage = () => {
                                 Watched {moment(review.watched_on).format('MMM DD[,] YYYY')}
                             </p>
                         )}
-                        <p
-                            className="content"
-                            dangerouslySetInnerHTML={{ __html: review.content }}
-                        ></p>
+                        {review.content && (
+                            <p
+                                className="content"
+                                dangerouslySetInnerHTML={{ __html: review.content }}
+                            ></p>
+                        )}
                         {loggedUser && (
                             <LikeReviewBtn
                                 likeReview={likeReview}
@@ -94,13 +96,15 @@ const ReviewPage = () => {
                             />
                         )}
                     </article>
-                    {comments && comments.length > 0 && (
-                        <section className="comments">
-                            <h4 className="h4-subtitle">
-                                {review.comments.length}{' '}
-                                {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
-                            </h4>
-                            {comments.map((c) => (
+                    {loggedUser && movieState && <FilmActions />}
+                    <section className="comments">
+                        <h4 className="h4-subtitle">
+                            {review.comments.length}{' '}
+                            {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
+                        </h4>
+                        {comments &&
+                            comments.length > 0 &&
+                            comments.map((c) => (
                                 <Comment
                                     user={c.user}
                                     movie={c.movie}
@@ -109,8 +113,7 @@ const ReviewPage = () => {
                                     key={c._id}
                                 />
                             ))}
-                        </section>
-                    )}
+                    </section>
 
                     {loggedUser && movieState ? (
                         <CommentForm reviewID={review._id} setComments={setComments} />

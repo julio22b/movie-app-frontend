@@ -8,7 +8,6 @@ import { getProfilePage } from '../../../features/user/userSlice';
 import { MovieList } from '../../../features/types';
 import Poster from '../../Home/Poster';
 import { titleToUrl } from '../../../services/helpers';
-import { watch } from 'fs';
 
 interface state extends LocationState {
     list: MovieList;

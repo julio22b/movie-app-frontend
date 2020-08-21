@@ -37,6 +37,9 @@ const UserDropDown = () => {
                 <li>
                     <Link to={{ pathname: `/${user.username}/lists`, state }}>Lists</Link>
                 </li>
+                <li className="mobile">
+                    <Link to={`/people`}>People</Link>
+                </li>
                 <li className="settings">
                     <Link to={`/settings`}>Settings</Link>
                 </li>

@@ -242,3 +242,21 @@
         }
     }
 }
+
+@media screen and (max-width: 992px) {
+    .new-list-page {
+        width: 90%;
+        .actions-container {
+            flex-direction: column;
+            .cancel-save {
+                margin-top: 2em;
+                justify-content: flex-start;
+            }
+        }
+    }
+}
+@media screen and (max-width: 768px) {
+    .new-list-page {
+        width: 95%;
+    }
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavBar } from './components/Header/NavBar';
 import './styles/style.css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -41,8 +41,8 @@ function App() {
         if (user) {
             userInfo();
         }
-        if(!user){
-            setLoading(false)
+        if (!user) {
+            setLoading(false);
         }
     }, [dispatch]);
 
@@ -61,7 +61,7 @@ function App() {
                         {loggedUser && !loading && <FilmsPage />}
                         {!loggedUser && !loading && (
                             <section>
-                                <MostPopular headerRef={headerRef}/>
+                                <MostPopular headerRef={headerRef} />
                                 <PopularMovies />
                                 <JustReviewed />
                             </section>

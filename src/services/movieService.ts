@@ -3,13 +3,25 @@ import Axios from 'axios';
 import { MovieInstance } from '../features/types';
 
 const baseUrl = 'http://localhost:3001/api/movies';
-const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}`;
+const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&type=movie`;
 
 const getMovieInstance = async (obj: MovieInstance, username?: string) => {
     const response = await Axios.post(`${baseUrl}/create?username=${username}`, obj, {
         headers: authHeader(),
     });
     return response.data as MovieInstance;
+};
+
+const searchManyOMDB = async (query: string) => {
+    const response = await Axios.get(`${OMDB_URL}&s=${query}`);
+    if (response.data.Search) {
+        return response.data.Search.slice(0, 5).map((movie: any) => {
+            return {
+                year: movie.Year,
+                title: movie.Title,
+            };
+        });
+    }
 };
 
 const useOMDB = async (title: string, year?: string): Promise<MovieInstance | undefined> => {
@@ -48,4 +60,5 @@ export default {
     getMovieInstance,
     useOMDB,
     changeLikeStatus,
+    searchManyOMDB,
 };
