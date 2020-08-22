@@ -2,7 +2,7 @@ import { Review } from '../features/types';
 import Axios from 'axios';
 import authHeader from './authHeader';
 
-const baseUrl = `http://localhost:3001/api/reviews`;
+const baseUrl = `/api/reviews`;
 
 type ReviewData = Pick<Review, 'content' | 'first_watch' | 'liked_movie' | 'rating' | 'watched_on'>;
 

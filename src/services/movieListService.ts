@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { MovieList } from '../features/types';
 import authHeader from './authHeader';
 
-const baseUrl = 'http://localhost:3001/api/movie-lists';
+const baseUrl = '/api/movie-lists';
 
 const createList = async (movieList: Omit<MovieList, 'user'>, userID: string) => {
     const response = await Axios.post(`${baseUrl}/${userID}`, movieList, { headers: authHeader() });

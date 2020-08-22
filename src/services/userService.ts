@@ -3,7 +3,7 @@ import { userLogInInput } from '../features/types';
 import authHeader from './authHeader';
 import Axios from 'axios';
 
-const baseUrl = 'http://localhost:3001/api/users';
+const baseUrl = '/api/users';
 
 async function logIn(user: userLogInInput) {
     const response = await axios.post(`${baseUrl}/log-in`, user);

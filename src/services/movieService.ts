@@ -2,7 +2,7 @@ import authHeader from './authHeader';
 import Axios from 'axios';
 import { MovieInstance } from '../features/types';
 
-const baseUrl = 'http://localhost:3001/api/movies';
+const baseUrl = '/api/movies';
 const OMDB_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&type=movie`;
 
 const getMovieInstance = async (obj: MovieInstance, username?: string) => {
