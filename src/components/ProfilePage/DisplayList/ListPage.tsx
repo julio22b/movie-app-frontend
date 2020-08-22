@@ -50,18 +50,20 @@ const ListPage = () => {
                         ))}
                     </div>
                 </section>
-                <aside className="percentage">
-                    <div>
-                        <p>
-                            You've watched {watched?.length} of {moviesFromListIDs.length}
-                        </p>
-                        <p>
-                            <span>{percentage}</span>%
-                        </p>
-                    </div>
-                    <div className="grey-bar"></div>
-                    <div className="blue-bar" style={{ width: `${percentage}%` }}></div>
-                </aside>
+                {loggedUser && (
+                    <aside className="percentage">
+                        <div>
+                            <p>
+                                You've watched {watched?.length} of {moviesFromListIDs.length}
+                            </p>
+                            <p>
+                                <span>{percentage}</span>%
+                            </p>
+                        </div>
+                        <div className="grey-bar"></div>
+                        <div className="blue-bar" style={{ width: `${percentage}%` }}></div>
+                    </aside>
+                )}
             </div>
         );
     }

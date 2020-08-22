@@ -24,6 +24,7 @@ import FilmsPage from './components/Home/Films/FilmsPage';
 import UserDiary from './components/ProfilePage/Diary/UserDiary';
 import { RootState } from './app/store';
 import ListPage from './components/ProfilePage/DisplayList/ListPage';
+import PrivateRoute from './components/_helpers/PrivateRoute';
 
 function App() {
     const dispatch = useDispatch();
@@ -73,9 +74,7 @@ function App() {
                     <Route path="/:username/film/:title" exact>
                         <ReviewPage />
                     </Route>
-                    <Route path="/settings" exact>
-                        <SettingsPage />
-                    </Route>
+                    <PrivateRoute path="/settings" exact render={() => <SettingsPage />} />
                     <Route path="/people" exact>
                         <PeoplePage />
                     </Route>
@@ -100,9 +99,7 @@ function App() {
                     <Route path="/:username/lists/:listName" exact>
                         <ListPage />
                     </Route>
-                    <Route path="/list/new" exact>
-                        <AddNewListPage />
-                    </Route>
+                    <PrivateRoute exact path="/list/new" render={() => <AddNewListPage />} />
                 </Switch>
             </Router>
         </>

@@ -10,6 +10,7 @@ import movieListService from '../../../services/movieListService';
 import PosterStack from '../../ProfilePage/PosterStack';
 import ProfilePicture from '../../_helpers/ProfilePicture';
 import { titleToUrl } from '../../../services/helpers';
+import Footer from '../Footer';
 
 const FilmsPage = () => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
@@ -30,55 +31,60 @@ const FilmsPage = () => {
     }, [loggedUser]);
     if (!loading && loggedUser) {
         return (
-            <section className="friends-reviews">
-                <h2>
-                    Welcome back,{' '}
-                    <Link
-                        to={{
-                            pathname: `/${loggedUser?.username}`,
-                            state: {
-                                userID: loggedUser?._id,
-                            },
-                        }}
-                    >
-                        {loggedUser?.username}
-                    </Link>
-                    . Here's what your friends have been watching...
-                </h2>
-                <h4 className="h4-subtitle">NEW FROM FRIENDS</h4>
-                <div className="reviews-container">
-                    {reviews.map((r) => (
-                        <PosterWithUsername review={r} key={r._id} />
-                    ))}
-                </div>
-                <PopularMovies />
-                <section className="lists-friends">
+            <>
+                <section className="friends-reviews">
+                    <h2>
+                        Welcome back,{' '}
+                        <Link
+                            to={{
+                                pathname: `/${loggedUser?.username}`,
+                                state: {
+                                    userID: loggedUser?._id,
+                                },
+                            }}
+                        >
+                            {loggedUser?.username}
+                        </Link>
+                        . Here's what your friends have been watching...
+                    </h2>
                     <h4 className="h4-subtitle">NEW FROM FRIENDS</h4>
-                    {lists.map((list) => (
-                        <article key={list._id}>
-                            <PosterStack user={list.user} watchlist={null} custom_list={list} />
-                            <p>
-                                <Link to={`/${list.user.username}/list/${titleToUrl(list.title)}`}>
-                                    {list.title}
-                                </Link>
-                            </p>
-                            <p>
-                                <ProfilePicture user={list.user} />
-                                <Link
-                                    to={{
-                                        pathname: `/${list.user.username}`,
-                                        state: {
-                                            userID: list.user._id,
-                                        },
-                                    }}
-                                >
-                                    {list.user.username}
-                                </Link>
-                            </p>
-                        </article>
-                    ))}
+                    <div className="reviews-container">
+                        {reviews.map((r) => (
+                            <PosterWithUsername review={r} key={r._id} />
+                        ))}
+                    </div>
+                    <PopularMovies />
+                    <section className="lists-friends">
+                        <h4 className="h4-subtitle">NEW FROM FRIENDS</h4>
+                        {lists.map((list) => (
+                            <article key={list._id}>
+                                <PosterStack user={list.user} watchlist={null} custom_list={list} />
+                                <p>
+                                    <Link
+                                        to={`/${list.user.username}/list/${titleToUrl(list.title)}`}
+                                    >
+                                        {list.title}
+                                    </Link>
+                                </p>
+                                <p>
+                                    <ProfilePicture user={list.user} />
+                                    <Link
+                                        to={{
+                                            pathname: `/${list.user.username}`,
+                                            state: {
+                                                userID: list.user._id,
+                                            },
+                                        }}
+                                    >
+                                        {list.user.username}
+                                    </Link>
+                                </p>
+                            </article>
+                        ))}
+                    </section>
                 </section>
-            </section>
+                <Footer />
+            </>
         );
     }
     return null;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { logOut } from '../../features/user/userSlice';
 import userService from '../../services/userService';
 
@@ -9,9 +9,11 @@ const UserDropDown = () => {
     const user = useSelector((state: RootState) => state.userAuth.user);
     const dispatch = useDispatch();
     const state = { userID: user?._id };
+    const history = useHistory();
     const signOut = () => {
         userService.removeCurrentUser();
         dispatch(logOut());
+        history.go(0);
     };
     if (user) {
         return (

@@ -17,6 +17,7 @@ const MostPopular: React.FC<{ headerRef: any }> = ({ headerRef }) => {
             current.classList.add('transparent');
         }
         return () => {
+            document.querySelector('body')?.classList.remove('darkest');
             if (current) current.classList.remove('transparent');
         };
     }, [headerRef]);

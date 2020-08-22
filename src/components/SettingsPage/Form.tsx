@@ -42,7 +42,8 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
                 notify({ message: message, type: 'success' }, dispatch);
                 history.go(0);
             } catch (e) {
-                notify({ message: 'Something went wrong', type: 'warning' }, dispatch);
+                notify({ message: e.response.data.message, type: 'warning' }, dispatch);
+                setSaveBtnText('SAVE CHANGES');
             }
         }
     };

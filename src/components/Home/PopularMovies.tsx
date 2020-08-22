@@ -12,29 +12,24 @@ const PopularMovies = () => {
     useEffect(() => {
         dispatch(fetchPopularMovies());
     }, [dispatch]);
+    if (loading) {
+        return null;
+    }
     return (
         <section className="popular">
             {errors && <p>Couldn't get that data</p>}
-            {loading ? (
-                <p>Loading...</p>
-            ) : (
-                <>
-                    <p>POPULAR FILMS</p>
-                    {topSix.map((movie) => (
-                        <Link
-                            to={{
-                                pathname: `/film/${movie.title
-                                    .toLocaleLowerCase()
-                                    .replace(/ /g, '-')}`,
-                                state: { year: movie.release_date.slice(0, 4) },
-                            }}
-                            key={movie.title}
-                        >
-                            <Poster url={movie.poster_path} title={movie.title} tmdb={true} />
-                        </Link>
-                    ))}
-                </>
-            )}
+            <p>POPULAR FILMS</p>
+            {topSix.map((movie) => (
+                <Link
+                    to={{
+                        pathname: `/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`,
+                        state: { year: movie.release_date.slice(0, 4) },
+                    }}
+                    key={movie.title}
+                >
+                    <Poster url={movie.poster_path} title={movie.title} tmdb={true} />
+                </Link>
+            ))}
         </section>
     );
 };

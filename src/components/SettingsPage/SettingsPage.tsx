@@ -14,23 +14,26 @@ const SettingsPage = () => {
             dispatch(setFavorites(loggedUser.favorites));
         }
     }, [dispatch, loggedUser]);
-    return (
-        <section className="settings">
-            <h2>Account Settings</h2>
-            <div className="container">
-                <Form index={index} />
-                <article className="edit-favorites">
-                    <h4 className="h4-subtitle">Favorite Films</h4>
-                    <div className="posters">
-                        <AddFavoriteBtn index={0} setIndex={setIndex} />
-                        <AddFavoriteBtn index={1} setIndex={setIndex} />
-                        <AddFavoriteBtn index={2} setIndex={setIndex} />
-                        <AddFavoriteBtn index={3} setIndex={setIndex} />
-                    </div>
-                </article>
-            </div>
-        </section>
-    );
+    if (loggedUser) {
+        return (
+            <section className="settings">
+                <h2>Account Settings</h2>
+                <div className="container">
+                    <Form index={index} />
+                    <article className="edit-favorites">
+                        <h4 className="h4-subtitle">Favorite Films</h4>
+                        <div className="posters">
+                            <AddFavoriteBtn index={0} setIndex={setIndex} />
+                            <AddFavoriteBtn index={1} setIndex={setIndex} />
+                            <AddFavoriteBtn index={2} setIndex={setIndex} />
+                            <AddFavoriteBtn index={3} setIndex={setIndex} />
+                        </div>
+                    </article>
+                </div>
+            </section>
+        );
+    }
+    return null;
 };
 
 export default SettingsPage;

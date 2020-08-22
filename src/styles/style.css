@@ -1679,6 +1679,8 @@ section.settings .container .profile-form .image-wrapper img {
 .user-diary .wrap-user-nav > div img {
   width: 30px;
   height: 30px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .user-films .wrap-user-nav > div a,
@@ -1907,6 +1909,9 @@ section.settings .container .profile-form .image-wrapper img {
   width: 100%;
   border-radius: 4px;
   border: 1px solid #c6cdd450;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .display-list .description {
@@ -2268,7 +2273,8 @@ section.settings .container .profile-form .image-wrapper img {
 }
 
 @media screen and (max-width: 1200px) {
-  section.settings {
+  section.settings,
+  .display-list {
     width: 90%;
   }
 }
@@ -2278,7 +2284,8 @@ section.settings .container .profile-form .image-wrapper img {
     width: 90%;
     padding-top: 7em;
   }
-  section.settings {
+  section.settings,
+  .display-list {
     width: 95%;
     padding-top: 8em;
   }
@@ -2453,6 +2460,22 @@ section.settings .container .profile-form .image-wrapper img {
         -ms-flex-order: -1;
             order: -1;
     margin: 0 0 2em 0 !important;
+  }
+  .display-list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .display-list > section {
+    width: 100%;
+  }
+  .display-list .posters-container {
+    -ms-grid-columns: (minmax(100px, 1fr))[auto-fit];
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
+  .display-list .percentage {
+    margin-top: 4em;
   }
 }
 
@@ -3208,6 +3231,8 @@ figure.backdrop::after {
 
 figure.backdrop img {
   max-width: 100%;
+  min-height: 50vh;
+  background-color: transparent;
 }
 
 figure.backdrop figcaption {
@@ -4429,6 +4454,48 @@ figure.backdrop figcaption {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
+}
+
+footer {
+  background-color: #445566;
+  margin-top: 6em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  position: absolute;
+  width: 100vw;
+  left: 0;
+  padding: 1em;
+  color: #99aabb;
+  font-size: 0.9rem;
+}
+
+footer a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+footer img {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+  border-radius: 50%;
+}
+
+footer img:hover {
+  border: 1px solid #00c030;
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 @media screen and (max-width: 1200px) {

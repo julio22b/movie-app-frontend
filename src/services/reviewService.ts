@@ -41,10 +41,18 @@ const postComment = async (userID: string, reviewID: string, content: string) =>
     return response.data;
 };
 
+const getLatests = async (amount: number) => {
+    const response = await Axios.get(`${baseUrl}/all/latest?amount=${amount}`, {
+        headers: authHeader(),
+    });
+    return response.data;
+};
+
 export default {
     postReview,
     likeReview,
     getReview,
     postComment,
     getReviewsByFriends,
+    getLatests,
 };

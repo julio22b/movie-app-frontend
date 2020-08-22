@@ -17,6 +17,8 @@ interface InitStatePopular {
         loading: boolean;
         error: boolean;
         backdrop: string;
+        backdrop_loading: boolean;
+        backdrop_error: boolean;
     };
 }
 
@@ -33,6 +35,8 @@ const initialState: InitStatePopular = {
         loading: false,
         error: false,
         backdrop: '',
+        backdrop_loading: false,
+        backdrop_error: false,
     },
 };
 
@@ -75,8 +79,16 @@ const popularMoviesSlice = createSlice({
             state.movie_for_page.loading = false;
             state.movie_for_page.error = true;
         },
-        setBackdropForPage: (state, action: PayloadAction<string>) => {
+        getBackdropForPage: (state) => {
+            state.movie_for_page.backdrop_loading = true;
+        },
+        getBackdropForPageSuccess: (state, action: PayloadAction<string>) => {
             state.movie_for_page.backdrop = action.payload;
+            state.movie_for_page.backdrop_loading = false;
+        },
+        getBackdropForPageFailure: (state) => {
+            state.movie_for_page.backdrop_error = true;
+            state.movie_for_page.backdrop_loading = false;
         },
         removeMovieForPage: (state) => {
             state.movie_for_page.error = false;
@@ -97,7 +109,9 @@ export const {
     getMovieForPageSuccess,
     getMovieForPageFailure,
     removeMovieForPage,
-    setBackdropForPage,
+    getBackdropForPage,
+    getBackdropForPageSuccess,
+    getBackdropForPageFailure,
 } = popularMoviesSlice.actions;
 
 export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
@@ -133,10 +147,15 @@ export const fetchMovieForPage = (obj: MovieInstance): AppThunk => async (dispat
 export const fetchBackdropForPage = (searchQuery: string, year: number): AppThunk => async (
     dispatch,
 ) => {
-    const response = await axios.get(
-        `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false&year=${year}`,
-    );
-    dispatch(setBackdropForPage(response.data.results[0].backdrop_path));
+    dispatch(getBackdropForPage());
+    try {
+        const response = await axios.get(
+            `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false&year=${year}`,
+        );
+        dispatch(getBackdropForPageSuccess(response.data.results[0].backdrop_path));
+    } catch {
+        dispatch(getBackdropForPageFailure());
+    }
 };
 
 export default popularMoviesSlice.reducer;
