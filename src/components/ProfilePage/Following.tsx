@@ -15,17 +15,18 @@ const Following: React.FC<props> = ({ user, loggedUser }) => {
                 FOLLOWING <span>{user.following?.length}</span>
             </h4>
             <div>
-                {user.following?.length ? (
-                    user.following.map((user) => <ProfilePicture user={user} key={user._id} />)
-                ) : (
-                    <VoidMsg
-                        username={user.username}
-                        userID={user._id}
-                        loggedUserID={loggedUser}
-                        text={`friends they're following`}
-                    />
-                )}
+                {user.following?.length
+                    ? user.following.map((user) => <ProfilePicture user={user} key={user._id} />)
+                    : ''}
             </div>
+            {!user.following?.length && (
+                <VoidMsg
+                    username={user.username}
+                    userID={user._id}
+                    loggedUserID={loggedUser}
+                    text={`friends they're following`}
+                />
+            )}
         </div>
     );
 };

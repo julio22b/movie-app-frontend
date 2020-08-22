@@ -45,7 +45,7 @@ const SearchFavorite: React.FC<props> = ({ index }) => {
                     <CloseModalBtn handleModalState={() => changePickFavoriteFormStatus(!open)} />
                 </h4>
                 <p>Name of Film</p>
-                <input type="text" onChange={(e) => setQuery(e.target.value)} />
+                <input type="text" onChange={(e) => setQuery(e.target.value)} value={query}/>
                 {omdbMovie && (
                     <p onClick={handleClick}>
                         {omdbMovie.title} ({omdbMovie.year}) <span>{omdbMovie.director}</span>

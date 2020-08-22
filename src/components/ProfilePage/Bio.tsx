@@ -4,7 +4,7 @@ const Bio: React.FC<{ bio: string }> = ({ bio }) => {
     return (
         <article className="bio">
             <h4 className="h4-subtitle">BIO</h4>
-            <p>{bio}</p>
+            <p dangerouslySetInnerHTML={{ __html: bio }}></p>
         </article>
     );
 };

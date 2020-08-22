@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
-import { changeSignUpFormStatus } from '../../features/user/userSlice';
+import { changeSignUpFormStatus, userLogIn } from '../../features/user/userSlice';
 import userService from '../../services/userService';
 
 const CreateAccForm = () => {
@@ -16,6 +16,8 @@ const CreateAccForm = () => {
         e.preventDefault();
         try {
             await userService.signUp({ username, password, password_confirmation });
+            dispatch(userLogIn({ username, password }));
+            dispatch(changeSignUpFormStatus(false));
         } catch {
             setErrors('Passwords must match and be longer than 6 characters');
         }

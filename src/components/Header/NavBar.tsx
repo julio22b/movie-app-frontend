@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import UserDropDown from './UserDropDown';
 import ProfilePicture from '../_helpers/ProfilePicture';
 import CreateAccForm from './CreateAccForm';
-import magnifier from '../../images/magnifier.svg';
+import magnifier from '../../images/magnifier.png';
 import letterboxd from '../../images/letterboxd-logo.png';
 import logoSimple from '../../images/logo-simple.png';
 import movieService from '../../services/movieService';

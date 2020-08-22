@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MovieInstance } from '../../../features/types';
 import { useDispatch, useSelector } from 'react-redux';
 import movieService from '../../../services/movieService';
-import { addMovieForNewList } from '../../../features/user/userSlice';
+import { addMovieForNewList, removeAllMoviesFromNewList } from '../../../features/user/userSlice';
 import { Link, useHistory } from 'react-router-dom';
 import { RootState } from '../../../app/store';
 import movieListService from '../../../services/movieListService';
@@ -44,8 +44,9 @@ const NewListForm = () => {
                     { title, description, movies: movieList },
                     loggedUser._id,
                 );
-                console.log(data);
+
                 notify({ message: data.message, type: 'success' }, dispatch);
+                dispatch(removeAllMoviesFromNewList());
                 history.push(`/${loggedUser.username}/lists`, { userID: loggedUser._id });
             } catch {
                 notify({ message: 'Something went wrong', type: 'warning' }, dispatch);
@@ -61,7 +62,7 @@ const NewListForm = () => {
                 <input
                     type="text"
                     required
-                    maxLength={30}
+                    maxLength={100}
                     name="name"
                     onChange={(e) => setTitle(e.target.value)}
                     value={title}

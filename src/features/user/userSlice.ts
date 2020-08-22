@@ -151,6 +151,9 @@ const userSlice = createSlice({
                 (m) => m._id !== payload._id,
             );
         },
+        removeAllMoviesFromNewList: (state) => {
+            state.form_status.new_list_form.movies = [];
+        },
         addToFollowing: (state, { payload }: PayloadAction<User>) => {
             if (state.user) state.user.following?.push(payload);
         },
@@ -187,6 +190,7 @@ export const {
     getUserForProfileSuccess,
     addMovieForNewList,
     removeMovieFromNewList,
+    removeAllMoviesFromNewList,
     addToFollowing,
     removeFromFollowing,
 } = userSlice.actions;
