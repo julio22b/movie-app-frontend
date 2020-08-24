@@ -15,7 +15,6 @@
         margin-left: 30px;
         display: flex;
         flex-direction: column;
-        text-align: center;
         .action,
         .settings {
             background-color: $gray-border;
@@ -1048,6 +1047,7 @@ section.settings {
             }
             .username {
                 margin: 1em 0;
+                text-align: center;
             }
         }
         .container {

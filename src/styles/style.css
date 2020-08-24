@@ -957,7 +957,6 @@ i[data-rating='0'] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  text-align: center;
 }
 
 .profile-page .username .action,
@@ -2386,6 +2385,7 @@ section.settings .container .profile-form .image-wrapper img {
   }
   .profile-page .user-info .username {
     margin: 1em 0;
+    text-align: center;
   }
   .profile-page .container {
     -webkit-box-orient: vertical;
