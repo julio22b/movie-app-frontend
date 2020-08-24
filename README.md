@@ -18,7 +18,7 @@ npm start
 
 ## Requirements
 
-You also need to run the backend locally by following the steps in the [backend repo](https://github.com/julio22b/facebook-clone-api).
+You also need to run the backend locally by following the steps in the [backend repo](https://github.com/julio22b/movie-app-backend).
 
 ## Pictures
 
