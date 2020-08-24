@@ -15,6 +15,7 @@
         margin-left: 30px;
         display: flex;
         flex-direction: column;
+        text-align: center;
         .action,
         .settings {
             background-color: $gray-border;
@@ -191,6 +192,7 @@
             .content {
                 margin: 2em 0;
                 color: $gray-text-secondary;
+                word-break: break-all;
             }
             div:last-child {
                 font-size: 0.8rem;
@@ -305,6 +307,7 @@ section.settings {
     }
     .posters {
         margin: 2em 0;
+        max-height: 180px;
         display: flex;
         justify-content: space-between;
         .add {
@@ -1001,7 +1004,7 @@ section.settings {
             position: relative;
             .profile-form {
                 margin: 0 auto;
-                width: 70%;
+                width: 80%;
                 min-width: 360px;
                 label[for='username'] {
                     justify-content: flex-start;
@@ -1024,7 +1027,7 @@ section.settings {
             }
             .edit-favorites {
                 margin: 0 auto;
-                width: 70%;
+                width: 80%;
                 min-width: 360px;
                 max-width: none;
             }
@@ -1097,6 +1100,9 @@ section.settings {
                     display: none;
                 }
             }
+            h2 {
+                margin-bottom: 1.5em;
+            }
         }
     }
     .user-diary {
@@ -1133,9 +1139,6 @@ section.settings {
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
     }
     section.settings .edit-favorites {
-        .posters {
-            flex-wrap: wrap;
-        }
         .add {
             min-height: 130px;
         }
@@ -1219,6 +1222,11 @@ section.settings {
         justify-content: center;
         & > div {
             margin: 0 !important;
+        }
+    }
+    section.settings .edit-favorites {
+        .posters {
+            max-height: 150px;
         }
     }
 }

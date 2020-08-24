@@ -44,7 +44,15 @@ const ListPage = () => {
                     </article>
                     <div className="posters-container">
                         {state.list.movies.map((m, index) => (
-                            <Link key={index} to={{ pathname: `/film/${titleToUrl(m.title)}` }}>
+                            <Link
+                                key={index}
+                                to={{
+                                    pathname: `/film/${titleToUrl(m.title)}`,
+                                    state: {
+                                        year: m.year,
+                                    },
+                                }}
+                            >
                                 <Poster url={m.poster} title={m.title} tmdb={false} />
                             </Link>
                         ))}

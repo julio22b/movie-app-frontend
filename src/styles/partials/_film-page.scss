@@ -128,7 +128,8 @@
         background-color: transparent;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
+        align-items: center;
         max-width: 70px;
         img {
             object-fit: contain;
@@ -136,6 +137,8 @@
         }
         p {
             position: relative;
+            text-align: center;
+            width: 100%;
         }
         &:hover p.marked {
             color: transparent;
@@ -157,6 +160,8 @@
         border-top: 1px solid $bg-black;
         margin-top: 2em;
         padding: 1.5em 1em;
+        display: flex;
+        justify-content: center;
     }
 }
 
@@ -261,6 +266,9 @@ i.stars {
 
 .backdrop.smaller {
     width: auto;
+    img {
+        object-fit: cover;
+    }
 }
 
 .film-page .film-actions {

@@ -240,8 +240,12 @@ body.darkest {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   max-width: 70px;
 }
 
@@ -253,6 +257,8 @@ body.darkest {
 
 .film-actions button p {
   position: relative;
+  text-align: center;
+  width: 100%;
 }
 
 .film-actions button:hover p.marked {
@@ -277,6 +283,12 @@ body.darkest {
   border-top: 1px solid #14181c;
   margin-top: 2em;
   padding: 1.5em 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .reviews {
@@ -405,6 +417,11 @@ i.stars {
 
 .backdrop.smaller {
   width: auto;
+}
+
+.backdrop.smaller img {
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .film-page .film-actions {
@@ -625,6 +642,7 @@ i[data-rating='0'] {
 .review-page > div .content {
   padding: 2em 0;
   color: #99aabb;
+  word-break: break-all;
 }
 
 .review-page > div .date-watched {
@@ -637,6 +655,7 @@ i[data-rating='0'] {
   -ms-flex-item-align: start;
       align-self: flex-start;
   border: none;
+  padding-left: 0;
 }
 
 .review-page > div .sign-in-btn {
@@ -861,6 +880,7 @@ i[data-rating='0'] {
   }
   .review-page .content {
     width: 90vw;
+    word-break: break-all;
   }
   .review-page .film-actions {
     -webkit-box-ordinal-group: 0;
@@ -937,6 +957,7 @@ i[data-rating='0'] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  text-align: center;
 }
 
 .profile-page .username .action,
@@ -1190,6 +1211,7 @@ i[data-rating='0'] {
 .reviews-container .review div .content {
   margin: 2em 0;
   color: #99aabb;
+  word-break: break-all;
 }
 
 .recent-reviews .review div div:last-child,
@@ -1343,6 +1365,7 @@ section.settings .container .profile-form .image-wrapper img {
 
 .edit-favorites .posters {
   margin: 2em 0;
+  max-height: 180px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2313,7 +2336,7 @@ section.settings .container .profile-form .image-wrapper img {
   }
   section.settings .container .profile-form {
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
     min-width: 360px;
   }
   section.settings .container .profile-form label[for='username'] {
@@ -2339,7 +2362,7 @@ section.settings .container .profile-form .image-wrapper img {
   }
   section.settings .container .edit-favorites {
     margin: 0 auto;
-    width: 70%;
+    width: 80%;
     min-width: 360px;
     max-width: none;
   }
@@ -2425,6 +2448,9 @@ section.settings .container .profile-form .image-wrapper img {
   .profile-page .recent-lists h2 .placeholder {
     display: none;
   }
+  .profile-page .recent-lists h2 {
+    margin-bottom: 1.5em;
+  }
   .user-diary article {
     -ms-grid-columns: (1fr)[9];
         grid-template-columns: repeat(9, 1fr);
@@ -2455,10 +2481,6 @@ section.settings .container .profile-form .image-wrapper img {
   .watchlist-posters-container {
     -ms-grid-columns: (minmax(80px, 1fr))[auto-fit];
         grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-  }
-  section.settings .edit-favorites .posters {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
   }
   section.settings .edit-favorites .add {
     min-height: 130px;
@@ -2565,6 +2587,9 @@ section.settings .container .profile-form .image-wrapper img {
   }
   .list > div {
     margin: 0 !important;
+  }
+  section.settings .edit-favorites .posters {
+    max-height: 150px;
   }
 }
 
