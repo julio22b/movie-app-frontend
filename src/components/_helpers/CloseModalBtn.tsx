@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { removeMovieForReview } from '../../features/movies/popularMoviesSlice';
 
 interface props {
-    handleModalState: () => void;
+    handleModalState: any;
 }
 
 const CloseModalBtn: React.FC<props> = ({ handleModalState }) => {
