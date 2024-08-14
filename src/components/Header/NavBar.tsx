@@ -9,7 +9,7 @@ import UserDropDown from './UserDropDown';
 import ProfilePicture from '../_helpers/ProfilePicture';
 import CreateAccForm from './CreateAccForm';
 import magnifier from '../../images/magnifier.png';
-import letterboxd from '../../images/letterboxd-logo.png';
+import letterboxd from '../../images/letterboxd.png';
 import logoSimple from '../../images/logo-simple.png';
 import movieService from '../../services/movieService';
 import { titleToUrl } from '../../services/helpers';
@@ -53,9 +53,9 @@ export const NavBar: React.FC<{ handleRef: (ref: any) => void }> = ({ handleRef 
     return (
         <header id="header" ref={ref}>
             <p className="app-name">
-                <Link to={'/'}>
+                <Link to={'/'} style={{ display: 'flex' }}>
                     <img src={logoSimple} alt="Letterboxd logo" className="mobile" />
-                    <img src={letterboxd} alt="Letterboxd logo" />
+                    <img src={letterboxd} alt="Letterboxd logo" style={{ width: 300, height: 50, objectFit: 'cover' }} />
                 </Link>
             </p>
             <CreateAccForm />
