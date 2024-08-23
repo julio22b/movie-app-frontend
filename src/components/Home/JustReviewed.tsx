@@ -5,6 +5,7 @@ import { fetchLatestReviews } from '../../features/reviews/reviewsSlice';
 import Poster from './Poster';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import { Review } from '../../features/types';
 
 const JustReviewed = () => {
     const { latest_reviews, loading, error } = useSelector((state: RootState) => state.reviews);
@@ -27,7 +28,7 @@ const JustReviewed = () => {
             <section className="latest-reviews">
                 <p>JUST REVIEWED...</p>
                 <article>
-                    {latest_reviews.map((review) => (
+                    {latest_reviews.map((review: Review) => (
                         <Link
                             key={review._id}
                             to={{
