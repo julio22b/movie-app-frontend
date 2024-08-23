@@ -25,6 +25,7 @@ import UserDiary from './components/ProfilePage/Diary/UserDiary';
 import { RootState } from './app/store';
 import ListPage from './components/ProfilePage/DisplayList/ListPage';
 import PrivateRoute from './components/_helpers/PrivateRoute';
+import { SpeedInsights } from "@vercel/speed-insights/react"
 
 function App() {
     const dispatch = useDispatch();
@@ -54,6 +55,7 @@ function App() {
     return (
         <>
             <Notification />
+            <SpeedInsights />
             <Router>
                 {!loading && <NavBar handleRef={handleRef} />}
                 <FindMovieModal />
