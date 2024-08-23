@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../app/store';
 import DraggableFilm from './DraggableFilm';
+import { MovieInstance } from '../../../features/types';
 
 const DraggableFilmsContainer = () => {
     const { movies } = useSelector((state: RootState) => state.userAuth.form_status.new_list_form);
@@ -16,7 +17,7 @@ const DraggableFilmsContainer = () => {
     return (
         <div className="movies-container">
             {movies.length > 0 &&
-                movies.map((movie) => <DraggableFilm movie={movie} key={movie._id} />)}
+                movies.map((movie: MovieInstance) => <DraggableFilm movie={movie} key={movie._id} />)}
         </div>
     );
 };

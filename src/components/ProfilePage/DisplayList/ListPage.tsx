@@ -5,7 +5,7 @@ import { LocationState } from '../ProfilePage';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
-import { MovieList } from '../../../features/types';
+import { MovieInstance, MovieList } from '../../../features/types';
 import Poster from '../../Home/Poster';
 import { titleToUrl } from '../../../services/helpers';
 
@@ -23,8 +23,8 @@ const ListPage = () => {
         dispatch(getProfilePage(state.userID));
     }, [dispatch, state.userID]);
 
-    const moviesFromListIDs = state.list.movies.map((m) => m._id);
-    const watched = loggedUser?.watched_movies.filter((m) => moviesFromListIDs.includes(m._id));
+    const moviesFromListIDs = state.list.movies.map((movie: MovieInstance) => movie._id);
+    const watched = loggedUser?.watched_movies.filter((movie: MovieInstance) => moviesFromListIDs.includes(movie._id));
     const percentage = ((watched?.length! / moviesFromListIDs.length) * 100).toFixed(0);
     if (user) {
         const pathname = `/${user.username}`;

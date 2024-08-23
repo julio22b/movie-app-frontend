@@ -7,22 +7,25 @@ import Poster from '../../Home/Poster';
 import { LocationState } from '../ProfilePage';
 import NavWithUsername from './NavWithUsername';
 import { titleToUrl } from '../../../services/helpers';
+import { MovieInstance } from '../../../features/types';
 
 const UserFilms = () => {
     const { state } = useLocation<LocationState>();
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
     const dispatch: AppDispatch = useDispatch();
+
     useEffect(() => {
         dispatch(getProfilePage(state.userID));
     }, [dispatch, state.userID]);
+    
     if (user) {
         return (
             <section className="user-films">
                 <NavWithUsername user={user} />
                 <div className="posters-container">
-                    {user.watched_movies.map((movie, index) => (
+                    {user.watched_movies.map((movie: MovieInstance) => (
                         <Link
-                            key={index}
+                            key={movie.title}
                             to={{
                                 pathname: `/film/${titleToUrl(movie.title)}`,
                                 state: {
@@ -33,7 +36,7 @@ const UserFilms = () => {
                             <figure>
                                 <Poster url={movie.poster} title={movie.title} tmdb={false} />
                                 <figcaption>
-                                    {user.liked_movies.find((m) => movie._id === m._id) && (
+                                    {user.liked_movies.find((likedMovie: MovieInstance) => movie._id === likedMovie._id) && (
                                         <i className="like-gray"></i>
                                     )}
                                 </figcaption>

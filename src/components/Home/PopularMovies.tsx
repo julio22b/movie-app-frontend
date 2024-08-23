@@ -4,6 +4,7 @@ import { AppDispatch, RootState } from '../../app/store';
 import { fetchPopularMovies } from '../../features/movies/popularMoviesSlice';
 import Poster from './Poster';
 import { Link } from 'react-router-dom';
+import { MovieOMDB } from '../../features/types';
 
 const PopularMovies = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -19,7 +20,7 @@ const PopularMovies = () => {
         <section className="popular">
             {errors && <p>Couldn't get that data</p>}
             <p>POPULAR FILMS</p>
-            {topSix.map((movie) => (
+            {topSix.map((movie: MovieOMDB) => (
                 <Link
                     to={{
                         pathname: `/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`,

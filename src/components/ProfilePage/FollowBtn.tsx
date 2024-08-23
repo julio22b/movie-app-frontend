@@ -11,7 +11,7 @@ interface props {
 
 const FollowBtn: React.FC<props> = ({ user }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-    const isFollowed = loggedUser?.following?.some((u) => u._id === user._id);
+    const isFollowed = loggedUser?.following?.some((_user: User) => _user._id === user._id);
     const dispatch = useDispatch();
     if (loggedUser && isFollowed) {
         const unfollow = () => {

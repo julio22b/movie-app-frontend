@@ -7,6 +7,7 @@ import { getProfilePage } from '../../../features/user/userSlice';
 import NavWithUsername from '../Film/NavWithUsername';
 import Poster from '../../Home/Poster';
 import { titleToUrl } from '../../../services/helpers';
+import { MovieInstance } from '../../../features/types';
 
 const UserWatchList = () => {
     const { state } = useLocation<LocationState>();
@@ -23,18 +24,18 @@ const UserWatchList = () => {
                     {user.username.toLocaleUpperCase()} WANTS TO SEE {user.watch_list.length} FILMS
                 </h4>
                 <div className="watchlist-posters-container">
-                    {user.watch_list.map((m) => (
-                        <div key={m._id}>
+                    {user.watch_list.map(({ _id, title, year, poster }: MovieInstance) => (
+                        <div key={_id}>
                             <Link
                                 to={{
-                                    pathname: `/film/${titleToUrl(m.title)}`,
-                                    state: { year: m.year },
+                                    pathname: `/film/${titleToUrl(title)}`,
+                                    state: { year: year },
                                 }}
                             >
-                                <Poster url={m.poster} title={m.title} tmdb={false} />
+                                <Poster url={poster} title={title} tmdb={false} />
                             </Link>
                             <span>
-                                {m.title} ({m.year})
+                                {title} ({year})
                             </span>
                         </div>
                     ))}

@@ -8,6 +8,7 @@ import SearchFavorite from './SearchFavorite';
 import defaultAvatar from '../../images/avatar.webp';
 import { useHistory } from 'react-router-dom';
 import { AxiosError } from 'axios';
+import { favorite } from '../../features/user/userSlice';
 
 const Form: React.FC<{ index: number }> = ({ index }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
@@ -32,7 +33,7 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
         e.preventDefault();
         if (loggedUser) {
             try {
-                const favoriteIDS = favorites.map((f) => f?._id || null);
+                const favoriteIDS = favorites.map((favorite: favorite) => favorite?._id || null);
                 setSaveBtnText('SAVING...');
                 const { message } = await userService.editProfile(loggedUser?._id, {
                     username,

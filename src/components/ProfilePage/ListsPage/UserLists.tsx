@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import PosterStack from '../PosterStack';
 import { titleToUrl } from '../../../services/helpers';
+import { MovieList } from '../../../features/types';
 
 const UserLists = () => {
     const { state } = useLocation<LocationState>();
@@ -23,8 +24,7 @@ const UserLists = () => {
                 <div className="container">
                     <div className="left-col">
                         <h4 className="h4-subtitle">ALL LISTS</h4>
-
-                        {user.lists.map((list) => (
+                        {user.lists.map((list: MovieList) => (
                             <div className="list" key={list._id}>
                                 <PosterStack user={user} custom_list={list} watchlist={null} />
                                 <div>
