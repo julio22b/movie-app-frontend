@@ -12,7 +12,7 @@ import watchedIMG from '../../images/watched-green.png';
 //
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
 import movieService from '../../services/movieService';
 import userService from '../../services/userService';
@@ -31,6 +31,7 @@ import {
 const FilmActions = () => {
     const movie = useSelector((state: RootState) => state.popularMovies.movie_for_page.movie)!;
     const user = useSelector((state: RootState) => state.userAuth.user as User);
+    const dispatch: AppDispatch = useDispatch();
     const [isLiked, setIsLiked] = useState<boolean>(
         checkStatus(user.liked_movies as [], movie.title),
     );
@@ -39,9 +40,8 @@ const FilmActions = () => {
     );
     const [isInWatchList, setIsInWatchList] = useState<boolean>(
         checkStatus(user.watch_list as [], movie.title),
-    );
+);
 
-    const dispatch = useDispatch();
     const review = () => {
         dispatch(fetchMovieForReview(movie));
         dispatch(changeModalState());

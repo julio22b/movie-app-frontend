@@ -3,7 +3,7 @@ import { AppThunk } from '../../app/store';
 import { Review } from '../types';
 import reviewService from '../../services/reviewService';
 
-interface initialState {
+interface initialStateI {
     reviews: Review[];
     latest_reviews: Review[];
     error: boolean;
@@ -11,7 +11,7 @@ interface initialState {
     openSearchMovie: boolean;
 }
 
-const initialState: initialState = {
+const initialState: initialStateI = {
     reviews: [],
     latest_reviews: [],
     error: false,

@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import { changeSignUpFormStatus, userLogIn } from '../../features/user/userSlice';
 import userService from '../../services/userService';
 
 const CreateAccForm = () => {
     const open = useSelector((state: RootState) => state.userAuth.form_status.sign_up_form);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password_confirmation, setPassword_confirmation] = useState('');

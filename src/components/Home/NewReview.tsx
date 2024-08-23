@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import { removeMovieForReview } from '../../features/movies/popularMoviesSlice';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
 import reviewService from '../../services/reviewService';
@@ -11,7 +11,7 @@ import { addMovieToLiked, addMovieToWatched } from '../../features/user/userSlic
 const NewReview = () => {
     const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const [content, setContent] = useState<string>('');
     const [like, setLike] = useState<boolean>(false);
     const [rating, setRating] = useState<number>(0);

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import { MovieInstance } from '../../features/types';
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
 import NewReview from './NewReview';
@@ -14,7 +14,7 @@ const FindMovieModal = () => {
     const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
     const [searchQuery, setSearchQuery] = useState<string>('');
     const [foundMovie, setFoundMovie] = useState<MovieInstance>({} as MovieInstance);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     useEffect(() => {
         const findMovieOMDB = async () => {

@@ -3,7 +3,7 @@ import ProfilePicture from '../../_helpers/ProfilePicture';
 import { useLocation, Link } from 'react-router-dom';
 import { LocationState } from '../ProfilePage';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../../app/store';
+import { AppDispatch, RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import { MovieList } from '../../../features/types';
 import Poster from '../../Home/Poster';
@@ -17,7 +17,7 @@ const ListPage = () => {
     const { state } = useLocation<state>();
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getProfilePage(state.userID));

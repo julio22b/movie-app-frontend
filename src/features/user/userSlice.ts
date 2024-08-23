@@ -10,7 +10,7 @@ export type Notif = {
 
 export type favorite = null | MovieInstance;
 
-interface initialState {
+interface initialStateI {
     user: User | null;
     error: boolean;
     notification: Notif;
@@ -32,7 +32,7 @@ interface initialState {
     };
 }
 
-const initialState: initialState = {
+const initialState: initialStateI = {
     user: null,
     error: false,
     notification: {

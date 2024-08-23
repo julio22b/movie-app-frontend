@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import { fetchLatestReviews } from '../../features/reviews/reviewsSlice';
 import Poster from './Poster';
 import { Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ const JustReviewed = () => {
     const { backdrop_loading } = useSelector(
         (state: RootState) => state.popularMovies.movie_for_page,
     );
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     useEffect(() => {
         dispatch(fetchLatestReviews());

@@ -3,7 +3,7 @@ import NavWithUsername from '../Film/NavWithUsername';
 import { useLocation, Link } from 'react-router-dom';
 import { LocationState } from '../ProfilePage';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../../app/store';
+import { AppDispatch, RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import PosterStack from '../PosterStack';
 import { titleToUrl } from '../../../services/helpers';
@@ -12,7 +12,7 @@ const UserLists = () => {
     const { state } = useLocation<LocationState>();
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     useEffect(() => {
         dispatch(getProfilePage(state.userID));
     }, [dispatch, state.userID]);

@@ -1,14 +1,14 @@
 import React, { useState, useLayoutEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { userLogIn, changeSignInFormStatus } from '../../features/user/userSlice';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 
 const SignInForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const { sign_in_form } = useSelector((state: RootState) => state.userAuth.form_status);
     const { error } = useSelector((state: RootState) => state.userAuth);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const inputRef = useRef<HTMLInputElement>(null);
 
     const logIn = (e: React.FormEvent<HTMLFormElement>) => {

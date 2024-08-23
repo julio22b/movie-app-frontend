@@ -7,7 +7,7 @@ import Bio from './Bio';
 import WatchlistPeek from './WatchlistPeek';
 import RecentReviews from './RecentReviews';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import RecentLists from './RecentLists';
 import SettingsBtn from './SettingsBtn';
 import FollowBtn from './FollowBtn';
@@ -23,7 +23,7 @@ const ProfilePage = () => {
     const { state } = useLocation<LocationState>();
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     useEffect(() => {
         dispatch(getProfilePage(state.userID));
     }, [dispatch, state.userID]);

@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import {
     fetchMovieForPage,
     removeMovieForPage,
@@ -24,7 +24,7 @@ interface props {
 }
 
 const FilmPage: React.FC<props> = ({ headerRef }) => {
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     const user = useSelector((state: RootState) => state.userAuth.user);
     const { error, loading, movie, backdrop } = useSelector(
         (state: RootState) => state.popularMovies.movie_for_page,

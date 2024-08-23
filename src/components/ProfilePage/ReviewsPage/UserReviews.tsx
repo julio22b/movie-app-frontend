@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { LocationState } from '../ProfilePage';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../../app/store';
+import { AppDispatch, RootState } from '../../../app/store';
 import { getProfilePage } from '../../../features/user/userSlice';
 import NavWithUsername from '../Film/NavWithUsername';
 import ReviewBody from '../ReviewBody';
@@ -11,7 +11,7 @@ import Poster from '../../Home/Poster';
 const UserReviews = () => {
     const { state } = useLocation<LocationState>();
     const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
     useEffect(() => {
         dispatch(getProfilePage(state.userID));
     }, [dispatch, state.userID]);

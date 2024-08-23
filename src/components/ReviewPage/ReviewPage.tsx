@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Review, ReviewComment } from '../../features/types';
-import { RootState } from '../../app/store';
+import { AppDispatch, RootState } from '../../app/store';
 import reviewService from '../../services/reviewService';
 import moment from 'moment';
 
@@ -29,7 +29,7 @@ const ReviewPage = () => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const movieState = useSelector((state: RootState) => state.popularMovies.movie_for_page.movie);
     const [isLiked, setIsLiked] = useState<boolean | undefined>(false);
-    const dispatch = useDispatch();
+    const dispatch: AppDispatch = useDispatch();
 
     useEffect(() => {
         const fetchReview = async () => {

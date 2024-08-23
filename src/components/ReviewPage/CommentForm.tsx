@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { User, ReviewComment } from '../../features/types';
 import { notify } from '../../services/helpers';
+import { AxiosError } from 'axios';
 
 interface props {
     reviewID: string | undefined;
@@ -26,7 +27,8 @@ const CommentForm: React.FC<props> = ({ reviewID, setComments }) => {
             setComments((prev) => prev?.concat(data.comment) as ReviewComment[]);
             notify({ message: data.message, type: 'success' }, dispatch);
         } catch (e) {
-            notify({ message: e, type: 'warning' }, dispatch);
+            if(e instanceof AxiosError)
+                notify({ message: e.response?.data.message, type: 'warning' }, dispatch);
         }
     };
     return (
