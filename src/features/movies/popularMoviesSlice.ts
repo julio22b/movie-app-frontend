@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { AppThunk } from '../../app/store';
 import { MovieOMDB, MovieInstance } from '../types';
-import movieService from '../../services/movieService';
+import { movieService } from '../../services/movieService';
 
 interface InitStatePopular {
     loading: boolean;

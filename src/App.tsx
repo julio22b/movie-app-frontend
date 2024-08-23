@@ -3,7 +3,7 @@ import { NavBar } from './components/Header/NavBar';
 import './styles/style.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { saveUserInfo } from './features/user/userSlice';
-import userService from './services/userService';
+import { userService } from './services/userService';
 import PopularMovies from './components/Home/PopularMovies';
 import MostPopular from './components/Home/MostPopular';
 import JustReviewed from './components/Home/JustReviewed';

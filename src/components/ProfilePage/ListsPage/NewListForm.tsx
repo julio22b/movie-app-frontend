@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { MovieInstance } from '../../../features/types';
 import { useDispatch, useSelector } from 'react-redux';
-import movieService from '../../../services/movieService';
+import { movieService } from '../../../services/movieService';
 import { addMovieForNewList, removeAllMoviesFromNewList } from '../../../features/user/userSlice';
 import { Link, useHistory } from 'react-router-dom';
 import { RootState } from '../../../app/store';
-import movieListService from '../../../services/movieListService';
+import { movieListService } from '../../../services/movieListService';
 import { notify } from '../../../services/helpers';
 
 const NewListForm = () => {

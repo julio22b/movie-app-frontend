@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../../app/store';
 import { Review } from '../types';
-import reviewService from '../../services/reviewService';
+import { reviewService } from '../../services/reviewService';
 
 interface initialStateI {
     reviews: Review[];

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { MovieInstance } from '../../features/types';
-import movieService from '../../services/movieService';
+import { movieService } from '../../services/movieService';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import CloseModalBtn from '../_helpers/CloseModalBtn';

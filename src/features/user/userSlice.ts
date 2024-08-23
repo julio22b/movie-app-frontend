@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AppThunk } from '../../app/store';
 import { User, userLogInInput, MovieInstance } from '../types';
-import userService from '../../services/userService';
+import { userService } from '../../services/userService';
 
 export type Notif = {
     message: string;

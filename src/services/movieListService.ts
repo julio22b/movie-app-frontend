@@ -2,7 +2,7 @@ import Axios from 'axios';
 import { MovieList } from '../features/types';
 import authHeader from './authHeader';
 
-const baseUrl = '/api/movie-lists';
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/movie-lists`;
 
 const createList = async (movieList: Omit<MovieList, 'user'>, userID: string) => {
     const response = await Axios.post(`${baseUrl}/${userID}`, movieList, { headers: authHeader() });
@@ -16,7 +16,7 @@ const getListsByFriends = async (userID: string, amount: number) => {
     return response.data;
 };
 
-export default {
+export const movieListService = {
     createList,
     getListsByFriends,
 };

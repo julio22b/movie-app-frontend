@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';
 import { removeMovieForReview } from '../../features/movies/popularMoviesSlice';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
-import reviewService from '../../services/reviewService';
+import { reviewService } from '../../services/reviewService';
 import { fetchLatestReviews, changeModalState } from '../../features/reviews/reviewsSlice';
 import { useHistory, withRouter } from 'react-router-dom';
 import { addMovieToLiked, addMovieToWatched } from '../../features/user/userSlice';

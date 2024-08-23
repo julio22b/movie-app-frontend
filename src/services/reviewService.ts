@@ -2,7 +2,7 @@ import { Review } from '../features/types';
 import Axios from 'axios';
 import authHeader from './authHeader';
 
-const baseUrl = `/api/reviews`;
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/reviews`;
 
 type ReviewData = Pick<Review, 'content' | 'first_watch' | 'liked_movie' | 'rating' | 'watched_on'>;
 
@@ -48,7 +48,7 @@ const getLatests = async (amount: number) => {
     return response.data;
 };
 
-export default {
+export const reviewService = {
     postReview,
     likeReview,
     getReview,

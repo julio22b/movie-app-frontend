@@ -8,14 +8,12 @@ import notLikedIMG from '../../images/like-gray.png';
 import likedIMG from '../../images/like-orange.png';
 import notWatchedIMG from '../../images/watch-gray.png';
 import watchedIMG from '../../images/watched-green.png';
-
-//
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
-import movieService from '../../services/movieService';
-import userService from '../../services/userService';
+import { movieService } from '../../services/movieService';
+import { userService } from '../../services/userService';
 import { User } from '../../features/types';
 import { checkStatus, notify } from '../../services/helpers';
 import {

@@ -6,7 +6,7 @@ import { MovieInstance } from '../../features/types';
 import { fetchMovieForReview } from '../../features/movies/popularMoviesSlice';
 import NewReview from './NewReview';
 import CloseModalBtn from '../_helpers/CloseModalBtn';
-import movieService from '../../services/movieService';
+import { movieService } from '../../services/movieService';
 import { changeModalState } from '../../features/reviews/reviewsSlice';
 
 const FindMovieModal = () => {

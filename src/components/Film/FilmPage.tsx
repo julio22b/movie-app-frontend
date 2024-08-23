@@ -7,7 +7,7 @@ import {
     fetchBackdropForPage,
 } from '../../features/movies/popularMoviesSlice';
 import { useParams, useLocation } from 'react-router-dom';
-import movieService from '../../services/movieService';
+import { movieService } from '../../services/movieService';
 import Poster from '../Home/Poster';
 import FilmReview from './FilmReview';
 import FilmActions from './FilmActions';

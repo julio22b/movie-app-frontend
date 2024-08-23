@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';
 import { changeSignUpFormStatus, userLogIn } from '../../features/user/userSlice';
-import userService from '../../services/userService';
+import { userService } from '../../services/userService';
 
 const CreateAccForm = () => {
     const open = useSelector((state: RootState) => state.userAuth.form_status.sign_up_form);

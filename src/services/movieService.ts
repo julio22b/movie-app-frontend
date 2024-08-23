@@ -2,7 +2,7 @@ import authHeader from './authHeader';
 import Axios from 'axios';
 import { MovieInstance } from '../features/types';
 
-const baseUrl = '/api/movies';
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/movies`;
 const OMDB_URL = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&type=movie`;
 
 const getMovieInstance = async (obj: MovieInstance, username?: string) => {
@@ -56,7 +56,7 @@ const changeLikeStatus = async (
     return response.data;
 };
 
-export default {
+export const movieService = {
     getMovieInstance,
     useOMDB,
     changeLikeStatus,

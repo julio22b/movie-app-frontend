@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Review, ReviewComment } from '../../features/types';
 import { AppDispatch, RootState } from '../../app/store';
-import reviewService from '../../services/reviewService';
+import { reviewService } from '../../services/reviewService';
 import moment from 'moment';
 
 import Poster from '../Home/Poster';

@@ -11,7 +11,7 @@ import CreateAccForm from './CreateAccForm';
 import magnifier from '../../images/magnifier.png';
 import letterboxd from '../../images/letterboxd.png';
 import logoSimple from '../../images/logo-simple.png';
-import movieService from '../../services/movieService';
+import { movieService } from '../../services/movieService';
 import { titleToUrl } from '../../services/helpers';
 
 export const NavBar: React.FC<{ handleRef: (ref: any) => void }> = ({ handleRef }) => {

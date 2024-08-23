@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Review } from '../../features/types';
 
-import reviewService from '../../services/reviewService';
+import { reviewService } from '../../services/reviewService';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 

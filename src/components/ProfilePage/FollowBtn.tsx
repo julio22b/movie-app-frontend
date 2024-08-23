@@ -2,7 +2,7 @@ import React from 'react';
 import { User } from '../../features/types';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
-import userService from '../../services/userService';
+import { userService } from '../../services/userService';
 import { removeFromFollowing, addToFollowing } from '../../features/user/userSlice';
 
 interface props {

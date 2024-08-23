@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { Link, useHistory } from 'react-router-dom';
 import { logOut } from '../../features/user/userSlice';
-import userService from '../../services/userService';
+import { userService } from '../../services/userService';
 
 const UserDropDown = () => {
     const user = useSelector((state: RootState) => state.userAuth.user);

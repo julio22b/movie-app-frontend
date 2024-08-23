@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import reviewService from '../../services/reviewService';
+import { reviewService } from '../../services/reviewService';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../app/store';
 import { User, ReviewComment } from '../../features/types';

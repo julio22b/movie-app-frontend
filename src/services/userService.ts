@@ -3,11 +3,10 @@ import { userLogInInput } from '../features/types';
 import authHeader from './authHeader';
 import Axios from 'axios';
 
-const baseUrl = '/api/users';
+const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/users`;
 
 async function logIn(user: userLogInInput) {
     const response = await axios.post(`${baseUrl}/log-in`, user);
-    console.log(response);
     localStorage.setItem('filmlyCurrentUser', JSON.stringify(response.data));
     return response.data;
 }
@@ -85,7 +84,7 @@ const getAll = async () => {
     return response.data;
 };
 
-export default {
+export const userService = {
     logIn,
     removeCurrentUser,
     signUp,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { User } from '../../../features/types';
-import userService from '../../../services/userService';
+import { userService } from '../../../services/userService';
 import UserInfo from './UserInfo';
 import UserData from './UserData';
 
