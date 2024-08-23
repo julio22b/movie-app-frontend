@@ -14,6 +14,7 @@ import FilmActions from './FilmActions';
 import PosterCaption from './PosterCaption';
 import FilmDetails from './FilmDetails';
 import SignInBtn from '../_helpers/SignInBtn';
+import { Review } from '../../features/types';
 
 interface LocationState {
     year: string;
@@ -82,7 +83,7 @@ const FilmPage: React.FC<props> = ({ headerRef }) => {
                         <section className="reviews">
                             <h4>RECENT REVIEWS</h4>
                             {movie.reviews.length ? (
-                                movie.reviews.map((review) => (
+                                movie.reviews.map((review: Review) => (
                                     <FilmReview
                                         movieTitle={movie.title}
                                         key={review._id}
