@@ -36,7 +36,7 @@ const ReviewPage = () => {
             const fetchedReview = (await reviewService.getReview(state.reviewID)) as Review;
             setReview(fetchedReview);
             setComments(fetchedReview.comments);
-            setIsLiked(loggedUser?.liked_reviews.some((r) => r === fetchedReview._id));
+            setIsLiked(loggedUser?.liked_reviews.some((reviewID: string) => reviewID === fetchedReview._id));
         };
         if (!review) fetchReview();
         // eslint-disable-next-line react-hooks/exhaustive-deps

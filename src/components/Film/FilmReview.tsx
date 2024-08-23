@@ -19,7 +19,7 @@ const FilmReview: React.FC<Review> = ({
     _id,
 }) => {
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-    const [isLiked, setIsLiked] = useState(loggedUser?.liked_reviews.some((r) => r === _id));
+    const [isLiked, setIsLiked] = useState(loggedUser?.liked_reviews.some((reviewID: string) => reviewID === _id));
 
     const likeReview = () => {
         reviewService.likeReview(loggedUser?._id as string, _id as string);
