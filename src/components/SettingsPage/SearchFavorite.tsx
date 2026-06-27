@@ -37,7 +37,7 @@ const SearchFavorite: React.FC<props> = ({ index }) => {
         <>
             <div
                 className={open ? 'blanket open' : 'blanket'}
-                onClick={() => changePickFavoriteFormStatus(false)}
+                onClick={() => dispatch(changePickFavoriteFormStatus(false))}
             ></div>
             <div className={open ? 'search-favorite open' : 'search-favorite'}>
                 <h4>

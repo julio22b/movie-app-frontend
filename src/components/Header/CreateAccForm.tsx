@@ -18,8 +18,13 @@ const CreateAccForm = () => {
             await userService.signUp({ username, password, password_confirmation });
             dispatch(userLogIn({ username, password }));
             dispatch(changeSignUpFormStatus(false));
-        } catch {
-            setErrors('Passwords must match and be longer than 6 characters');
+        } catch (err) {
+            const serverError: string = (err as any)?.response?.data?.error ?? '';
+            if (serverError.includes('unique')) {
+                setErrors('Username is already taken');
+            } else {
+                setErrors('Passwords must match and be longer than 6 characters');
+            }
         }
     };
 

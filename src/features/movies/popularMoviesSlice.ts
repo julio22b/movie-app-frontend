@@ -127,35 +127,51 @@ export const fetchPopularMovies = (): AppThunk => async (dispatch) => {
     }
 };
 
-export const fetchMovieForReview = (obj: MovieInstance): AppThunk => async (dispatch) => {
-    dispatch(getMovieForReview());
-    const username = JSON.parse(localStorage.getItem('filmlyCurrentUser')!).username;
-    const movie = await movieService.getMovieInstance(obj, username);
-    dispatch(getMovieForReviewSuccess(movie));
-};
+export const fetchMovieForReview =
+    (obj: MovieInstance): AppThunk =>
+    async (dispatch) => {
+        dispatch(getMovieForReview());
+        try {
+            let username: string | undefined;
+            try {
+                username = JSON.parse(localStorage.getItem('filmlyCurrentUser') || 'null')?.username;
+            } catch {}
+            const movie = await movieService.getMovieInstance(obj, username);
+            dispatch(getMovieForReviewSuccess(movie));
+        } catch {
+            dispatch(getMovieForReviewSuccess(obj));
+        }
+    };
 
-export const fetchMovieForPage = (obj: MovieInstance): AppThunk => async (dispatch) => {
-    dispatch(getMovieForPage());
-    try {
-        const movie = await movieService.getMovieInstance(obj);
-        dispatch(getMovieForPageSuccess(movie));
-    } catch {
-        dispatch(getMovieForPageFailure());
-    }
-};
+export const fetchMovieForPage =
+    (obj: MovieInstance): AppThunk =>
+    async (dispatch) => {
+        dispatch(getMovieForPage());
+        try {
+            const movie = await movieService.getMovieInstance(obj);
+            dispatch(getMovieForPageSuccess(movie));
+        } catch {
+            dispatch(getMovieForPageFailure());
+        }
+    };
 
-export const fetchBackdropForPage = (searchQuery: string, year: number): AppThunk => async (
-    dispatch,
-) => {
-    dispatch(getBackdropForPage());
-    try {
-        const response = await axios.get(
-            `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false&year=${year}`,
-        );
-        dispatch(getBackdropForPageSuccess(response.data.results[0].backdrop_path));
-    } catch {
-        dispatch(getBackdropForPageFailure());
-    }
-};
+export const fetchBackdropForPage =
+    (searchQuery: string, year: number): AppThunk =>
+    async (dispatch) => {
+        dispatch(getBackdropForPage());
+        try {
+            const response = await axios.get(
+                `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&query=${searchQuery}&page=1&include_adult=false&year=${year}`,
+            );
+            const backdrop = response.data.results[0]?.backdrop_path;
+            if (backdrop) {
+                dispatch(getBackdropForPageSuccess(backdrop));
+            } else {
+                dispatch(getBackdropForPageFailure());
+            }
+        } catch {
+            dispatch(getBackdropForPageFailure());
+        }
+    };
 
 export default popularMoviesSlice.reducer;

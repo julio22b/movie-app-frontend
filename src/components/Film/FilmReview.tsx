@@ -21,9 +21,12 @@ const FilmReview: React.FC<Review> = ({
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const [isLiked, setIsLiked] = useState(loggedUser?.liked_reviews.some((reviewID: string) => reviewID === _id));
 
-    const likeReview = () => {
-        reviewService.likeReview(loggedUser?._id as string, _id as string);
-        setIsLiked(true);
+    const likeReview = async () => {
+        if (isLiked) return;
+        try {
+            await reviewService.likeReview(loggedUser?._id as string, _id as string);
+            setIsLiked(true);
+        } catch {}
     };
 
     return (

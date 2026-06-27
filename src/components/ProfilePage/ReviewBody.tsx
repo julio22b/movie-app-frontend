@@ -26,7 +26,7 @@ const ReviewBody: React.FC<props> = ({ review, link }) => {
                     {watched_on && `Watched ${watched_on}`}
                 </p>
             )}
-            <p className="content" dangerouslySetInnerHTML={{ __html: review.content }}></p>
+            <p className="content">{review.content}</p>
             <div>{review.likes === 1 ? '1 like' : `${review.likes} likes`}</div>
         </div>
     );

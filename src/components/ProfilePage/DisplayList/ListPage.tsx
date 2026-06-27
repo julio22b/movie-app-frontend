@@ -25,7 +25,7 @@ const ListPage = () => {
 
     const moviesFromListIDs = state.list.movies.map((movie: MovieInstance) => movie._id);
     const watched = loggedUser?.watched_movies.filter((movie: MovieInstance) => moviesFromListIDs.includes(movie._id));
-    const percentage = ((watched?.length! / moviesFromListIDs.length) * 100).toFixed(0);
+    const percentage = moviesFromListIDs.length ? ((watched?.length! / moviesFromListIDs.length) * 100).toFixed(0) : '0';
     if (user) {
         const pathname = `/${user.username}`;
 

@@ -33,12 +33,13 @@ const ReviewPage = () => {
 
     useEffect(() => {
         const fetchReview = async () => {
+            setReview(null);
             const fetchedReview = (await reviewService.getReview(state.reviewID)) as Review;
             setReview(fetchedReview);
             setComments(fetchedReview.comments);
             setIsLiked(loggedUser?.liked_reviews.some((reviewID: string) => reviewID === fetchedReview._id));
         };
-        if (!review) fetchReview();
+        fetchReview();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [state.reviewID]);
 
@@ -46,9 +47,12 @@ const ReviewPage = () => {
         if (review) dispatch(fetchMovieForPage(review.movie));
     }, [review, dispatch]);
 
-    const likeReview = () => {
-        reviewService.likeReview(loggedUser?._id as string, review?._id as string);
-        setIsLiked(true);
+    const likeReview = async () => {
+        if (isLiked) return;
+        try {
+            await reviewService.likeReview(loggedUser?._id as string, review?._id as string);
+            setIsLiked(true);
+        } catch {}
     };
 
     if (review && review.movie) {
@@ -83,10 +87,7 @@ const ReviewPage = () => {
                             </p>
                         )}
                         {review.content && (
-                            <p
-                                className="content"
-                                dangerouslySetInnerHTML={{ __html: review.content }}
-                            ></p>
+                            <p className="content">{review.content}</p>
                         )}
                         {loggedUser && (
                             <LikeReviewBtn
@@ -121,7 +122,6 @@ const ReviewPage = () => {
                         <SignInBtn text={'Sign in to comment'} />
                     )}
                 </div>
-                {loggedUser && movieState && <FilmActions />}
                 {!loggedUser && <SignInBtn text="Sign in to log, rate or review" />}
             </section>
         );

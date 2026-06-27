@@ -34,14 +34,19 @@ function App() {
     const [headerRef, setHeaderRef] = useState<any>(null);
 
     useEffect(() => {
-        const user = JSON.parse(localStorage.getItem('filmlyCurrentUser')!);
-        const userInfo = async () => {
-            const data = await userService.getUserInfo(user.id);
+        let user: { id: string } | null = null;
+        try {
+            user = JSON.parse(localStorage.getItem('filmlyCurrentUser') || 'null');
+        } catch {
+            localStorage.removeItem('filmlyCurrentUser');
+        }
+        const userInfo = async (id: string) => {
+            const data = await userService.getUserInfo(id);
             dispatch(saveUserInfo(data));
             setLoading(false);
         };
         if (user) {
-            userInfo();
+            userInfo(user.id);
         }
         if (!user) {
             setLoading(false);

@@ -25,7 +25,7 @@ const searchManyOMDB = async (query: string) => {
 };
 
 const useOMDB = async (title: string, year?: string): Promise<MovieInstance | undefined> => {
-    const processedTitle = title.replace(' ', '+');
+    const processedTitle = title.replace(/ /g, '+');
     const response = await Axios.get(`${OMDB_URL}&t=${processedTitle}&y=${year}`);
     const data = response.data;
     if (!data.Error) {
@@ -45,11 +45,7 @@ const useOMDB = async (title: string, year?: string): Promise<MovieInstance | un
     }
 };
 
-const changeLikeStatus = async (
-    userID: string | undefined,
-    movieID: string | undefined,
-    action: 'like' | 'unlike',
-) => {
+const changeLikeStatus = async (userID: string | undefined, movieID: string | undefined, action: 'like' | 'unlike') => {
     const response = await Axios.put(`${baseUrl}/${userID}/${action}/${movieID}`, null, {
         headers: authHeader(),
     });

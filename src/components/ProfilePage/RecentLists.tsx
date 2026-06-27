@@ -33,7 +33,7 @@ const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
                               <Link
                                   to={{
                                       pathname: `/${
-                                          loggedUser?.username
+                                          user.username
                                       }/lists/${list.title.toLocaleLowerCase().replace(/ /g, '-')}`,
                                       state: {
                                           userID: list.user._id,

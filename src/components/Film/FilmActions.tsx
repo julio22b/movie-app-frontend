@@ -51,8 +51,9 @@ const FilmActions = () => {
         setIsLiked(!isLiked);
         if (action === 'unlike') {
             dispatch(removeMovieFromLiked(movie._id as string));
+        } else {
+            dispatch(addMovieToLiked(movie));
         }
-        dispatch(addMovieToLiked(movie));
         const notification: Notif = {
             message,
             type: isLiked ? 'warning' : 'success',
@@ -66,8 +67,9 @@ const FilmActions = () => {
         setisWatched(!isWatched);
         if (action === 'remove-from-diary') {
             dispatch(removeMovieFromWatched(movie._id as string));
+        } else {
+            dispatch(addMovieToWatched(movie));
         }
-        dispatch(addMovieToWatched(movie));
         const notification: Notif = {
             message,
             type: isWatched ? 'warning' : 'success',
@@ -81,8 +83,9 @@ const FilmActions = () => {
         setIsInWatchList(!isInWatchList);
         if (action === 'remove-from-watchlist') {
             dispatch(removeMovieFromWatchList(movie._id as string));
+        } else {
+            dispatch(addMovieToWatchList(movie));
         }
-        dispatch(addMovieToWatchList(movie));
         const notification: Notif = {
             message,
             type: isInWatchList ? 'warning' : 'success',

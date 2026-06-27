@@ -27,22 +27,26 @@ export const NavBar: React.FC<{ handleRef: (ref: any) => void }> = ({ handleRef 
 
     const openSearchInput = () => {
         setOpenSearch(!openSearch);
-        if (openSearch && searchRef.current) searchRef.current.focus();
+        if (!openSearch && searchRef.current) searchRef.current.focus();
         setQuery('');
         setFoundMovies([]);
     };
     const ref = useRef<HTMLElement>(null);
     useEffect(() => {
         handleRef(ref);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
+    useEffect(() => {
+        let cancelled = false;
         const searchOMDB = async (query: string) => {
             const movies = await movieService.searchManyOMDB(query);
-            setFoundMovies(movies);
+            if (!cancelled) setFoundMovies(movies);
         };
         if (query.length > 2) {
             searchOMDB(query);
         }
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        return () => { cancelled = true; };
     }, [query]);
 
     const removeResults = () => {

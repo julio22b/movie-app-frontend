@@ -19,11 +19,16 @@ const FilmsPage = () => {
     const [loading, setLoading] = useState(true);
     useEffect(() => {
         const friendsReviews = async () => {
-            const reviews = await reviewService.getReviewsByFriends(loggedUser?._id!, 6);
-            const lists = await movieListService.getListsByFriends(loggedUser?._id!, 3);
-            setReviews(reviews);
-            setLists(lists);
-            setLoading(false);
+            try {
+                const reviews = await reviewService.getReviewsByFriends(loggedUser?._id!, 6);
+                const lists = await movieListService.getListsByFriends(loggedUser?._id!, 3);
+                setReviews(reviews);
+                setLists(lists);
+            } catch {
+                // leave empty state, still stop loading
+            } finally {
+                setLoading(false);
+            }
         };
         if (loggedUser) {
             friendsReviews();
