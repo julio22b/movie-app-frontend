@@ -13,7 +13,7 @@ const UserDropDown = () => {
     const signOut = () => {
         userService.removeCurrentUser();
         dispatch(logOut());
-        history.go(0);
+        history.push('/');
     };
     if (user) {
         return (

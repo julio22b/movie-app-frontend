@@ -107,6 +107,11 @@ function App() {
                         <ListPage />
                     </Route>
                     <PrivateRoute exact path="/list/new" render={() => <AddNewListPage />} />
+                    <Route>
+                        <section style={{ padding: '4em', textAlign: 'center' }}>
+                            <h2>Page not found</h2>
+                        </section>
+                    </Route>
                 </Switch>
             </Router>
         </>
