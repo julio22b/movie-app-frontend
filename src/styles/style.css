@@ -4795,4 +4795,60 @@ footer img:hover {
     left: -50%;
   }
 }
+
+.splash-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #14181c;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  gap: 2em;
+  z-index: 9999;
+}
+
+.splash-screen .splash-logo {
+  width: 260px;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
+.splash-screen .splash-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #445566;
+  border-top-color: #00c030;
+  border-radius: 50%;
+  -webkit-animation: splash-spin 0.8s linear infinite;
+          animation: splash-spin 0.8s linear infinite;
+}
+
+.splash-screen .splash-message {
+  color: #99aabb;
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0 1em;
+}
+
+@-webkit-keyframes splash-spin {
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
+@keyframes splash-spin {
+  to { -webkit-transform: rotate(360deg); transform: rotate(360deg); }
+}
+
 /*# sourceMappingURL=style.css.map */
