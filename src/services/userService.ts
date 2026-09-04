@@ -11,6 +11,11 @@ async function logIn(user: userLogInInput) {
     return response.data;
 }
 
+async function getUserByUsername(username: string) {
+    const response = await axios.get(`${baseUrl}/by-username/${encodeURIComponent(username)}`);
+    return response.data;
+}
+
 async function getUserInfo(id: string) {
     const response = await axios.get(`${baseUrl}/${id}`);
     return response.data;
@@ -89,6 +94,7 @@ export const userService = {
     removeCurrentUser,
     signUp,
     getUserInfo,
+    getUserByUsername,
     changeWatchListStatus,
     changeWatchedStatus,
     editProfile,

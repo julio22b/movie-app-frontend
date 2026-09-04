@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { NavBar } from './components/Header/NavBar';
 import './styles/style.css';
@@ -29,36 +29,37 @@ import PrivateRoute from './components/_helpers/PrivateRoute';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import SplashScreen from './components/_helpers/SplashScreen';
 
+let sawFirstResponse = false;
+const firstResponseListeners = new Set<() => void>();
+const noteResponse = () => {
+    sawFirstResponse = true;
+    firstResponseListeners.forEach((listener) => listener());
+    firstResponseListeners.clear();
+};
+axios.interceptors.response.use(
+    (response) => {
+        noteResponse();
+        return response;
+    },
+    (error) => {
+        noteResponse();
+        return Promise.reject(error);
+    },
+);
+
 function App() {
     const dispatch = useDispatch();
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const [loading, setLoading] = useState(true);
     const [showSplash, setShowSplash] = useState(false);
     const [headerRef, setHeaderRef] = useState<any>(null);
-    const initialized = useRef(false);
 
     useEffect(() => {
+        const dismiss = () => setShowSplash(false);
         const splashTimer = setTimeout(() => {
-            if (!initialized.current) setShowSplash(true);
+            if (!sawFirstResponse) setShowSplash(true);
         }, 3000);
-
-        const dismiss = () => {
-            if (!initialized.current) {
-                initialized.current = true;
-                setShowSplash(false);
-            }
-        };
-
-        const interceptorId = axios.interceptors.response.use(
-            (response) => {
-                dismiss();
-                return response;
-            },
-            (error) => {
-                dismiss();
-                return Promise.reject(error);
-            },
-        );
+        firstResponseListeners.add(dismiss);
 
         let user: { id: string } | null = null;
         try {
@@ -77,7 +78,7 @@ function App() {
 
         return () => {
             clearTimeout(splashTimer);
-            axios.interceptors.response.eject(interceptorId);
+            firstResponseListeners.delete(dismiss);
         };
     }, [dispatch]);
 
@@ -95,7 +96,7 @@ function App() {
                 <FindMovieModal />
                 <Switch>
                     <Route path='/' exact>
-                        {loggedUser ? (
+                        {loading ? null : loggedUser ? (
                             <FilmsPage />
                         ) : (
                             <section>

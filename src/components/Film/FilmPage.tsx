@@ -1,7 +1,12 @@
 import React, { useEffect, useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../app/store';
-import { fetchMovieForPage, removeMovieForPage, fetchBackdropForPage } from '../../features/movies/popularMoviesSlice';
+import {
+    fetchMovieForPage,
+    removeMovieForPage,
+    fetchBackdropForPage,
+    getMovieForPageFailure,
+} from '../../features/movies/popularMoviesSlice';
 import { useParams, useLocation } from 'react-router-dom';
 import { movieService } from '../../services/movieService';
 import Poster from '../Home/Poster';
@@ -29,11 +34,17 @@ const FilmPage: React.FC<props> = ({ headerRef }) => {
 
     useEffect(() => {
         const getMovie = async () => {
-            const movie = await movieService.useOMDB(params.title, state?.year);
-            if (movie) {
+            try {
+                const movie = await movieService.useOMDB(params.title, state?.year);
+                if (!movie) {
+                    dispatch(getMovieForPageFailure());
+                    return;
+                }
                 dispatch(fetchMovieForPage(movie));
                 const searchQuery = movie.title.replace(/ /g, '%20');
                 dispatch(fetchBackdropForPage(searchQuery, Number(state?.year)));
+            } catch {
+                dispatch(getMovieForPageFailure());
             }
         };
         getMovie();

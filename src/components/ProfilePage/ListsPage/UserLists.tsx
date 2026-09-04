@@ -1,22 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import NavWithUsername from '../Film/NavWithUsername';
-import { useLocation, Link } from 'react-router-dom';
-import { LocationState } from '../ProfilePage';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '../../../app/store';
-import { getProfilePage } from '../../../features/user/userSlice';
+import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../app/store';
 import PosterStack from '../PosterStack';
 import { titleToUrl } from '../../../services/helpers';
 import { MovieList } from '../../../features/types';
+import { useProfileUser } from '../../_helpers/useProfileUser';
 
 const UserLists = () => {
-    const { state } = useLocation<LocationState>();
-    const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
+    const { user } = useProfileUser();
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
-    const dispatch: AppDispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getProfilePage(state.userID));
-    }, [dispatch, state.userID]);
+
     if (user) {
         return (
             <section className="user-lists">

@@ -5,6 +5,7 @@ import { fetchPopularMovies } from '../../features/movies/popularMoviesSlice';
 import Poster from './Poster';
 import { Link } from 'react-router-dom';
 import { MovieOMDB } from '../../features/types';
+import { titleToUrl } from '../../services/helpers';
 
 const PopularMovies = () => {
     const dispatch: AppDispatch = useDispatch();
@@ -23,7 +24,7 @@ const PopularMovies = () => {
             {topSix.map((movie: MovieOMDB) => (
                 <Link
                     to={{
-                        pathname: `/film/${movie.title.toLocaleLowerCase().replace(/ /g, '-')}`,
+                        pathname: `/film/${titleToUrl(movie.title)}`,
                         state: { year: movie.release_date.slice(0, 4) },
                     }}
                     key={movie.title}

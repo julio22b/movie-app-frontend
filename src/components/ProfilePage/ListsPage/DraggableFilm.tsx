@@ -9,7 +9,7 @@ const DraggableFilm: React.FC<{ movie: MovieInstance }> = ({ movie }) => {
         <figure className="film">
             <div>
                 <img
-                    src={movie.poster.replace(/&#x2F;/g, '/')}
+                    src={movie.poster}
                     alt={`Poster for ${movie.title} (${movie.year})`}
                 />
                 <figcaption>

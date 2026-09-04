@@ -2,6 +2,7 @@ import React from 'react';
 import { User } from '../../features/types';
 import { Link } from 'react-router-dom';
 import { ReviewComment } from '../../features/types';
+import { titleToUrl } from '../../services/helpers';
 
 interface UsernameHeaderProps {
     user: User;
@@ -21,9 +22,7 @@ const UsernameHeader: React.FC<UsernameHeaderProps> = ({
     return (
         <Link
             to={{
-                pathname: `/${user.username}/film/${movieTitle
-                    ?.toLocaleLowerCase()
-                    .replace(/ /g, '+')}`,
+                pathname: `/${user.username}/film/${titleToUrl(movieTitle ?? '')}`,
                 state: { reviewID: _id, userID: user._id },
             }}
         >

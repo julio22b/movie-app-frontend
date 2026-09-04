@@ -1,21 +1,14 @@
-import React, { useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { LocationState } from '../ProfilePage';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '../../../app/store';
-import { getProfilePage } from '../../../features/user/userSlice';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import NavWithUsername from '../Film/NavWithUsername';
 import Poster from '../../Home/Poster';
 import { titleToUrl } from '../../../services/helpers';
 import { MovieInstance } from '../../../features/types';
+import { useProfileUser } from '../../_helpers/useProfileUser';
 
 const UserWatchList = () => {
-    const { state } = useLocation<LocationState>();
-    const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
-    const dispatch: AppDispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getProfilePage(state.userID));
-    }, [dispatch, state.userID]);
+    const { user } = useProfileUser();
+
     if (user) {
         return (
             <section className="user-watchlist">

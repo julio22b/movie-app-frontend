@@ -13,7 +13,7 @@ const Poster: React.FC<PosterProps> = ({ url, title, tmdb }) => {
         return <div className="poster-placeholder">{title}</div>;
     }
 
-    const src = tmdb ? `https://image.tmdb.org/t/p/original${url}` : url.replace(/&#x2F;/g, '/');
+    const src = tmdb ? `https://image.tmdb.org/t/p/original${url}` : url;
     return (
         <img
             src={src}

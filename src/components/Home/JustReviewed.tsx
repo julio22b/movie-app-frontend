@@ -6,6 +6,7 @@ import Poster from './Poster';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
 import { Review } from '../../features/types';
+import { titleToUrl } from '../../services/helpers';
 
 const JustReviewed = () => {
     const { latest_reviews, loading, error } = useSelector((state: RootState) => state.reviews);
@@ -32,11 +33,9 @@ const JustReviewed = () => {
                         <Link
                             key={review._id}
                             to={{
-                                pathname: `/${
-                                    review.user.username
-                                }/film/${review.movie.title
-                                    .toLocaleLowerCase()
-                                    .replace(/ /g, '-')}`,
+                                pathname: `/${review.user.username}/film/${titleToUrl(
+                                    review.movie.title,
+                                )}`,
                                 state: {
                                     reviewID: review._id,
                                 },

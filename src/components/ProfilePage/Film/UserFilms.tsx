@@ -1,23 +1,14 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { AppDispatch, RootState } from '../../../app/store';
-import { getProfilePage } from '../../../features/user/userSlice';
-import { useLocation, Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import Poster from '../../Home/Poster';
-import { LocationState } from '../ProfilePage';
 import NavWithUsername from './NavWithUsername';
 import { titleToUrl } from '../../../services/helpers';
 import { MovieInstance } from '../../../features/types';
+import { useProfileUser } from '../../_helpers/useProfileUser';
 
 const UserFilms = () => {
-    const { state } = useLocation<LocationState>();
-    const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
-    const dispatch: AppDispatch = useDispatch();
+    const { user } = useProfileUser();
 
-    useEffect(() => {
-        dispatch(getProfilePage(state.userID));
-    }, [dispatch, state.userID]);
-    
     if (user) {
         return (
             <section className="user-films">
@@ -25,7 +16,7 @@ const UserFilms = () => {
                 <div className="posters-container">
                     {user.watched_movies.map((movie: MovieInstance) => (
                         <Link
-                            key={movie.title}
+                            key={movie._id}
                             to={{
                                 pathname: `/film/${titleToUrl(movie.title)}`,
                                 state: {

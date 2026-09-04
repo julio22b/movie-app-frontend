@@ -1,21 +1,13 @@
-import React, { useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { LocationState } from '../ProfilePage';
-import { AppDispatch, RootState } from '../../../app/store';
-import { useSelector, useDispatch } from 'react-redux';
-import { getProfilePage } from '../../../features/user/userSlice';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import NavWithUsername from '../Film/NavWithUsername';
 import MovieColumn from './MovieColumn';
 import moment from 'moment';
+import { titleToUrl } from '../../../services/helpers';
+import { useProfileUser } from '../../_helpers/useProfileUser';
 
 const UserDiary = () => {
-    const { state } = useLocation<LocationState>();
-    const user = useSelector((state: RootState) => state.userAuth.user_for_profile_page.user);
-    const dispatch: AppDispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(getProfilePage(state.userID));
-    }, [dispatch, state.userID]);
+    const { user } = useProfileUser();
 
     if (user) {
         const reviewsByDate = [...user.reviews].sort((a, b) => {
@@ -60,11 +52,9 @@ const UserDiary = () => {
                                     {review.content ? (
                                         <Link
                                             to={{
-                                                pathname: `/${
-                                                    user.username
-                                                }/film/${review.movie.title
-                                                    .toLocaleLowerCase()
-                                                    .replace(/ /g, '-')}`,
+                                                pathname: `/${user.username}/film/${titleToUrl(
+                                                    review.movie.title,
+                                                )}`,
                                                 state: { reviewID: review._id },
                                             }}
                                         >

@@ -7,6 +7,7 @@ import { reviewService } from '../../services/reviewService';
 import { fetchLatestReviews, changeModalState } from '../../features/reviews/reviewsSlice';
 import { useHistory, withRouter } from 'react-router-dom';
 import { addMovieToLiked, addMovieToWatched } from '../../features/user/userSlice';
+import { titleToUrl } from '../../services/helpers';
 
 const NewReview = () => {
     const { movie } = useSelector((state: RootState) => state.popularMovies.movie_for_review);
@@ -37,7 +38,7 @@ const NewReview = () => {
                     dispatch(addMovieToLiked(movie));
                 }
                 history.push(
-                    `/${loggedUser.username}/film/${movie.title.toLowerCase().replace(/ /g, '-')}`,
+                    `/${loggedUser.username}/film/${titleToUrl(movie.title)}`,
                     {
                         reviewID: savedReview._id,
                     },
@@ -64,7 +65,7 @@ const NewReview = () => {
                 <figure>
                     <button onClick={() => dispatch(removeMovieForReview())}>BACK</button>
                     <img
-                        src={movie.poster.replace(/&#x2F;/g, '/')}
+                        src={movie.poster}
                         alt={`Poster for ${movie.title} (${movie.year})`}
                     />
                 </figure>

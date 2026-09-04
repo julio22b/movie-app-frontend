@@ -95,7 +95,7 @@ const Form: React.FC<{ index: number }> = ({ index }) => {
                 name="bio"
                 cols={30}
                 rows={10}
-                defaultValue={bio ? bio.replace(/&#x27;/g, `'`) : ''}
+                defaultValue={bio || ''}
                 onChange={(e) => setBio(e.target.value)}
                 maxLength={500}
             ></textarea>

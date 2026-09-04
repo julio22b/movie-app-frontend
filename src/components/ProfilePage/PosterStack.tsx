@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { MovieInstance, User, MovieList } from '../../features/types';
 import Poster from '../Home/Poster';
+import { titleToUrl } from '../../services/helpers';
 
 interface props {
     user: User;
@@ -23,7 +24,7 @@ const PosterStack: React.FC<props> = ({ user, watchlist, custom_list }) => {
             </Link>
         );
     } else if (custom_list) {
-        const listTitle = custom_list.title.toLocaleLowerCase().replace(/ /g, '-');
+        const listTitle = titleToUrl(custom_list.title);
         const fixedMovies: Array<null | MovieInstance> = [null, null, null, null, null];
         fixedMovies.splice(0, custom_list.movies.length, ...custom_list.movies.slice(0, 5));
 

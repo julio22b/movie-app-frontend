@@ -33,7 +33,7 @@ const AddFavoriteBtn: React.FC<props> = ({ index, setIndex }) => {
                     x
                 </button>
             )}
-            <img src={favorites[index]?.poster.replace(/&#x2F;/g, '/') || ''} alt="" />
+            <img src={favorites[index]?.poster || ''} alt="" />
         </div>
     );
 };

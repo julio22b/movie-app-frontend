@@ -3,9 +3,7 @@ import { hideNotification, showNotification, Notif } from '../features/user/user
 import { Dispatch } from 'react';
 
 export const checkStatus = (arrayTocheck: MovieInstance[], title: string): boolean => {
-    return arrayTocheck.some(
-        (m) => m.title.toLocaleLowerCase() === title.toLocaleLowerCase(),
-    ) as boolean;
+    return arrayTocheck.some((m) => m.title.toLocaleLowerCase() === title.toLocaleLowerCase()) as boolean;
 };
 
 export const notify = (notification: Notif, dispatch: Dispatch<any>) => {
@@ -16,5 +14,5 @@ export const notify = (notification: Notif, dispatch: Dispatch<any>) => {
 };
 
 export const titleToUrl = (title: string) => {
-    return title.toLocaleLowerCase().replace(/ /g, '-');
+    return title.toLocaleLowerCase().trim().replace(/[/?#]/g, ' ').replace(/\s+/g, '-');
 };

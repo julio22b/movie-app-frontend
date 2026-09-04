@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../../app/store';
 import PosterStack from './PosterStack';
 import { Link } from 'react-router-dom';
+import { titleToUrl } from '../../services/helpers';
 
 const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
     recent_lists,
@@ -32,9 +33,9 @@ const RecentLists: React.FC<{ recent_lists: MovieList[]; user: User }> = ({
                               <PosterStack user={user} watchlist={null} custom_list={list} />
                               <Link
                                   to={{
-                                      pathname: `/${
-                                          user.username
-                                      }/lists/${list.title.toLocaleLowerCase().replace(/ /g, '-')}`,
+                                      pathname: `/${user.username}/lists/${titleToUrl(
+                                          list.title,
+                                      )}`,
                                       state: {
                                           userID: list.user._id,
                                           list,
