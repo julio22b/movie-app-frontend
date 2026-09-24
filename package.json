@@ -2,6 +2,9 @@
     "name": "movie-app-frontend",
     "version": "0.1.0",
     "private": true,
+    "engines": {
+        "node": "24.x"
+    },
     "dependencies": {
         "@reduxjs/toolkit": "^2.2.7",
         "@testing-library/jest-dom": "^4.2.4",
