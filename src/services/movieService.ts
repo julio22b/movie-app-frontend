@@ -5,15 +5,15 @@ import { MovieInstance } from '../features/types';
 const baseUrl = `${process.env.REACT_APP_API_BASE_URL}/api/movies`;
 const OMDB_URL = `https://www.omdbapi.com/?apikey=${process.env.REACT_APP_OMDB_KEY}&type=movie`;
 
-const getMovieInstance = async (obj: MovieInstance, username?: string) => {
-    const response = await Axios.post(`${baseUrl}/create?username=${username}`, obj, {
+const getMovieInstance = async (obj: MovieInstance) => {
+    const response = await Axios.post(`${baseUrl}/create`, obj, {
         headers: authHeader(),
     });
     return response.data as MovieInstance;
 };
 
 const searchManyOMDB = async (query: string) => {
-    const response = await Axios.get(`${OMDB_URL}&s=${query}`);
+    const response = await Axios.get(`${OMDB_URL}&s=${encodeURIComponent(query)}`);
     if (response.data.Search) {
         return response.data.Search.slice(0, 5).map((movie: any) => {
             return {
@@ -25,7 +25,7 @@ const searchManyOMDB = async (query: string) => {
 };
 
 const useOMDB = async (title: string, year?: string): Promise<MovieInstance | undefined> => {
-    const processedTitle = title.replace(/ /g, '+');
+    const processedTitle = encodeURIComponent(title);
     const response = await Axios.get(`${OMDB_URL}&t=${processedTitle}&y=${year}`);
     const data = response.data;
     if (!data.Error) {

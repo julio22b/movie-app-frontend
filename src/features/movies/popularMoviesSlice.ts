@@ -132,11 +132,7 @@ export const fetchMovieForReview =
     async (dispatch) => {
         dispatch(getMovieForReview());
         try {
-            let username: string | undefined;
-            try {
-                username = JSON.parse(localStorage.getItem('filmlyCurrentUser') || 'null')?.username;
-            } catch {}
-            const movie = await movieService.getMovieInstance(obj, username);
+            const movie = await movieService.getMovieInstance(obj);
             dispatch(getMovieForReviewSuccess(movie));
         } catch {
             dispatch(getMovieForReviewSuccess(obj));

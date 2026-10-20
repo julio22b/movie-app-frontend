@@ -26,7 +26,6 @@ import UserDiary from './components/ProfilePage/Diary/UserDiary';
 import { RootState } from './app/store';
 import ListPage from './components/ProfilePage/DisplayList/ListPage';
 import PrivateRoute from './components/_helpers/PrivateRoute';
-import { SpeedInsights } from '@vercel/speed-insights/react';
 import SplashScreen from './components/_helpers/SplashScreen';
 
 let sawFirstResponse = false;
@@ -68,10 +67,11 @@ function App() {
             localStorage.removeItem('filmlyCurrentUser');
         }
         if (user) {
-            userService.getUserInfo(user.id).then((data) => {
-                dispatch(saveUserInfo(data));
-                setLoading(false);
-            });
+            userService
+                .getUserInfo(user.id)
+                .then((data) => dispatch(saveUserInfo(data)))
+                .catch(() => localStorage.removeItem('filmlyCurrentUser'))
+                .finally(() => setLoading(false));
         } else {
             setLoading(false);
         }
@@ -90,7 +90,6 @@ function App() {
         <>
             {showSplash && <SplashScreen />}
             <Notification />
-            <SpeedInsights />
             <Router>
                 {!loading && <NavBar handleRef={handleRef} />}
                 <FindMovieModal />

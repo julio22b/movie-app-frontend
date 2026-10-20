@@ -14,5 +14,5 @@ export const notify = (notification: Notif, dispatch: Dispatch<any>) => {
 };
 
 export const titleToUrl = (title: string) => {
-    return title.toLocaleLowerCase().trim().replace(/[/?#]/g, ' ').replace(/\s+/g, '-');
+    return title.toLocaleLowerCase().trim().replace(/[/?#%]/g, ' ').replace(/\s+/g, '-');
 };

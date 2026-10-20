@@ -66,7 +66,10 @@ const FilmsPage = () => {
                                 <PosterStack user={list.user} watchlist={null} custom_list={list} />
                                 <p>
                                     <Link
-                                        to={`/${list.user.username}/list/${titleToUrl(list.title)}`}
+                                        to={{
+                                            pathname: `/${list.user.username}/lists/${titleToUrl(list.title)}`,
+                                            state: { userID: list.user._id, list },
+                                        }}
                                     >
                                         {list.title}
                                     </Link>

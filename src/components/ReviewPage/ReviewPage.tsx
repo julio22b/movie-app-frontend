@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Review, ReviewComment } from '../../features/types';
 import { AppDispatch, RootState } from '../../app/store';
 import { reviewService } from '../../services/reviewService';
+import { userService } from '../../services/userService';
 import moment from 'moment';
 
 import Poster from '../Home/Poster';
@@ -23,25 +24,46 @@ interface LocationState {
 }
 
 const ReviewPage = () => {
-    const { state } = useLocation<LocationState>();
+    const { state } = useLocation<Partial<LocationState> | undefined>();
+    const { username, title } = useParams<{ username: string; title: string }>();
     const [review, setReview] = useState<Review | null>(null);
+    const [notFound, setNotFound] = useState<boolean>(false);
     const [comments, setComments] = useState<ReviewComment[] | null>(review?.comments || null);
     const loggedUser = useSelector((state: RootState) => state.userAuth.user);
     const movieState = useSelector((state: RootState) => state.popularMovies.movie_for_page.movie);
     const [isLiked, setIsLiked] = useState<boolean | undefined>(false);
     const dispatch: AppDispatch = useDispatch();
 
+    const stateReviewID = state?.reviewID;
+
     useEffect(() => {
+        const resolveReviewID = async (): Promise<string | undefined> => {
+            if (stateReviewID) return stateReviewID;
+            const user = await userService.getUserByUsername(username);
+            const matches = (user.reviews as Review[]).filter((r) => r.movie && titleToUrl(r.movie.title) === title);
+            return matches.length ? matches[matches.length - 1]._id : undefined;
+        };
+
         const fetchReview = async () => {
             setReview(null);
-            const fetchedReview = (await reviewService.getReview(state.reviewID)) as Review;
-            setReview(fetchedReview);
-            setComments(fetchedReview.comments);
-            setIsLiked(loggedUser?.liked_reviews.some((reviewID: string) => reviewID === fetchedReview._id));
+            setNotFound(false);
+            try {
+                const reviewID = await resolveReviewID();
+                if (!reviewID) {
+                    setNotFound(true);
+                    return;
+                }
+                const fetchedReview = (await reviewService.getReview(reviewID)) as Review;
+                setReview(fetchedReview);
+                setComments(fetchedReview.comments);
+                setIsLiked(loggedUser?.liked_reviews.some((reviewID: string) => reviewID === fetchedReview._id));
+            } catch {
+                setNotFound(true);
+            }
         };
         fetchReview();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [state.reviewID]);
+    }, [stateReviewID, username, title]);
 
     useEffect(() => {
         if (review) dispatch(fetchMovieForPage(review.movie));
@@ -59,49 +81,30 @@ const ReviewPage = () => {
         const state = { year: review.movie.year };
         const pathname = `/film/${titleToUrl(review.movie.title)}`;
         return (
-            <section className="review-page">
+            <section className='review-page'>
                 <div>
                     <figure>
                         <Link to={{ pathname, state }}>
-                            <Poster
-                                url={review.movie.poster}
-                                title={review.movie.title}
-                                tmdb={false}
-                            />
+                            <Poster url={review.movie.poster} title={review.movie.title} tmdb={false} />
                         </Link>
                     </figure>
                     <article>
-                        <div className="user-info">
+                        <div className='user-info'>
                             <ProfilePicture user={review.user} />
-                            <UsernameHeader
-                                user={review.user}
-                                movieTitle={review.movie.title}
-                                _id={review._id}
-                            />
+                            <UsernameHeader user={review.user} movieTitle={review.movie.title} _id={review._id} />
                         </div>
 
                         <MovieTitle review={review} />
                         {review.watched_on && (
-                            <p className="date-watched">
-                                Watched {moment(review.watched_on).format('MMM DD[,] YYYY')}
-                            </p>
+                            <p className='date-watched'>Watched {moment(review.watched_on).format('MMM DD[,] YYYY')}</p>
                         )}
-                        {review.content && (
-                            <p className="content">{review.content}</p>
-                        )}
-                        {loggedUser && (
-                            <LikeReviewBtn
-                                likeReview={likeReview}
-                                isLiked={isLiked}
-                                likes={review.likes}
-                            />
-                        )}
+                        {review.content && <p className='content'>{review.content}</p>}
+                        {loggedUser && <LikeReviewBtn likeReview={likeReview} isLiked={isLiked} likes={review.likes} />}
                     </article>
                     {loggedUser && movieState && <FilmActions />}
-                    <section className="comments">
-                        <h4 className="h4-subtitle">
-                            {review.comments.length}{' '}
-                            {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
+                    <section className='comments'>
+                        <h4 className='h4-subtitle'>
+                            {review.comments.length} {review.comments.length === 1 ? 'COMMENT' : 'COMMENTS'}
                         </h4>
                         {comments &&
                             comments.length > 0 &&
@@ -122,7 +125,14 @@ const ReviewPage = () => {
                         <SignInBtn text={'Sign in to comment'} />
                     )}
                 </div>
-                {!loggedUser && <SignInBtn text="Sign in to log, rate or review" />}
+                {!loggedUser && <SignInBtn text='Sign in to log, rate or review' />}
+            </section>
+        );
+    }
+    if (notFound) {
+        return (
+            <section style={{ padding: '4em', textAlign: 'center' }}>
+                <h2>Review not found</h2>
             </section>
         );
     }
